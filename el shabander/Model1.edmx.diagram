@@ -14,7 +14,7 @@
         <EntityTypeShape EntityType="DB_storeModel.tb_ordersell" Width="1.5" PointX="0.5" PointY="6.625" IsExpanded="true" />
         <EntityTypeShape EntityType="DB_storeModel.tb_ordersellpop" Width="1.5" PointX="2.125" PointY="3.875" IsExpanded="true" />
         <EntityTypeShape EntityType="DB_storeModel.tb_pur" Width="1.5" PointX="7" PointY="0.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_storeModel.tb_rev_cus" Width="1.5" PointX="3.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_storeModel.tb_rev_cus" Width="1.5" PointX="3.75" PointY="5.625" IsExpanded="true" />
         <EntityTypeShape EntityType="DB_storeModel.tb_rev_supp" Width="1.5" PointX="5.375" PointY="5.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DB_storeModel.tb_safe" Width="1.5" PointX="7" PointY="5.25" IsExpanded="true" />
         <EntityTypeShape EntityType="DB_storeModel.tb_sell" Width="1.5" PointX="10.25" PointY="0.5" IsExpanded="true" />
