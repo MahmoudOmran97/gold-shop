@@ -16,7 +16,7 @@ namespace el_shabander.pl
 {
     public partial class frm_login : Form
     {
-        DB_storeEntities db = new DB_storeEntities();
+        gold_shopEntities db = new gold_shopEntities();
         tb_user tB_user = new tb_user();
         main main = new main();
         bl.methods methods = new bl.methods();

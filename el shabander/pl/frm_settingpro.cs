@@ -21,8 +21,8 @@ namespace el_shabander.pl
     public partial class frm_settingpro : Form
     {
 
-        // private DB_storeEntities db;
-        DB_storeEntities db = new DB_storeEntities();
+        // private gold_shopEntities db;
+        gold_shopEntities db = new gold_shopEntities();
         bl.methods methods = new bl.methods();
         public frm_settingpro()
         {
@@ -251,7 +251,7 @@ namespace el_shabander.pl
         {
             try
             {
-                using (var db = new DB_storeEntities())
+                using (var db = new gold_shopEntities())
                 {
                     string dbname = db.Database.Connection.Database;
                     string dbbackup = "DMMback" + DateTime.Now.ToString("yyyyMMddHHmm");
@@ -321,7 +321,7 @@ namespace el_shabander.pl
         {
             try
             {
-                using (var db = new DB_storeEntities())
+                using (var db = new gold_shopEntities())
                 {
                     string dbname = db.Database.Connection.Database;
 

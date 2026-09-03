@@ -55,7 +55,7 @@ namespace el_shabander.pl
 
                 // تحديث سلسلة الاتصال في ملف التكوين
                 var config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-                var connectionStringSettings = config.ConnectionStrings.ConnectionStrings["DB_storeEntities"];
+                var connectionStringSettings = config.ConnectionStrings.ConnectionStrings["gold_shopEntities"];
                 if (connectionStringSettings != null)
                 {
                     connectionStringSettings.ConnectionString = constr.ToString();

@@ -18,7 +18,7 @@ namespace el_shabander.pl
 {
     public partial class frm_stuk : Form
     {
-        DB_storeEntities db = new DB_storeEntities();
+        gold_shopEntities db = new gold_shopEntities();
         // tb_pur tb_Pur = new tb_pur();
         tb_stuk tb_Stuk = new tb_stuk();
         bl.methods methods = new bl.methods();
@@ -32,7 +32,7 @@ namespace el_shabander.pl
 
 
          
-            el_shabander.DB_storeEntities dbContext = new el_shabander.DB_storeEntities();
+            el_shabander.gold_shopEntities dbContext = new el_shabander.gold_shopEntities();
             // Call the LoadAsync method to asynchronously get the data for the given DbSet from the database.
             dbContext.tb_stuk.LoadAsync().ContinueWith(loadTask =>
             {
@@ -53,7 +53,7 @@ namespace el_shabander.pl
 
         public void updata_data()
         {
-            db = new DB_storeEntities();
+            db = new gold_shopEntities();
             gridControl1.DataSource = db.tb_stuk.ToList();
         }
 

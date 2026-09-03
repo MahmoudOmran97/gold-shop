@@ -14,7 +14,7 @@ namespace el_shabander.pl
 {
     public partial class frm_user : Form
     {
-        DB_storeEntities db = new DB_storeEntities();
+        gold_shopEntities db = new gold_shopEntities();
         tb_user tb_user = new tb_user();
         bl.methods methods = new bl.methods();
         toast toast = new toast();
@@ -27,7 +27,7 @@ namespace el_shabander.pl
 
 
          
-            el_shabander.DB_storeEntities dbContext = new el_shabander.DB_storeEntities();
+            el_shabander.gold_shopEntities dbContext = new el_shabander.gold_shopEntities();
             // Call the LoadAsync method to asynchronously get the data for the given DbSet from the database.
             dbContext.tb_user.LoadAsync().ContinueWith(loadTask =>
             {
@@ -93,13 +93,13 @@ namespace el_shabander.pl
                   
                     if (frm_supp_Add.la_roll.Text == "مدير حسابات")
                     {
-                        db = new DB_storeEntities();
+                        db = new gold_shopEntities();
                         gridControl1.DataSource = db.tb_user.Where(x => x.user_roll== "مدير حسابات" || x.user_roll=="مستخدم"). ToList();
                         
                     }
                     else
                     {
-                        db = new DB_storeEntities();
+                        db = new gold_shopEntities();
                         gridControl1.DataSource = db.tb_user.ToList();
 
                     }

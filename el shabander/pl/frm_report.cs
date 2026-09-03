@@ -16,7 +16,7 @@ namespace el_shabander.pl
 {
     public partial class frm_report : Form
     {
-        DB_storeEntities db = new DB_storeEntities();
+        gold_shopEntities db = new gold_shopEntities();
         tb_safe tb_Safe = new tb_safe();
 
         public int id;

@@ -12,7 +12,7 @@ namespace el_shabander.pl
 {
     public partial class frm_home : Form
     {
-        DB_storeEntities db = new DB_storeEntities();
+        gold_shopEntities db = new gold_shopEntities();
         pl.frm_report frm_report = new pl.frm_report();
         public frm_home()
         {

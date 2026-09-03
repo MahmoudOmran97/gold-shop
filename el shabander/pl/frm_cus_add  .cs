@@ -13,7 +13,7 @@ namespace el_shabander.pl
 {
     public partial class frm_cus_add  : Form
     {
-        DB_storeEntities db = new DB_storeEntities();
+        gold_shopEntities db = new gold_shopEntities();
         tb_cus tB_cus = new tb_cus();
         bl.methods methods = new bl.methods();
        

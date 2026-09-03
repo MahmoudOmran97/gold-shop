@@ -13,7 +13,7 @@ namespace el_shabander.pl
 {
     public partial class frm_factory_add : Form
     {
-        DB_storeEntities db = new DB_storeEntities();
+        gold_shopEntities db = new gold_shopEntities();
         frm_sell_add send = new frm_sell_add();
         tb_stuk tb_stuk = new tb_stuk();
         tb_factory tb_Factory = new tb_factory();

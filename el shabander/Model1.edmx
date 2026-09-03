@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="DB_storeModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="AppSettings">
           <Key>
             <PropertyRef Name="id" />
@@ -356,7 +356,7 @@
           <Property Name="user_image" Type="image" />
           <Property Name="user_mail" Type="nvarchar(max)" />
         </EntityType>
-        <EntityContainer Name="DB_storeModelStoreContainer">
+        <EntityContainer Name="ModelStoreContainer">
           <EntitySet Name="AppSettings" EntityType="Self.AppSettings" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Notfication" EntityType="Self.Notfication" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sendmailcode" EntityType="Self.sendmailcode" Schema="dbo" store:Type="Tables" />
@@ -384,10 +384,11 @@
           <EntitySet Name="tb_takestuk" EntityType="Self.tb_takestuk" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tb_user" EntityType="Self.tb_user" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="DB_storeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="AppSetting">
           <Key>
             <PropertyRef Name="id" />
@@ -409,6 +410,36 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="notfication1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="CreatedAt" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="sendmailcode">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="user_mail" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Session">
+          <Key>
+            <PropertyRef Name="SessionID" />
+          </Key>
+          <Property Name="SessionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StartTime" Type="DateTime" Precision="3" />
+          <Property Name="EndTime" Type="DateTime" Precision="3" />
+          <Property Name="IsClosed" Type="Boolean" />
+          <Property Name="OpeningAmount" Type="Double" />
+          <Property Name="namecasher" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ClosingAmount" Type="Double" />
+        </EntityType>
+        <EntityType Name="tb_add_mony">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name_type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="price" Type="Double" />
+          <Property Name="date" Type="DateTime" Precision="3" />
+          <Property Name="typemotion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="TB_cat">
           <Key>
@@ -457,6 +488,27 @@
           <Property Name="qt" Type="Double" />
           <Property Name="cost_all" Type="Double" />
           <Property Name="unit" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tb_offer">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name_offer" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="type_offer" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="quontity" Type="Double" />
+        </EntityType>
+        <EntityType Name="tb_OperationLog">
+          <Key>
+            <PropertyRef Name="LogID" />
+          </Key>
+          <Property Name="LogID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SessionID" Type="Int32" />
+          <Property Name="OperationType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TableName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OldValue" Type="Double" />
+          <Property Name="NewValue" Type="Double" />
+          <Property Name="AmountDifference" Type="Double" />
         </EntityType>
         <EntityType Name="tb_ordersell">
           <Key>
@@ -688,13 +740,18 @@
           <Property Name="user_image" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="user_mail" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
-        <EntityContainer Name="DB_storeEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="gold_shopEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="AppSettings" EntityType="Self.AppSetting" />
           <EntitySet Name="Notfications" EntityType="Self.Notfication" />
+          <EntitySet Name="sendmailcodes" EntityType="Self.sendmailcode" />
+          <EntitySet Name="Sessions" EntityType="Self.Session" />
+          <EntitySet Name="tb_add_mony" EntityType="Self.tb_add_mony" />
           <EntitySet Name="TB_cat" EntityType="Self.TB_cat" />
           <EntitySet Name="tb_cus" EntityType="Self.tb_cus" />
           <EntitySet Name="tb_employees" EntityType="Self.tb_employees" />
           <EntitySet Name="tb_factory" EntityType="Self.tb_factory" />
+          <EntitySet Name="tb_offer" EntityType="Self.tb_offer" />
+          <EntitySet Name="tb_OperationLog" EntityType="Self.tb_OperationLog" />
           <EntitySet Name="tb_ordersell" EntityType="Self.tb_ordersell" />
           <EntitySet Name="tb_ordersellpop" EntityType="Self.tb_ordersellpop" />
           <EntitySet Name="tb_pur" EntityType="Self.tb_pur" />
@@ -710,74 +767,16 @@
           <EntitySet Name="tb_supp" EntityType="Self.tb_supp" />
           <EntitySet Name="tb_takestuk" EntityType="Self.tb_takestuk" />
           <EntitySet Name="tb_user" EntityType="Self.tb_user" />
-          <EntitySet Name="tb_add_mony" EntityType="DB_storeModel.tb_add_mony" />
-          <EntitySet Name="tb_offer" EntityType="DB_storeModel.tb_offer" />
-          <EntitySet Name="sendmailcodes" EntityType="DB_storeModel.sendmailcode" />
-          <EntitySet Name="Sessions" EntityType="DB_storeModel.Session" />
-          <EntitySet Name="tb_OperationLog" EntityType="DB_storeModel.tb_OperationLog" />
         </EntityContainer>
-        <EntityType Name="tb_add_mony">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="name_type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="price" Type="Double" />
-          <Property Name="date" Type="DateTime" Precision="3" />
-          <Property Name="typemotion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="tb_offer">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="name_offer" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="type_offer" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="quontity" Type="Double" />
-        </EntityType>
-        <EntityType Name="sendmailcode">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="user_mail" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="Session">
-          <Key>
-            <PropertyRef Name="SessionID" />
-          </Key>
-          <Property Name="SessionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="StartTime" Type="DateTime" Precision="3" />
-          <Property Name="EndTime" Type="DateTime" Precision="3" />
-          <Property Name="IsClosed" Type="Boolean" />
-          <Property Name="OpeningAmount" Type="Double" />
-          <Property Name="namecasher" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="ClosingAmount" Type="Double" />
-        </EntityType>
-        <EntityType Name="tb_OperationLog">
-          <Key>
-            <PropertyRef Name="LogID" />
-          </Key>
-          <Property Name="LogID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="SessionID" Type="Int32" />
-          <Property Name="OperationType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="TableName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="OldValue" Type="Double" />
-          <Property Name="NewValue" Type="Double" />
-          <Property Name="AmountDifference" Type="Double" />
-        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="DB_storeModelStoreContainer" CdmEntityContainer="DB_storeEntities">
+        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="gold_shopEntities">
           <EntitySetMapping Name="AppSettings">
-            <EntityTypeMapping TypeName="DB_storeModel.AppSetting">
+            <EntityTypeMapping TypeName="Model.AppSetting">
               <MappingFragment StoreEntitySet="AppSettings">
-                <ScalarProperty Name="description" ColumnName="description" />
-                <ScalarProperty Name="printcod" ColumnName="printcod" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="namecomp" ColumnName="namecomp" />
                 <ScalarProperty Name="address" ColumnName="address" />
@@ -785,11 +784,13 @@
                 <ScalarProperty Name="logocomp" ColumnName="logocomp" />
                 <ScalarProperty Name="printty" ColumnName="printty" />
                 <ScalarProperty Name="max_qt" ColumnName="max_qt" />
+                <ScalarProperty Name="printcod" ColumnName="printcod" />
+                <ScalarProperty Name="description" ColumnName="description" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Notfications">
-            <EntityTypeMapping TypeName="DB_storeModel.Notfication">
+            <EntityTypeMapping TypeName="Model.Notfication">
               <MappingFragment StoreEntitySet="Notfication">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="notfication1" ColumnName="notfication" />
@@ -797,8 +798,41 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="sendmailcodes">
+            <EntityTypeMapping TypeName="Model.sendmailcode">
+              <MappingFragment StoreEntitySet="sendmailcode">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="user_mail" ColumnName="user_mail" />
+                <ScalarProperty Name="code" ColumnName="code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sessions">
+            <EntityTypeMapping TypeName="Model.Session">
+              <MappingFragment StoreEntitySet="Session">
+                <ScalarProperty Name="SessionID" ColumnName="SessionID" />
+                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+                <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+                <ScalarProperty Name="IsClosed" ColumnName="IsClosed" />
+                <ScalarProperty Name="OpeningAmount" ColumnName="OpeningAmount" />
+                <ScalarProperty Name="namecasher" ColumnName="namecasher" />
+                <ScalarProperty Name="ClosingAmount" ColumnName="ClosingAmount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_add_mony">
+            <EntityTypeMapping TypeName="Model.tb_add_mony">
+              <MappingFragment StoreEntitySet="tb_add_mony">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name_type" ColumnName="name_type" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="typemotion" ColumnName="typemotion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="TB_cat">
-            <EntityTypeMapping TypeName="DB_storeModel.TB_cat">
+            <EntityTypeMapping TypeName="Model.TB_cat">
               <MappingFragment StoreEntitySet="TB_cat">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="cat_name" ColumnName="cat_name" />
@@ -807,7 +841,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tb_cus">
-            <EntityTypeMapping TypeName="DB_storeModel.tb_cus">
+            <EntityTypeMapping TypeName="Model.tb_cus">
               <MappingFragment StoreEntitySet="tb_cus">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="cus_name" ColumnName="cus_name" />
@@ -820,7 +854,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tb_employees">
-            <EntityTypeMapping TypeName="DB_storeModel.tb_employees">
+            <EntityTypeMapping TypeName="Model.tb_employees">
               <MappingFragment StoreEntitySet="tb_employees">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="emp_name" ColumnName="emp_name" />
@@ -837,7 +871,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tb_factory">
-            <EntityTypeMapping TypeName="DB_storeModel.tb_factory">
+            <EntityTypeMapping TypeName="Model.tb_factory">
               <MappingFragment StoreEntitySet="tb_factory">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="cat_name" ColumnName="cat_name" />
@@ -849,10 +883,32 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="tb_offer">
+            <EntityTypeMapping TypeName="Model.tb_offer">
+              <MappingFragment StoreEntitySet="tb_offer">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name_offer" ColumnName="name_offer" />
+                <ScalarProperty Name="type_offer" ColumnName="type_offer" />
+                <ScalarProperty Name="quontity" ColumnName="quontity" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_OperationLog">
+            <EntityTypeMapping TypeName="Model.tb_OperationLog">
+              <MappingFragment StoreEntitySet="tb_OperationLog">
+                <ScalarProperty Name="LogID" ColumnName="LogID" />
+                <ScalarProperty Name="SessionID" ColumnName="SessionID" />
+                <ScalarProperty Name="OperationType" ColumnName="OperationType" />
+                <ScalarProperty Name="TableName" ColumnName="TableName" />
+                <ScalarProperty Name="OldValue" ColumnName="OldValue" />
+                <ScalarProperty Name="NewValue" ColumnName="NewValue" />
+                <ScalarProperty Name="AmountDifference" ColumnName="AmountDifference" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="tb_ordersell">
-            <EntityTypeMapping TypeName="DB_storeModel.tb_ordersell">
+            <EntityTypeMapping TypeName="Model.tb_ordersell">
               <MappingFragment StoreEntitySet="tb_ordersell">
-                <ScalarProperty Name="cut" ColumnName="cut" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="name_sell" ColumnName="name_sell" />
                 <ScalarProperty Name="price_sell" ColumnName="price_sell" />
@@ -861,11 +917,12 @@
                 <ScalarProperty Name="sell_id" ColumnName="sell_id" />
                 <ScalarProperty Name="weight" ColumnName="weight" />
                 <ScalarProperty Name="total_earnings" ColumnName="total_earnings" />
+                <ScalarProperty Name="cut" ColumnName="cut" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tb_ordersellpop">
-            <EntityTypeMapping TypeName="DB_storeModel.tb_ordersellpop">
+            <EntityTypeMapping TypeName="Model.tb_ordersellpop">
               <MappingFragment StoreEntitySet="tb_ordersellpop">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="name_sell" ColumnName="name_sell" />
@@ -879,9 +936,8 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tb_pur">
-            <EntityTypeMapping TypeName="DB_storeModel.tb_pur">
+            <EntityTypeMapping TypeName="Model.tb_pur">
               <MappingFragment StoreEntitySet="tb_pur">
-                <ScalarProperty Name="namecasher" ColumnName="namecasher" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="cat_id" ColumnName="cat_id" />
                 <ScalarProperty Name="supp_id" ColumnName="supp_id" />
@@ -900,13 +956,13 @@
                 <ScalarProperty Name="supp_price" ColumnName="supp_price" />
                 <ScalarProperty Name="total_price" ColumnName="total_price" />
                 <ScalarProperty Name="invocie_id" ColumnName="invocie_id" />
+                <ScalarProperty Name="namecasher" ColumnName="namecasher" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tb_rev_cus">
-            <EntityTypeMapping TypeName="DB_storeModel.tb_rev_cus">
+            <EntityTypeMapping TypeName="Model.tb_rev_cus">
               <MappingFragment StoreEntitySet="tb_rev_cus">
-                <ScalarProperty Name="namecasher" ColumnName="namecasher" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="name_cus" ColumnName="name_cus" />
                 <ScalarProperty Name="name_type" ColumnName="name_type" />
@@ -917,13 +973,13 @@
                 <ScalarProperty Name="date" ColumnName="date" />
                 <ScalarProperty Name="stay_mony" ColumnName="stay_mony" />
                 <ScalarProperty Name="unit" ColumnName="unit" />
+                <ScalarProperty Name="namecasher" ColumnName="namecasher" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tb_rev_supp">
-            <EntityTypeMapping TypeName="DB_storeModel.tb_rev_supp">
+            <EntityTypeMapping TypeName="Model.tb_rev_supp">
               <MappingFragment StoreEntitySet="tb_rev_supp">
-                <ScalarProperty Name="namecasher" ColumnName="namecasher" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="name_supp" ColumnName="name_supp" />
                 <ScalarProperty Name="name_type" ColumnName="name_type" />
@@ -934,11 +990,12 @@
                 <ScalarProperty Name="date" ColumnName="date" />
                 <ScalarProperty Name="stay_mony" ColumnName="stay_mony" />
                 <ScalarProperty Name="unit" ColumnName="unit" />
+                <ScalarProperty Name="namecasher" ColumnName="namecasher" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tb_safe">
-            <EntityTypeMapping TypeName="DB_storeModel.tb_safe">
+            <EntityTypeMapping TypeName="Model.tb_safe">
               <MappingFragment StoreEntitySet="tb_safe">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="safe_count" ColumnName="safe_count" />
@@ -947,7 +1004,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tb_sell">
-            <EntityTypeMapping TypeName="DB_storeModel.tb_sell">
+            <EntityTypeMapping TypeName="Model.tb_sell">
               <MappingFragment StoreEntitySet="tb_sell">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="sell_name" ColumnName="sell_name" />
@@ -972,7 +1029,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tb_sellpop">
-            <EntityTypeMapping TypeName="DB_storeModel.tb_sellpop">
+            <EntityTypeMapping TypeName="Model.tb_sellpop">
               <MappingFragment StoreEntitySet="tb_sellpop">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="sell_name" ColumnName="sell_name" />
@@ -990,9 +1047,8 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tb_spend_cus">
-            <EntityTypeMapping TypeName="DB_storeModel.tb_spend_cus">
+            <EntityTypeMapping TypeName="Model.tb_spend_cus">
               <MappingFragment StoreEntitySet="tb_spend_cus">
-                <ScalarProperty Name="namecasher" ColumnName="namecasher" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="name_cus" ColumnName="name_cus" />
                 <ScalarProperty Name="date" ColumnName="date" />
@@ -1000,13 +1056,13 @@
                 <ScalarProperty Name="mony_rev" ColumnName="mony_rev" />
                 <ScalarProperty Name="mony_stay" ColumnName="mony_stay" />
                 <ScalarProperty Name="safe" ColumnName="safe" />
+                <ScalarProperty Name="namecasher" ColumnName="namecasher" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tb_spend_supp">
-            <EntityTypeMapping TypeName="DB_storeModel.tb_spend_supp">
+            <EntityTypeMapping TypeName="Model.tb_spend_supp">
               <MappingFragment StoreEntitySet="tb_spend_supp">
-                <ScalarProperty Name="namecasher" ColumnName="namecasher" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="name_supp" ColumnName="name_supp" />
                 <ScalarProperty Name="date" ColumnName="date" />
@@ -1014,13 +1070,13 @@
                 <ScalarProperty Name="mony_rev" ColumnName="mony_rev" />
                 <ScalarProperty Name="mony_stay" ColumnName="mony_stay" />
                 <ScalarProperty Name="safe" ColumnName="safe" />
+                <ScalarProperty Name="namecasher" ColumnName="namecasher" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tb_stor">
-            <EntityTypeMapping TypeName="DB_storeModel.tb_stor">
+            <EntityTypeMapping TypeName="Model.tb_stor">
               <MappingFragment StoreEntitySet="tb_stor">
-                <ScalarProperty Name="namecasher" ColumnName="namecasher" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="stor_det" ColumnName="stor_det" />
                 <ScalarProperty Name="stor_spen" ColumnName="stor_spen" />
@@ -1028,11 +1084,12 @@
                 <ScalarProperty Name="stor_dete" ColumnName="stor_dete" />
                 <ScalarProperty Name="stor_empname" ColumnName="stor_empname" />
                 <ScalarProperty Name="safe_name" ColumnName="safe_name" />
+                <ScalarProperty Name="namecasher" ColumnName="namecasher" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tb_stuk">
-            <EntityTypeMapping TypeName="DB_storeModel.tb_stuk">
+            <EntityTypeMapping TypeName="Model.tb_stuk">
               <MappingFragment StoreEntitySet="tb_stuk">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="cat_id" ColumnName="cat_id" />
@@ -1056,7 +1113,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tb_supp">
-            <EntityTypeMapping TypeName="DB_storeModel.tb_supp">
+            <EntityTypeMapping TypeName="Model.tb_supp">
               <MappingFragment StoreEntitySet="tb_supp">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="supp_name" ColumnName="supp_name" />
@@ -1069,7 +1126,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tb_takestuk">
-            <EntityTypeMapping TypeName="DB_storeModel.tb_takestuk">
+            <EntityTypeMapping TypeName="Model.tb_takestuk">
               <MappingFragment StoreEntitySet="tb_takestuk">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="stuk_takename" ColumnName="stuk_takename" />
@@ -1082,7 +1139,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tb_user">
-            <EntityTypeMapping TypeName="DB_storeModel.tb_user">
+            <EntityTypeMapping TypeName="Model.tb_user">
               <MappingFragment StoreEntitySet="tb_user">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="user_name" ColumnName="user_name" />
@@ -1091,62 +1148,6 @@
                 <ScalarProperty Name="user_state" ColumnName="user_state" />
                 <ScalarProperty Name="user_image" ColumnName="user_image" />
                 <ScalarProperty Name="user_mail" ColumnName="user_mail" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="tb_add_mony">
-            <EntityTypeMapping TypeName="DB_storeModel.tb_add_mony">
-              <MappingFragment StoreEntitySet="tb_add_mony">
-                <ScalarProperty Name="typemotion" ColumnName="typemotion" />
-                <ScalarProperty Name="date" ColumnName="date" />
-                <ScalarProperty Name="price" ColumnName="price" />
-                <ScalarProperty Name="name_type" ColumnName="name_type" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="tb_offer">
-            <EntityTypeMapping TypeName="DB_storeModel.tb_offer">
-              <MappingFragment StoreEntitySet="tb_offer">
-                <ScalarProperty Name="quontity" ColumnName="quontity" />
-                <ScalarProperty Name="type_offer" ColumnName="type_offer" />
-                <ScalarProperty Name="name_offer" ColumnName="name_offer" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="sendmailcodes">
-            <EntityTypeMapping TypeName="DB_storeModel.sendmailcode">
-              <MappingFragment StoreEntitySet="sendmailcode">
-                <ScalarProperty Name="code" ColumnName="code" />
-                <ScalarProperty Name="user_mail" ColumnName="user_mail" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Sessions">
-            <EntityTypeMapping TypeName="DB_storeModel.Session">
-              <MappingFragment StoreEntitySet="Session">
-                <ScalarProperty Name="ClosingAmount" ColumnName="ClosingAmount" />
-                <ScalarProperty Name="namecasher" ColumnName="namecasher" />
-                <ScalarProperty Name="OpeningAmount" ColumnName="OpeningAmount" />
-                <ScalarProperty Name="IsClosed" ColumnName="IsClosed" />
-                <ScalarProperty Name="EndTime" ColumnName="EndTime" />
-                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
-                <ScalarProperty Name="SessionID" ColumnName="SessionID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="tb_OperationLog">
-            <EntityTypeMapping TypeName="DB_storeModel.tb_OperationLog">
-              <MappingFragment StoreEntitySet="tb_OperationLog">
-                <ScalarProperty Name="AmountDifference" ColumnName="AmountDifference" />
-                <ScalarProperty Name="NewValue" ColumnName="NewValue" />
-                <ScalarProperty Name="OldValue" ColumnName="OldValue" />
-                <ScalarProperty Name="TableName" ColumnName="TableName" />
-                <ScalarProperty Name="OperationType" ColumnName="OperationType" />
-                <ScalarProperty Name="SessionID" ColumnName="SessionID" />
-                <ScalarProperty Name="LogID" ColumnName="LogID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

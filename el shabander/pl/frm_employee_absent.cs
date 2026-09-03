@@ -13,7 +13,7 @@ namespace el_shabander.pl
 {
     public partial class frm_employee_absent : Form
     {
-        DB_storeEntities db = new DB_storeEntities();
+        gold_shopEntities db = new gold_shopEntities();
         tb_stor tb_Stor = new tb_stor();
         bl.methods methods = new bl.methods();
         tb_safe tb_Safe = new tb_safe();

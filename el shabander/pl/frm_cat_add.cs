@@ -14,7 +14,7 @@ namespace el_shabander.pl
 {
     public partial class frm_cat_add : Form
     {
-        DB_storeEntities db = new DB_storeEntities();
+        gold_shopEntities db = new gold_shopEntities();
         TB_cat tb_cat = new TB_cat();
         bl.methods methods = new bl.methods();
        
@@ -47,7 +47,7 @@ namespace el_shabander.pl
                    // toast.Width = this.Width;
                     toast.txt_caption.Text = "تم اضافة صنف جديد";
                     toast.Show();
-                    db = new DB_storeEntities();
+                    db = new gold_shopEntities();
                    frm_Cat.gridControl1.DataSource = db.TB_cat.ToList();
                     
                     this.Close();

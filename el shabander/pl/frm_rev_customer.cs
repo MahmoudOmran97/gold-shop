@@ -15,7 +15,7 @@ namespace el_shabander.pl
 {
     public partial class frm_rev_customer : Form
     {
-        DB_storeEntities db = new DB_storeEntities();
+        gold_shopEntities db = new gold_shopEntities();
         double stay, ss, bb,rr;
         bl.methods methods = new bl.methods();
         toast toast = new toast();
@@ -35,7 +35,7 @@ namespace el_shabander.pl
 
 
            
-            el_shabander.DB_storeEntities dbContext = new el_shabander.DB_storeEntities();
+            el_shabander.gold_shopEntities dbContext = new el_shabander.gold_shopEntities();
             // Call the LoadAsync method to asynchronously get the data for the given DbSet from the database.
             dbContext.tb_rev_cus.LoadAsync().ContinueWith(loadTask =>
             {
@@ -56,8 +56,8 @@ namespace el_shabander.pl
 
         private void updata_data()
         {
-          //  db = new DB_storeEntities();
-            db = new DB_storeEntities();
+          //  db = new gold_shopEntities();
+            db = new gold_shopEntities();
             List<tb_rev_cus> data = db.tb_rev_cus.ToList(); // جلب البيانات
             data.Reverse();
             gridControl1.DataSource = data;

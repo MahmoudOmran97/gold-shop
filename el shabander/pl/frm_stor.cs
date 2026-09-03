@@ -13,7 +13,7 @@ namespace el_shabander.pl
 {
     public partial class frm_stor : Form
     {
-        DB_storeEntities db = new DB_storeEntities();
+        gold_shopEntities db = new gold_shopEntities();
         tb_stor tb_Stor = new tb_stor();
         tb_safe tb_Safe = new tb_safe();
         bl.methods methods = new bl.methods();
@@ -31,7 +31,7 @@ namespace el_shabander.pl
 
 
           
-            el_shabander.DB_storeEntities dbContext = new el_shabander.DB_storeEntities();
+            el_shabander.gold_shopEntities dbContext = new el_shabander.gold_shopEntities();
             // Call the LoadAsync method to asynchronously get the data for the given DbSet from the database.
             dbContext.tb_stor.LoadAsync().ContinueWith(loadTask =>
             {
@@ -153,7 +153,7 @@ namespace el_shabander.pl
 
         public void updata_data()
         {
-            db = new DB_storeEntities();
+            db = new gold_shopEntities();
             List<tb_stor> data = db.tb_stor.ToList();// جلب البيانات
             data.Reverse();
             gridControl1.DataSource = data;

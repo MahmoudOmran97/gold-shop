@@ -17,7 +17,7 @@ namespace el_shabander.pl
 {
     public partial class frm_calc_bar : Form
     {
-        DB_storeEntities db = new DB_storeEntities();
+        gold_shopEntities db = new gold_shopEntities();
         tb_safe tb_Safe = new tb_safe();
         bl.methods methods = new bl.methods();
         tb_offer tb_Offer = new tb_offer();

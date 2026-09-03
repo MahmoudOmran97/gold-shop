@@ -43,7 +43,7 @@ namespace el_shabander
         tb_user tB_user = new tb_user();
       
         private System.Timers.Timer emailTimer;
-        DB_storeEntities db = new DB_storeEntities();
+        gold_shopEntities db = new gold_shopEntities();
         
         public main()
         {
@@ -303,7 +303,7 @@ namespace el_shabander
             frm_home.tileItem7.Frames[0].Elements[2].Text = db.tb_employees.Count().ToString();
             frm_home.tileItem7.Frames[2].Elements[2].Text = db.tb_cus.Count().ToString();
 
-            db = new DB_storeEntities();
+            db = new gold_shopEntities();
             lb_titelpage.Text = " EngineeCode ";
         }
 
@@ -311,7 +311,7 @@ namespace el_shabander
         {
             pn_cont.Controls.Clear();
             pn_cont.Controls.Add(frm_Cat.pn_cat);
-            db = new DB_storeEntities();
+            db = new gold_shopEntities();
             frm_Cat.updata_data();
             lb_titelpage.Text = "الاصناف";
            //frm_Cat.gridControl1.DataSource = db.TB_cat.ToList();
@@ -362,7 +362,7 @@ namespace el_shabander
         {
             try
             {
-                using (var db = new DB_storeEntities())
+                using (var db = new gold_shopEntities())
                 {
                     string dbname = db.Database.Connection.Database;
                     string dbbackup = "DMMback" + DateTime.Now.ToString("yyyyMMddHHmm");
@@ -413,7 +413,7 @@ namespace el_shabander
         {
             pn_cont.Controls.Clear();
             pn_cont.Controls.Add(frm_supp.pn_cat);
-            db = new DB_storeEntities();
+            db = new gold_shopEntities();
             frm_supp.updata_data();
             lb_titelpage.Text = "الموردين";
         }
@@ -439,7 +439,7 @@ namespace el_shabander
             {
                 pn_cont.Controls.Clear();
             pn_cont.Controls.Add(frm_Pur.pn_cat);
-            db = new DB_storeEntities();
+            db = new gold_shopEntities();
             frm_Pur.updata_data();
             lb_titelpage.Text = "المشتريات";
             }
@@ -453,7 +453,7 @@ namespace el_shabander
         {
             pn_cont.Controls.Clear();
             pn_cont.Controls.Add(frm_cus.pn_cat);
-            db = new DB_storeEntities();
+            db = new gold_shopEntities();
             frm_cus.updata_data();
             lb_titelpage.Text = "العملاء";
         }
@@ -462,7 +462,7 @@ namespace el_shabander
         {
             pn_cont.Controls.Clear();
             pn_cont.Controls.Add(frm_sell.pn_cat);
-            db = new DB_storeEntities();
+            db = new gold_shopEntities();
             frm_sell.updata_data();
             lb_titelpage.Text = "المبيعات";
         }
@@ -488,7 +488,7 @@ namespace el_shabander
             {
                 pn_cont.Controls.Clear();
                 pn_cont.Controls.Add(frm_report.tileControl1);
-                db = new DB_storeEntities();
+                db = new gold_shopEntities();
 
                 lb_titelpage.Text = "التقارير";
             }
@@ -520,7 +520,7 @@ namespace el_shabander
             {
                 pn_cont.Controls.Clear();
             pn_cont.Controls.Add(frm_user.pn_cat);
-            db = new DB_storeEntities();
+            db = new gold_shopEntities();
             frm_user.updata_data();
             lb_titelpage.Text = "المستخدمين";
             }
@@ -601,7 +601,7 @@ namespace el_shabander
             {
                 pn_cont.Controls.Clear();
                 pn_cont.Controls.Add(frm_stuk.pn_cat);
-                db = new DB_storeEntities();
+                db = new gold_shopEntities();
                 frm_stuk.updata_data();
                 lb_titelpage.Text = "المخزن";
             }
@@ -628,7 +628,7 @@ namespace el_shabander
         {
             pn_cont.Controls.Clear();
             pn_cont.Controls.Add(frm_Employees.pn_cat);
-            db = new DB_storeEntities();
+            db = new gold_shopEntities();
             frm_Employees.updata_data();
             lb_titelpage.Text = "الموظفين";
         }
@@ -637,7 +637,7 @@ namespace el_shabander
         {
             pn_cont.Controls.Clear();
             pn_cont.Controls.Add(frm_Stor.pn_cat);
-            db = new DB_storeEntities();
+            db = new gold_shopEntities();
             frm_Stor.updata_data();
             lb_titelpage.Text = "المصاريف";
         }
@@ -828,7 +828,7 @@ namespace el_shabander
         {
             pn_cont.Controls.Clear();
             pn_cont.Controls.Add(frm_factory.pn_cat);
-            db = new DB_storeEntities();
+            db = new gold_shopEntities();
             frm_factory.updata_data();
             lb_titelpage.Text = "المصنع";
         }
@@ -928,7 +928,7 @@ namespace el_shabander
             {
                 pn_cont.Controls.Clear();
             pn_cont.Controls.Add(frm_Safe_As.pn_cat);
-            db = new DB_storeEntities();
+            db = new gold_shopEntities();
             frm_Safe_As.updata_data();
             lb_titelpage.Text = "الخزينة";
             }
@@ -970,7 +970,7 @@ namespace el_shabander
         {
             pn_cont.Controls.Clear();
             pn_cont.Controls.Add(cashbox.pn_cat);
-            db = new DB_storeEntities();
+            db = new gold_shopEntities();
             cashbox.updata_data();
             lb_titelpage.Text = "الكاش بوكس";
         }

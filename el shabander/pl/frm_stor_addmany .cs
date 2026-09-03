@@ -14,7 +14,7 @@ namespace el_shabander.pl
 {
     public partial class frm_stor_addmany : Form
     {
-        DB_storeEntities db = new DB_storeEntities();
+        gold_shopEntities db = new gold_shopEntities();
         tb_safe tb_Safe = new tb_safe();
         bl.methods methods = new bl.methods();
         tb_employees tb_Employees = new tb_employees();

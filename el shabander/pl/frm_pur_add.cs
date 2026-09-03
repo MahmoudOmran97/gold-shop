@@ -19,7 +19,7 @@ namespace el_shabander.pl
 {
     public partial class frm_pur_add: Form
     {
-        DB_storeEntities db = new DB_storeEntities();
+        gold_shopEntities db = new gold_shopEntities();
         tb_stuk tb_stuk = new tb_stuk();
         tb_pur tb_Pur = new tb_pur();
        // bl.methods methods = new bl.methods();

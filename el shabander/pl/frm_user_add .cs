@@ -13,7 +13,7 @@ namespace el_shabander.pl
 {
     public partial class frm_user_add : Form
     {
-        DB_storeEntities db = new DB_storeEntities();
+        gold_shopEntities db = new gold_shopEntities();
         tb_user tB_user = new tb_user();
         bl.methods methods = new bl.methods();
        
@@ -120,7 +120,7 @@ namespace el_shabander.pl
                 toast.Width = this.Width;
                 toast.txt_caption.Text = "تم تعديل مستخدم حالى";
                 toast.Show();
-                db = new DB_storeEntities();
+                db = new gold_shopEntities();
                 this.Close();
             }
 

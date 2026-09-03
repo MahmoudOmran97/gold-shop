@@ -14,7 +14,7 @@ namespace el_shabander.pl
 {
     public partial class frm_stuck_add : Form
     {
-        DB_storeEntities db = new DB_storeEntities();
+        gold_shopEntities db = new gold_shopEntities();
         bl.methods methods = new bl.methods();
         tb_stuk tb_stuk = new tb_stuk();
         

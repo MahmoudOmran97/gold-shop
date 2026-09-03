@@ -13,7 +13,7 @@ namespace el_shabander.pl
 {
     public partial class frm_employees_add: Form
     {
-        DB_storeEntities db = new DB_storeEntities();
+        gold_shopEntities db = new gold_shopEntities();
         tb_employees tb_Employees = new tb_employees();
         bl.methods methods = new bl.methods();
         double saltot, salpay, salstay;

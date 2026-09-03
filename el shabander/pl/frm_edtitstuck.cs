@@ -13,7 +13,7 @@ namespace el_shabander.pl
 {
     public partial class frm_edtitstuck: Form
     {
-        DB_storeEntities db = new DB_storeEntities();
+        gold_shopEntities db = new gold_shopEntities();
         private double _oldQuantity;
         private double _oldBuyPrice;
         private double _oldSellPrice;
@@ -48,7 +48,7 @@ namespace el_shabander.pl
             }
 
             // ✅ وضع التعديل
-            using (var db = new DB_storeEntities())
+            using (var db = new gold_shopEntities())
             {
                 var product = db.tb_stuk.Find(id);
 
@@ -109,7 +109,7 @@ namespace el_shabander.pl
 
 
 
-        private void SendNotification(DB_storeEntities db, string htmlMsg, string textMsg)
+        private void SendNotification(gold_shopEntities db, string htmlMsg, string textMsg)
         {
             // حفظ في قاعدة البيانات (نص فقط)
             var notification = new Notfication
@@ -161,7 +161,7 @@ namespace el_shabander.pl
 
         private void LoadProductData()
         {
-            using (var db = new DB_storeEntities())
+            using (var db = new gold_shopEntities())
             {
                 var product = db.tb_stuk.AsNoTracking()
                                 .FirstOrDefault(x => x.id == id);

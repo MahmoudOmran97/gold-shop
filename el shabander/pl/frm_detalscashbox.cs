@@ -13,7 +13,7 @@ namespace el_shabander.pl
 {
     public partial class frm_detalscashbox : Form
     {
-        DB_storeEntities db = new DB_storeEntities();
+        gold_shopEntities db = new gold_shopEntities();
         TB_cat tB_Cat = new TB_cat();
         bl.methods methods = new bl.methods();
         //toast toast = new toast();
@@ -30,7 +30,7 @@ namespace el_shabander.pl
         public void updata_data()
         {
 
-            db = new DB_storeEntities();
+            db = new gold_shopEntities();
             List<tb_OperationLog> data = db.tb_OperationLog.Where(x => x.SessionID == id).ToList(); // جلب البيانات
             data.Reverse();
             gridControl1.DataSource = data;

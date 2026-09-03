@@ -17,7 +17,7 @@ namespace el_shabander.pl
 {
     public partial class frm_cus : Form
     {
-        DB_storeEntities db = new DB_storeEntities();
+        gold_shopEntities db = new gold_shopEntities();
         tb_cus tB_cus = new tb_cus();
         bl.methods methods = new bl.methods();
         Notfication notfication = new Notfication();
@@ -28,7 +28,7 @@ namespace el_shabander.pl
             InitializeComponent();
 
            
-            el_shabander.DB_storeEntities dbContext = new el_shabander.DB_storeEntities();
+            el_shabander.gold_shopEntities dbContext = new el_shabander.gold_shopEntities();
             // Call the LoadAsync method to asynchronously get the data for the given DbSet from the database.
             dbContext.tb_cus.LoadAsync().ContinueWith(loadTask =>
             {
@@ -120,7 +120,7 @@ namespace el_shabander.pl
 
         public void updata_data()
         {
-            db = new DB_storeEntities();
+            db = new gold_shopEntities();
             gridControl1.DataSource = db.tb_cus.ToList();
         }
 
