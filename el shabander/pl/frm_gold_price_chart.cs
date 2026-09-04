@@ -72,7 +72,7 @@ namespace el_shabander.pl
             rgKarat.Properties.Items.Clear();
             foreach (var (karat, label) in Karats)
                 rgKarat.Properties.Items.Add(new DevExpress.XtraEditors.Controls.RadioGroupItem(karat, label));
-            rgKarat.Properties.RadioGroupItemsLayout = DevExpress.XtraEditors.Controls.RadioGroupItemsLayout.Flow;
+            rgKarat.Properties.ItemsLayout = DevExpress.XtraEditors.RadioGroupItemsLayout.Flow;
             rgKarat.SelectedIndex = 2; // عيار 21 هو الافتراضي
             rgKarat.SelectedIndexChanged += async (s, e) => await LoadAndDrawAsync();
 
@@ -85,7 +85,7 @@ namespace el_shabander.pl
             rgSide.Properties.Items.Clear();
             rgSide.Properties.Items.Add(new DevExpress.XtraEditors.Controls.RadioGroupItem(true, "سعر البيع"));
             rgSide.Properties.Items.Add(new DevExpress.XtraEditors.Controls.RadioGroupItem(false, "سعر الشراء"));
-            rgSide.Properties.RadioGroupItemsLayout = DevExpress.XtraEditors.Controls.RadioGroupItemsLayout.Flow;
+            rgSide.Properties.ItemsLayout = DevExpress.XtraEditors.RadioGroupItemsLayout.Flow;
             rgSide.SelectedIndex = 0;
             rgSide.SelectedIndexChanged += async (s, e) => await LoadAndDrawAsync();
 
@@ -100,7 +100,7 @@ namespace el_shabander.pl
             rgPeriod.Properties.Items.Add(new DevExpress.XtraEditors.Controls.RadioGroupItem(1, "آخر أسبوع"));
             rgPeriod.Properties.Items.Add(new DevExpress.XtraEditors.Controls.RadioGroupItem(2, "آخر شهر"));
             rgPeriod.Properties.Items.Add(new DevExpress.XtraEditors.Controls.RadioGroupItem(3, "كل المدة"));
-            rgPeriod.Properties.RadioGroupItemsLayout = DevExpress.XtraEditors.Controls.RadioGroupItemsLayout.Flow;
+            rgPeriod.Properties.ItemsLayout = DevExpress.XtraEditors.RadioGroupItemsLayout.Flow;
             rgPeriod.SelectedIndex = 1;
             rgPeriod.SelectedIndexChanged += async (s, e) => await LoadAndDrawAsync();
 
@@ -168,13 +168,13 @@ namespace el_shabander.pl
             var pointView = (PointSeriesView)pointSeries.View;
             pointView.PointMarkerOptions.Size = 8;
             pointView.PointMarkerOptions.Kind = MarkerKind.Circle;
-            pointView.PointOptions.ColorEachPoint = true;
+            pointView.ColorEach = true;
 
             chart.Series.Add(lineSeries);
             chart.Series.Add(pointSeries);
 
             var diagram = (XYDiagram)chart.Diagram;
-            diagram.AxisX.DateTimeScaleOptions.ScaleMode = ScaleMode.Auto;
+            diagram.AxisX.DateTimeScaleOptions.ScaleMode = ScaleMode.Automatic;
             diagram.AxisX.Label.TextPattern = "{A:dd/MM HH:mm}";
             diagram.AxisX.Title.Text = "التاريخ والوقت";
             diagram.AxisX.Title.Visibility = DevExpress.Utils.DefaultBoolean.True;
