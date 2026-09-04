@@ -148,7 +148,7 @@ namespace el_shabander
             this.simpleButton7.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.simpleButton7.Size = new System.Drawing.Size(222, 46);
             this.simpleButton7.TabIndex = 3;
-            this.simpleButton7.Text = "الاصناف";
+            this.simpleButton7.Text = "سعر الذهب";
             this.simpleButton7.Click += new System.EventHandler(this.simpleButton7_Click);
             // 
             // btn_supp

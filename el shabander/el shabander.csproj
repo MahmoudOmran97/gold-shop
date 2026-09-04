@@ -227,6 +227,7 @@
     <Compile Include="AppSetting.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="bl\GoldPriceApiService.cs" />
     <Compile Include="bl\methods.cs" />
     <Compile Include="bl\TelegramGoldPriceService.cs" />
     <Compile Include="epl\notifaction.cs">
@@ -650,6 +651,9 @@
     </Compile>
     <Compile Include="pl\frm_home.Designer.cs">
       <DependentUpon>frm_home.cs</DependentUpon>
+    </Compile>
+    <Compile Include="pl\ucGoldPrice.cs">
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -23,10 +23,11 @@ namespace el_shabander
 {
     public partial class main : Form
     {
-       
+
         pl.frm_cat frm_Cat = new pl.frm_cat();
         pl.frm_supp frm_supp = new pl.frm_supp();
-        pl.frm_home frm_home =new pl.frm_home();
+        pl.frm_home frm_home = new pl.frm_home();
+        pl.ucGoldPrice ucGoldPrice = new pl.ucGoldPrice();
         pl.frm_pur frm_Pur = new pl.frm_pur();
         pl.frm_cus frm_cus = new pl.frm_cus();
         pl.frm_sell frm_sell = new pl.frm_sell();
@@ -37,14 +38,14 @@ namespace el_shabander
         pl.frm_factory frm_factory = new pl.frm_factory();
         pl.frm_safe_as frm_Safe_As = new pl.frm_safe_as();
         pl.frm_cashbox cashbox = new pl.frm_cashbox();
-        private  DateTime trialStartDate;
+        private DateTime trialStartDate;
         private Timer notificationTimer;
         pl.frm_employees frm_Employees = new pl.frm_employees();
         tb_user tB_user = new tb_user();
-      
+
         private System.Timers.Timer emailTimer;
         gold_shopEntities db = new gold_shopEntities();
-        
+
         public main()
         {
             InitializeComponent();
@@ -52,11 +53,11 @@ namespace el_shabander
             // Update the user state to "Closed" when the application starts
 
 
-          
+
 
             // تفعيل التمرير العمودي
             CheckUserStatesAtStartup();
-            emailTimer = new System.Timers.Timer(Properties.Settings.Default.EmailInterval * 60  * 60 * 1000); // 3 ساعات بالمللي ثانية
+            emailTimer = new System.Timers.Timer(Properties.Settings.Default.EmailInterval * 60 * 60 * 1000); // 3 ساعات بالمللي ثانية
             emailTimer.Elapsed += OnTimedEvent;
             emailTimer.AutoReset = true; // إعادة تعيين المؤقت تلقائيًا
             emailTimer.Enabled = true;
@@ -66,44 +67,18 @@ namespace el_shabander
             notificationTimer.Tick += NotificationTimer_Tick;
             notificationTimer.Start();
         }
-       
+
         private void main_Load(object sender, EventArgs e)
         {
             pn_cont.Controls.Clear();
             pn_cont.Controls.Add(frm_home.tileControl1);
-
-            frm_home.tileItem1.Frames[0].Elements[1].Text = db.tb_supp.Count().ToString();
-            frm_home.tileItem1.Frames[1].Elements[1].Text = db.tb_employees.Count().ToString();
-            frm_home.tileItem1.Frames[2].Elements[1].Text = db.tb_cus.Count().ToString();
-            //pur
-            frm_home.tileItem2.Frames[0].Elements[2].Text = db.tb_pur.Count().ToString();
-            frm_home.tileItem2.Frames[1].Elements[2].Text = db.tb_sell.Count().ToString();
-            frm_home.tileItem2.Frames[2].Elements[2].Text = db.tb_stuk.Count().ToString();
-            //sell
-            frm_home.tileItem6.Frames[2].Elements[2].Text = db.tb_pur.Count().ToString();
-            frm_home.tileItem6.Frames[0].Elements[2].Text = db.tb_sell.Count().ToString();
-            frm_home.tileItem6.Frames[1].Elements[2].Text = db.tb_stuk.Count().ToString();
-            //cus
-            frm_home.tileItem10.Frames[1].Elements[2].Text = db.tb_supp.Count().ToString();
-            frm_home.tileItem10.Frames[2].Elements[2].Text = db.tb_employees.Count().ToString();
-            frm_home.tileItem10.Frames[0].Elements[2].Text = db.tb_cus.Count().ToString();
-            //car
-            frm_home.tileItem4.Frames[2].Elements[2].Text = db.tb_pur.Count().ToString();
-            frm_home.tileItem4.Frames[1].Elements[2].Text = db.tb_sell.Count().ToString();
-            frm_home.tileItem4.Frames[0].Elements[2].Text = db.tb_stuk.Count().ToString();
-            //driver
-            frm_home.tileItem7.Frames[1].Elements[2].Text = db.tb_supp.Count().ToString();
-            frm_home.tileItem7.Frames[0].Elements[2].Text = db.tb_employees.Count().ToString();
-            frm_home.tileItem7.Frames[2].Elements[2].Text = db.tb_cus.Count().ToString();
-
-
-
-
+            ucGoldPrice.SetCompactMode(true);
+            pn_cont.Controls.Add(ucGoldPrice);
 
             lb_titelpage.Text = " EngineeCode ";
             StoreSerialNumber();
 
-            
+
             main frm_supp_Add = (main)Application.OpenForms["main"];
             if (frm_supp_Add != null)
             {
@@ -159,12 +134,12 @@ namespace el_shabander
             }
             trialStartDate = Properties.Settings.Default.TrialStartDate;
             CheckTrialExpiration(trialStartDate, la_trile);
-           
+
         }
-        private  void NotificationTimer_Tick(object sender, EventArgs e)
+        private void NotificationTimer_Tick(object sender, EventArgs e)
         {
             CheckForNewNotifications();
-            
+
         }
         private void CheckForNewNotifications()
         {
@@ -246,14 +221,14 @@ namespace el_shabander
 
         }
 
-      
+
 
         private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e)
         {
 
         }
 
-       
+
 
 
 
@@ -264,7 +239,7 @@ namespace el_shabander
             {
                 pn_navbar.Width = 50;
                 pn_titelnavbar.Visible = false;
-               pn_headernavbar.Height = 150;
+                pn_headernavbar.Height = 150;
             }
             else
             {
@@ -278,51 +253,27 @@ namespace el_shabander
         {
             pn_cont.Controls.Clear();
             pn_cont.Controls.Add(frm_home.tileControl1);
-            //supp
-            frm_home.tileItem1.Frames[0].Elements[1].Text = db.tb_supp.Count().ToString();
-            frm_home.tileItem1.Frames[1].Elements[1].Text = db.tb_employees.Count().ToString();
-            frm_home.tileItem1.Frames[2].Elements[1].Text = db.tb_cus.Count().ToString();
-            //pur
-            frm_home.tileItem2.Frames[0].Elements[2].Text = db.tb_pur.Count().ToString();
-            frm_home.tileItem2.Frames[1].Elements[2].Text = db.tb_sell.Count().ToString();
-            frm_home.tileItem2.Frames[2].Elements[2].Text = db.tb_stuk.Count().ToString();
-            //sell
-            frm_home.tileItem6.Frames[2].Elements[2].Text = db.tb_pur.Count().ToString();
-            frm_home.tileItem6.Frames[0].Elements[2].Text = db.tb_sell.Count().ToString();
-            frm_home.tileItem6.Frames[1].Elements[2].Text = db.tb_stuk.Count().ToString();
-            //cus
-            frm_home.tileItem10.Frames[1].Elements[2].Text = db.tb_supp.Count().ToString();
-            frm_home.tileItem10.Frames[2].Elements[2].Text = db.tb_employees.Count().ToString();
-            frm_home.tileItem10.Frames[0].Elements[2].Text = db.tb_cus.Count().ToString();
-            //car
-            frm_home.tileItem4.Frames[2].Elements[2].Text = db.tb_pur.Count().ToString();
-            frm_home.tileItem4.Frames[1].Elements[2].Text = db.tb_sell.Count().ToString();
-            frm_home.tileItem4.Frames[0].Elements[2].Text = db.tb_stuk.Count().ToString();
-            //driver
-            frm_home.tileItem7.Frames[1].Elements[2].Text = db.tb_supp.Count().ToString();
-            frm_home.tileItem7.Frames[0].Elements[2].Text = db.tb_employees.Count().ToString();
-            frm_home.tileItem7.Frames[2].Elements[2].Text = db.tb_cus.Count().ToString();
+            ucGoldPrice.SetCompactMode(true);
+            pn_cont.Controls.Add(ucGoldPrice);
 
             db = new gold_shopEntities();
             lb_titelpage.Text = " EngineeCode ";
         }
 
+        // تم استبدال شاشة الأصناف بشاشة سعر الذهب (زر simpleButton7 اتغير اسمه لـ"سعر الذهب" في main.Designer.cs).
         private void simpleButton7_Click(object sender, EventArgs e)
         {
             pn_cont.Controls.Clear();
-            pn_cont.Controls.Add(frm_Cat.pn_cat);
-            db = new gold_shopEntities();
-            frm_Cat.updata_data();
-            lb_titelpage.Text = "الاصناف";
-           //frm_Cat.gridControl1.DataSource = db.TB_cat.ToList();
-        
+            ucGoldPrice.SetCompactMode(false);
+            pn_cont.Controls.Add(ucGoldPrice);
+            lb_titelpage.Text = "سعر الذهب";
         }
 
         private void pn_topbar_Paint(object sender, PaintEventArgs e)
         {
 
         }
-       
+
         private async void btn_close_Click_1(object sender, EventArgs e)
         {
             var rs = MessageBox.Show("هل تريد اخذ نسخة احتياطية", "عملية نسخ", MessageBoxButtons.YesNo);
@@ -400,7 +351,7 @@ namespace el_shabander
             else
             {
                 WindowState = FormWindowState.Normal;
-               
+
             }
         }
 
@@ -438,10 +389,10 @@ namespace el_shabander
             if (tB_user != null)
             {
                 pn_cont.Controls.Clear();
-            pn_cont.Controls.Add(frm_Pur.pn_cat);
-            db = new gold_shopEntities();
-            frm_Pur.updata_data();
-            lb_titelpage.Text = "المشتريات";
+                pn_cont.Controls.Add(frm_Pur.pn_cat);
+                db = new gold_shopEntities();
+                frm_Pur.updata_data();
+                lb_titelpage.Text = "المشتريات";
             }
             else
             {
@@ -480,7 +431,7 @@ namespace el_shabander
                 return; // يوقف تنفيذ باقي الكود
             }
             var tB_user = db.tb_user
-                              .Where(x => x.user_name == la_username.Text 
+                              .Where(x => x.user_name == la_username.Text
                                        && x.user_pass == passwordInput)
                               .FirstOrDefault();
 
@@ -519,10 +470,10 @@ namespace el_shabander
             if (tB_user != null)
             {
                 pn_cont.Controls.Clear();
-            pn_cont.Controls.Add(frm_user.pn_cat);
-            db = new gold_shopEntities();
-            frm_user.updata_data();
-            lb_titelpage.Text = "المستخدمين";
+                pn_cont.Controls.Add(frm_user.pn_cat);
+                db = new gold_shopEntities();
+                frm_user.updata_data();
+                lb_titelpage.Text = "المستخدمين";
             }
             else
             {
@@ -534,10 +485,10 @@ namespace el_shabander
         {
             pl.frm_settingpro frm_settingpro = new pl.frm_settingpro();
             frm_settingpro.Show();
-          
-           
+
+
         }
-       
+
         private void btn_logout_Click(object sender, EventArgs e)
         {
             pl.frm_login login = new pl.frm_login();
@@ -593,10 +544,10 @@ namespace el_shabander
                 return; // يوقف تنفيذ باقي الكود
             }
             var tB_user = db.tb_user
-                              .Where(x => x.user_name == la_username.Text 
+                              .Where(x => x.user_name == la_username.Text
                                        && x.user_pass == passwordInput)
                               .FirstOrDefault();
-                           
+
             if (tB_user != null)
             {
                 pn_cont.Controls.Clear();
@@ -610,7 +561,7 @@ namespace el_shabander
                 MessageBox.Show("كلمة المرور غير صحيحة.");
             }
         }
-        public  List<tb_sellpop> list_sellpop;
+        public List<tb_sellpop> list_sellpop;
         public List<tb_sell> list_sell;
         public List<tb_pur> list_pur;
         public List<tb_supp> list_supp;
@@ -618,10 +569,10 @@ namespace el_shabander
         public List<tb_stuk> list_cat;
         private void main_Activated(object sender, EventArgs e)
         {
-             list_cat = db.tb_stuk.ToList();
+            list_cat = db.tb_stuk.ToList();
             UpdateUserState("مفتوح");
-            
-           
+
+
         }
 
         private void btn_employees_Click(object sender, EventArgs e)
@@ -646,19 +597,19 @@ namespace el_shabander
         private void UpdateUserState(string state)
         {
 
-                if (CurrentUser != null)
-                {
-                    CurrentUser.user_state = state;
-                    db.Entry(CurrentUser).State = System.Data.Entity.EntityState.Modified;
-                    db.SaveChanges();
-                }
+            if (CurrentUser != null)
+            {
+                CurrentUser.user_state = state;
+                db.Entry(CurrentUser).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
+            }
 
-           
-            
+
+
         }
         private void CheckUserStatesAtStartup()
         {
-           
+
             try
             {
                 bool hasUsers = db.tb_user.Any();
@@ -671,22 +622,22 @@ namespace el_shabander
                 if (Properties.Settings.Default.darkmode == true)
                 {
                     UserLookAndFeel.Default.SetSkinStyle("Office 2019 Black");
-                   
-                   pn_headernavbar.BackColor = Color.Black;
+
+                    pn_headernavbar.BackColor = Color.Black;
                     pn_topbar.BackColor = Color.Black;
                     flowLayoutPanel1.BackColor = Color.Black;
                 }
                 else
                 {
-                   
+
                     pn_headernavbar.BackColor = Color.FromArgb(64, 64, 64);
-                   pn_topbar.BackColor = Color.FromArgb(64, 64, 64);
-                   flowLayoutPanel1.BackColor = Color.FromArgb(64, 64, 64);
+                    pn_topbar.BackColor = Color.FromArgb(64, 64, 64);
+                    flowLayoutPanel1.BackColor = Color.FromArgb(64, 64, 64);
                     UserLookAndFeel.Default.SetSkinStyle("Office 2019 Colorful");
 
                 }
             }
-            catch 
+            catch
             {
                 // في حالة حدوث خطأ أثناء محاولة الاتصال بقاعدة البيانات أو الاستعلام
                 MessageBox.Show("فشل الاتصال بقاعدة البيانات أو حدوث خطأ في الاستعلام. سيتم فتح نافذة الإعدادات.");
@@ -703,7 +654,7 @@ namespace el_shabander
                 foreach (ManagementObject obj in searcher.Get())
                 {
                     return obj["SerialNumber"].ToString();
-                   
+
                 }
             }
             catch (Exception ex)
@@ -712,17 +663,17 @@ namespace el_shabander
             }
             return null;
         }
-        private  void CheckTrialExpiration(DateTime trialStartDate, Label label)
+        private void CheckTrialExpiration(DateTime trialStartDate, Label label)
         {
             // هنا يمكنك تنفيذ منطق لفحص فترة التجربة باستخدام السيريال نمبر وتاريخ بدء الفترة التجريبية
             // هذا مجرد مثال بسيط على كيفية الفحص
             // DateTime trialStartDate = DateTime.Parse("2024-05-17");
-           
+
             DateTime currentDate = DateTime.Now;
-          //  trialStartDate = currentDateTime.AddMinutes(2);
+            //  trialStartDate = currentDateTime.AddMinutes(2);
             TimeSpan trialPeriod = currentDate - trialStartDate;
-           
-            
+
+
             int trialDays = 7; // 7 أيام
             string currentSerial = Properties.Settings.Default.serail;
 
@@ -773,7 +724,7 @@ namespace el_shabander
                     label.Text = $"الأيام المتبقية: {remainingDays} يوم";
 
                 }
-                
+
             }
         }
         private void StoreSerialNumber()
@@ -813,11 +764,11 @@ namespace el_shabander
         private void main_FormClosing(object sender, FormClosingEventArgs e)
         {
             UpdateUserState("مغلق");
-            
+
         }
         private void OnTimedEvent(Object source, ElapsedEventArgs e)
         {
-           
+
             frm_cus.SendEmailWithHtmlGridData();
             frm_sell.SendEmailWithHtmlGridData();
             frm_supp.SendEmailWithHtmlGridData();
@@ -835,8 +786,8 @@ namespace el_shabander
 
         private void btn_note_Click(object sender, EventArgs e)
         {
-           
-            
+
+
             lblNotificationCount.Visible = false;
             lblNotificationCount.Text = "0";
             // التحقق مما إذا كان نموذج الإشعارات مفتوحًا بالفعل
@@ -927,10 +878,10 @@ namespace el_shabander
             if (tB_user != null)
             {
                 pn_cont.Controls.Clear();
-            pn_cont.Controls.Add(frm_Safe_As.pn_cat);
-            db = new gold_shopEntities();
-            frm_Safe_As.updata_data();
-            lb_titelpage.Text = "الخزينة";
+                pn_cont.Controls.Add(frm_Safe_As.pn_cat);
+                db = new gold_shopEntities();
+                frm_Safe_As.updata_data();
+                lb_titelpage.Text = "الخزينة";
             }
             else
             {
