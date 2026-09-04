@@ -100,27 +100,7 @@ namespace el_shabander.pl
                 // big.Checked = true;
                 // unit_small.Enabled = false;
                 pro_call();
-                if (edt_name.Text == tb_stuk.stuk_name)
-                {
-                    tb_stuk = db.tb_stuk.Where(x => x.stuk_name == edt_name.Text).FirstOrDefault();
-
-                   
-                    edt_buy.Text = tb_stuk.stuk_buy.ToString();
-                    edt_sell.Text = tb_stuk.stuk_sell.ToString();
-                    if (tb_stuk.unit == "صغرى")
-                    {
-                        small.Checked = true;
-                        big.Checked = false;
-                       
-                    }
-                    else if (tb_stuk.unit == "كبرى")
-                    {
-
-                        small.Checked = false;
-                        big.Checked = true;
-                       
-                    }
-                }
+              
                 saveButtonClicked = false;
             }
             else
@@ -186,28 +166,7 @@ namespace el_shabander.pl
                 chack.Text = curnt.ToString();
                 txt_id.Text = id.ToString();
                 pro_call();
-                if (edt_name.Text == tb_stuk.stuk_name)
-                {
-                    tb_stuk = db.tb_stuk.Where(x => x.stuk_name == edt_name.Text).FirstOrDefault();
-
-                    
-                    edt_buy.Text = tb_stuk.stuk_buy.ToString();
-                    edt_sell.Text = tb_stuk.stuk_sell.ToString();
-                    if (tb_stuk.unit == "صغرى")
-                    {
-                        small.Checked = true;
-                        big.Checked = false;
-                        
-                    }
-                    else if (tb_stuk.unit == "كبرى")
-                    {
-
-                        small.Checked = false;
-                        big.Checked = true;
-                       
-
-                    }
-                }
+              
 
                 saveButtonClicked = false;
             }
@@ -224,13 +183,7 @@ namespace el_shabander.pl
        
         
 
-        private void big_MouseUp(object sender, MouseEventArgs e)
-        {
-            if (!big.Checked)
-            {
-                big.Checked = true;
-            }
-        }
+      
 
        
         public List<tb_pur> list_pur;
@@ -439,21 +392,7 @@ namespace el_shabander.pl
             
         }
 
-        private void txt_totaldata_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void small_MouseUp_1(object sender, MouseEventArgs e)
-        {
-            if (!small.Checked)
-            {
-                small.Checked = true;
-               
-
-            }
-            
-        }
+      
 
 
         public string GetHtmlFromTextBoxContent(string messageContent)
@@ -732,7 +671,7 @@ namespace el_shabander.pl
                     txt_qt.Text = row.Cells[3].Value.ToString();
 
                     // التحقق من نوع الوحدة (صغرى أو كبرى)
-                    if (row.Cells[2].Value.ToString() == "صغرى")
+                 /*   if (row.Cells[2].Value.ToString() == "صغرى")
                     {
                         tb_stuk = db.tb_stuk.Where(x => x.stuk_name == edt_name.Text).FirstOrDefault();
 
@@ -745,10 +684,10 @@ namespace el_shabander.pl
 
                         small.Checked = false;
                         big.Checked = true;
-                    }
+                    }*/
 
                     qts_qt.Text = row.Cells[3].Value.ToString();
-                    edt_sell.Text = row.Cells[5].Value.ToString();
+                   // edt_sell.Text = row.Cells[5].Value.ToString();
                     btn_edit.Enabled = true;
                     btn_delete.Enabled = true;
                     btn_add_pur.Enabled = false;
@@ -764,55 +703,9 @@ namespace el_shabander.pl
 
 
 
-        private void small_CheckedChanged(object sender, EventArgs e)
-        {
+      
 
-          var   tb_Stuk = db.tb_stuk.Where(x => x.stuk_name == edt_name.Text).FirstOrDefault();
-            if (small.Checked)
-            {
-               
-                if (tb_Stuk.unit == "كبرى")
-                {
-                    
-                    small.Checked = false;
-                    big.Checked = true;
-
-
-                }
-
-                else
-                {
-                   
-                    edt_buy.Text = tb_Stuk.stuk_buy.ToString();
-                    edt_sell.Text = tb_Stuk.stuk_sell.ToString();
-                    big.Checked = false;
-
-                }
-
-
-            }
-
-        }
-
-        private void big_CheckedChanged(object sender, EventArgs e)
-        {
-            if (big.Checked)
-            {
-                var tb_Stuk = db.tb_stuk.Where(x => x.stuk_name == edt_name.Text).FirstOrDefault();
-
-                if (tb_Stuk != null)
-                {
-                    if (tb_Stuk.unit == "صغرى")
-                    {
-                        edt_buy.Text = (tb_Stuk.stuk_buy * tb_Stuk.stuk_qtfacttotal).ToString();
-                        edt_sell.Text = (tb_Stuk.stuk_sell * tb_Stuk.stuk_qtfacttotal).ToString();
-                    }
-                   
-
-                    small.Checked = false;
-                }
-            }
-        }
+      
 
         private void edt_name_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -822,30 +715,20 @@ namespace el_shabander.pl
             if (tb_stuk != null)
             {
                 // إذا كان الكائن موجودًا، قم بتحديث الحقول والـ CheckBoxes بناءً على القيم المخزنة في قاعدة البيانات
-                qt.Text = tb_stuk.stuk_qt.ToString();
-                txt_sell.Text = tb_stuk.stuk_sell.ToString();
-                txt_buy.Text = tb_stuk.stuk_buy.ToString();
+                qtstuck.Text = tb_stuk.stuk_qt.ToString();
+                staysafe.Text = tb_stuk.stuk_sell.ToString();
+                sell21.Text = tb_stuk.stuk_buy.ToString();
                 edt_buy.Text = tb_stuk.stuk_buy.ToString();
-                edt_sell.Text = tb_stuk.stuk_sell.ToString();
+              //  edt_sell.Text = tb_stuk.stuk_sell.ToString();
                 edt_code.Text = tb_stuk.code;
-                if (tb_stuk.unit == "صغرى")
-                {
-                    small.Checked = true;
-                    big.Checked = false;
-                }
-                else
-                {
+               
 
-                    small.Checked = false;
-                    big.Checked = true;
-                }
-
-                    if (string.IsNullOrWhiteSpace(edt_buy.Text))
+                  /*  if (string.IsNullOrWhiteSpace(edt_buy.Text))
                 {
                    
                   edt_buy.Text = "0";
                     edt_sell.Text = "0";
-                }
+                }*/
             }
            
         }
@@ -879,7 +762,7 @@ namespace el_shabander.pl
 
         private void btn_add_pur_Click(object sender, EventArgs e)
         {
-            qtp = Convert.ToDouble(qt.Text);
+            qtp = Convert.ToDouble(qtstuck.Text);
             qtn = Convert.ToDouble(txt_qt.Text);
             tb_stuk = db.tb_stuk.Where(x => x.stuk_name == edt_name.Text).FirstOrDefault();
 
@@ -890,15 +773,15 @@ namespace el_shabander.pl
                 return; // إيقاف العملية إذا لم يكن الصنف موجودًا
             }
 
-            if (string.IsNullOrWhiteSpace(edt_sell.Text))
+           /* if (string.IsNullOrWhiteSpace(edt_sell.Text))
             {
                 MessageBox.Show("الرجاء إدخال اسم المادة.");
-            }
+            }*/
             else
             {
                 tb_stuk.stuk_name = edt_name.Text;
 
-                if (big.Checked)
+               /* if (big.Checked)
                 {
                     tb_stuk.stuk_buy = (Convert.ToDouble(edt_buy.Text) / tb_stuk.stuk_qtfacttotal);
                     tb_stuk.stuk_sell = Math.Round((Convert.ToDouble(edt_sell.Text) / Convert.ToDouble(tb_stuk.stuk_qtfacttotal)), 2);
@@ -908,10 +791,10 @@ namespace el_shabander.pl
                 {
                     tb_stuk.stuk_buy = Convert.ToDouble(edt_buy.Text);
                     tb_stuk.stuk_sell = Convert.ToDouble(edt_sell.Text);
-                }
+                }*/
 
                 qtr = qtp + qtn;
-                qt.Text = qtr.ToString();
+                qtstuck.Text = qtr.ToString();
                 tb_stuk.stuk_qt = qtr;
                 //tb_stuk.stuk_tbuy += (Convert.ToDouble(txt_qt.Text) * Convert.ToDouble(edt_buy.Text));
 
@@ -921,14 +804,14 @@ namespace el_shabander.pl
                 bool isDuplicate = false;
                 foreach (DataGridViewRow row in dataGridView1.Rows)
                 {
-                    if (row.Cells[0].Value != null && row.Cells[0].Value.ToString() == edt_name.Text &&
+                    /*if (row.Cells[0].Value != null && row.Cells[0].Value.ToString() == edt_name.Text &&
                         ((row.Cells[2].Value.ToString() == "صغرى" && small.Checked) || (row.Cells[2].Value.ToString() == "كبرى" && big.Checked)))
                     {
                         row.Cells[3].Value = (Convert.ToDouble(row.Cells[3].Value) + Convert.ToDouble(txt_qt.Text)).ToString();
                         row.Cells[4].Value = (Convert.ToDouble(row.Cells[1].Value) * Convert.ToDouble(row.Cells[3].Value)).ToString();
                         isDuplicate = true;
                         break;
-                    }
+                    }*/
                 }
 
                 if (!isDuplicate)
@@ -937,10 +820,10 @@ namespace el_shabander.pl
                     DataRow row = datasells.NewRow();
                     row[0] = edt_name.Text;
                     row[1] = edt_buy.Text;
-                    row[2] = small.Checked ? "صغرى" : big.Checked ? "كبرى" : "";
+                  //  row[2] = small.Checked ? "صغرى" : big.Checked ? "كبرى" : "";
                     row[3] = txt_qt.Text;
                     row[4] = (Convert.ToDouble(txt_qt.Text)) * Convert.ToDouble(edt_buy.Text);
-                    row[5] = edt_sell.Text;
+                  //  row[5] = edt_sell.Text;
 
                     datasells.Rows.Add(row);
                 }
@@ -958,19 +841,14 @@ namespace el_shabander.pl
         {
             qtp = Convert.ToDouble(tb_stuk.stuk_qt);
             qtn = Convert.ToDouble(txt_qt.Text);
-            if (big.Checked)
-            {
-                //tb_Stuk = db.tb_stuk.Where(x => x.stuk_name == edt_name.Text).FirstOrDefault();
-                qtn *= Convert.ToDouble(tb_stuk.stuk_qtfacttotal);
-
-            }
+           
             qtr = qtp - qtn;
-             qt.Text = qtr.ToString();
+             qtstuck.Text = qtr.ToString();
             tb_stuk = db.tb_stuk.Where(x => x.stuk_name == edt_name.Text).FirstOrDefault();
             tb_stuk.stuk_qt = qtr;
             db.Entry(tb_stuk).State = System.Data.Entity.EntityState.Modified;
             db.SaveChanges();
-            qt.Text = qtr.ToString();
+            qtstuck.Text = qtr.ToString();
             int rowindex = dataGridView1.CurrentCell.RowIndex;
             dataGridView1.Rows.RemoveAt(rowindex);
             pro_call();
@@ -1008,25 +886,25 @@ namespace el_shabander.pl
             newrow.Cells[0].Value = edt_name.Text;
             newrow.Cells[1].Value = edt_buy.Text;
             //newrow.Cells[2].Value = weight;
-            if (small.Checked)
+           /* if (small.Checked)
             {
                 newrow.Cells[2].Value = "صغرى";
             }
             else if (big.Checked)
             {
                 newrow.Cells[2].Value = "كبرى";
-            }
+            }*/
 
 
             newrow.Cells[3].Value = txt_qt.Text;
             newrow.Cells[4].Value = (Convert.ToDouble(txt_qt.Text)) * Convert.ToDouble(edt_buy.Text);
-            newrow.Cells[5].Value = edt_sell.Text;
+           // newrow.Cells[5].Value = edt_sell.Text;
             tb_stuk = db.tb_stuk.Where(x => x.stuk_name == edt_name.Text).FirstOrDefault();
 
             if (edt_name.Text == tb_stuk.stuk_name)
             {
 
-                if (big.Checked)
+               /* if (big.Checked)
                 {
                     tb_stuk.stuk_buy = (Convert.ToDouble(edt_buy.Text) / tb_stuk.stuk_qtfacttotal);
                     tb_stuk.stuk_sell = (Convert.ToDouble(edt_sell.Text) / tb_stuk.stuk_qtfacttotal);
@@ -1036,12 +914,12 @@ namespace el_shabander.pl
                 {
                     tb_stuk.stuk_buy = Convert.ToDouble(edt_buy.Text);
                     tb_stuk.stuk_sell = Convert.ToDouble(edt_sell.Text);
-                }
+                }*/
 
                 
               
                 tb_stuk.stuk_qt = qtr;
-                qt.Text = qtr.ToString();
+                qtstuck.Text = qtr.ToString();
                // tb_stuk.stuk_tbuy += (Convert.ToDouble(txt_qt.Text) * Convert.ToDouble(edt_buy.Text));
                
                 
@@ -1066,24 +944,7 @@ namespace el_shabander.pl
             }
         }
 
-        private void edt_sell_TextChanged_1(object sender, EventArgs e)
-        {
-            if (string.IsNullOrWhiteSpace(edt_sell.Text))
-            {
-                // إذا كانت القيمة فارغة، يمكنك تعيين القيمة الافتراضية مرة أخرى
-                var tb_stuk = db.tb_stuk.Where(x => x.stuk_name == edt_name.Text).FirstOrDefault();
-                if (tb_stuk == null)
-                {
-                    edt_sell.Text = "0";
-                }else
-                {
-                    edt_sell.Text = tb_stuk.stuk_sell.ToString();
-                }
-                // edt_cat.Text = tb_stuk.stuk_cat;
-                // edt_buy.Text = tb_stuk.stuk_buy.ToString();
-                
-            }
-        }
+      
 
         private void edt_buy_TextChanged(object sender, EventArgs e)
         {
@@ -1154,13 +1015,13 @@ namespace el_shabander.pl
             if (tb_stuk != null)
             {
                 // إذا كان الكائن موجودًا، قم بتحديث الحقول والـ CheckBoxes بناءً على القيم المخزنة في قاعدة البيانات
-                qt.Text = tb_stuk.stuk_qt.ToString();
-                txt_sell.Text = tb_stuk.stuk_sell.ToString();
-                txt_buy.Text = tb_stuk.stuk_buy.ToString();
+                qtstuck.Text = tb_stuk.stuk_qt.ToString();
+                staysafe.Text = tb_stuk.stuk_sell.ToString();
+                sell21.Text = tb_stuk.stuk_buy.ToString();
                 edt_buy.Text = tb_stuk.stuk_buy.ToString();
-                edt_sell.Text = tb_stuk.stuk_sell.ToString();
+              //  edt_sell.Text = tb_stuk.stuk_sell.ToString();
                 edt_name.Text = tb_stuk.stuk_name;
-                if (tb_stuk.unit == "صغرى")
+               /* if (tb_stuk.unit == "صغرى")
                 {
                     small.Checked = true;
                     big.Checked = false;
@@ -1177,7 +1038,7 @@ namespace el_shabander.pl
 
                     edt_buy.Text = "0";
                     edt_sell.Text = "0";
-                }
+                }*/
             }
         }
 

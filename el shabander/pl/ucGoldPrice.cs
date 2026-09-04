@@ -40,13 +40,12 @@ namespace el_shabander.pl
         private Label lblUpdatedAt;
         private Label lblStatus;
         private DevExpress.XtraEditors.SimpleButton btnRefresh;
-        private DevExpress.XtraEditors.SimpleButton btnChart;
 
         public ucGoldPrice()
         {
             InitializeComponent();
 
-            refreshTimer = new System.Windows.Forms.Timer { Interval = 60000 }; // تحديث تلقائي كل دقيقة
+            refreshTimer = new System.Windows.Forms.Timer { Interval = 10000 }; // تحديث تلقائي كل دقيقة
             refreshTimer.Tick += async (s, e) => await LoadGoldPriceAsync();
             refreshTimer.Start();
             this.Disposed += (s, e) => refreshTimer?.Stop();
@@ -216,42 +215,20 @@ namespace el_shabander.pl
             };
             btnRefresh.Click += async (s, e) => await LoadGoldPriceAsync();
 
-            btnChart = new DevExpress.XtraEditors.SimpleButton
-            {
-                Text = "شارت السعر",
-                Font = new Font("Cairo", 11F, FontStyle.Bold),
-                Width = 180,
-                Height = 40
-            };
-            btnChart.Click += (s, e) =>
-            {
-                using (var frm = new frm_gold_price_chart())
-                {
-                    frm.ShowDialog(this.FindForm());
-                }
-            };
-
-            const int buttonGap = 16;
             var pnlButtonHolder = new Panel { Dock = DockStyle.Top, Height = 55 };
             btnRefresh.Anchor = AnchorStyles.None;
-            btnChart.Anchor = AnchorStyles.None;
             pnlButtonHolder.Controls.Add(btnRefresh);
-            pnlButtonHolder.Controls.Add(btnChart);
             void LayoutButtons()
             {
-                int totalWidth = btnRefresh.Width + buttonGap + btnChart.Width;
-                int startX = (pnlButtonHolder.Width - totalWidth) / 2;
-                // في وضع RTL بيتحط الزرار اللي في الكود أولًا ناحية اليمين، فبنخلي "شارت السعر" شمال "تحديث السعر"
-                btnRefresh.Location = new Point(startX, 8);
-                btnChart.Location = new Point(startX + btnRefresh.Width + buttonGap, 8);
+                btnRefresh.Location = new Point((pnlButtonHolder.Width - btnRefresh.Width) / 2, 8);
             }
             LayoutButtons();
             pnlButtonHolder.Resize += (s, e) => LayoutButtons();
 
-            // حاوية الجدول: بتاخد المساحة المتبقية كلها وتسمح بالتمرير بدل ما الجدول يتقص لو المساحة صغيرت
+            // حاوية الجدول: بتاخد المساحة اللي محتاجاها بس فوق، والباقي بيتاخد للشارت تحتها مباشرة
             var pnlTableWrapper = new Panel
             {
-                Dock = DockStyle.Fill,
+                Dock = DockStyle.Top,
                 AutoScroll = true,
                 Padding = new Padding(50, 10, 50, 20)
             };
@@ -321,8 +298,13 @@ namespace el_shabander.pl
                 buyLabels[karat] = buyLabel;
             }
 
+            pnlTableWrapper.Height = table.Height + pnlTableWrapper.Padding.Vertical;
             pnlTableWrapper.Controls.Add(table);
 
+            // الشارت: بيتحط تحت الجدول مباشرة في نفس الشاشة (مش في فورم منفصل بزرار)
+            var priceChart = new ucGoldPriceChart { Dock = DockStyle.Fill };
+
+            this.Controls.Add(priceChart);
             this.Controls.Add(pnlTableWrapper);
             this.Controls.Add(pnlButtonHolder);
             this.Controls.Add(lblStatus);

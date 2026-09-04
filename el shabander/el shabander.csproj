@@ -660,6 +660,9 @@
     <Compile Include="pl\frm_home.Designer.cs">
       <DependentUpon>frm_home.cs</DependentUpon>
     </Compile>
+    <Compile Include="pl\ucGoldPriceChart.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="pl\ucGoldPrice.cs">
       <SubType>UserControl</SubType>
     </Compile>
