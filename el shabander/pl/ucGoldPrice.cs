@@ -40,6 +40,7 @@ namespace el_shabander.pl
         private Label lblUpdatedAt;
         private Label lblStatus;
         private DevExpress.XtraEditors.SimpleButton btnRefresh;
+        private DevExpress.XtraEditors.SimpleButton btnChart;
 
         public ucGoldPrice()
         {
@@ -215,14 +216,37 @@ namespace el_shabander.pl
             };
             btnRefresh.Click += async (s, e) => await LoadGoldPriceAsync();
 
-            var pnlButtonHolder = new Panel { Dock = DockStyle.Top, Height = 55 };
-            btnRefresh.Location = new Point((this.Width - btnRefresh.Width) / 2, 5);
-            btnRefresh.Anchor = AnchorStyles.None;
-            pnlButtonHolder.Controls.Add(btnRefresh);
-            pnlButtonHolder.Resize += (s, e) =>
+            btnChart = new DevExpress.XtraEditors.SimpleButton
             {
-                btnRefresh.Location = new Point((pnlButtonHolder.Width - btnRefresh.Width) / 2, 8);
+                Text = "شارت السعر",
+                Font = new Font("Cairo", 11F, FontStyle.Bold),
+                Width = 180,
+                Height = 40
             };
+            btnChart.Click += (s, e) =>
+            {
+                using (var frm = new frm_gold_price_chart())
+                {
+                    frm.ShowDialog(this.FindForm());
+                }
+            };
+
+            const int buttonGap = 16;
+            var pnlButtonHolder = new Panel { Dock = DockStyle.Top, Height = 55 };
+            btnRefresh.Anchor = AnchorStyles.None;
+            btnChart.Anchor = AnchorStyles.None;
+            pnlButtonHolder.Controls.Add(btnRefresh);
+            pnlButtonHolder.Controls.Add(btnChart);
+            void LayoutButtons()
+            {
+                int totalWidth = btnRefresh.Width + buttonGap + btnChart.Width;
+                int startX = (pnlButtonHolder.Width - totalWidth) / 2;
+                // في وضع RTL بيتحط الزرار اللي في الكود أولًا ناحية اليمين، فبنخلي "شارت السعر" شمال "تحديث السعر"
+                btnRefresh.Location = new Point(startX, 8);
+                btnChart.Location = new Point(startX + btnRefresh.Width + buttonGap, 8);
+            }
+            LayoutButtons();
+            pnlButtonHolder.Resize += (s, e) => LayoutButtons();
 
             // حاوية الجدول: بتاخد المساحة المتبقية كلها وتسمح بالتمرير بدل ما الجدول يتقص لو المساحة صغيرت
             var pnlTableWrapper = new Panel
@@ -332,6 +356,16 @@ namespace el_shabander.pl
                 }
 
                 var price = await GoldPriceApiService.GetGoldPriceAsync();
+
+                try
+                {
+                    // نسجّل كل قراءة سعر في جدول التاريخ عشان تتعرض بعدين في شارت "شارت السعر".
+                    // أي فشل هنا (مثلاً مشكلة اتصال بقاعدة البيانات) بيتجاهل ومبيأثرش على عرض السعر الحالي.
+                    await GoldPriceHistoryRepository.SaveSnapshotAsync(price);
+                }
+                catch
+                {
+                }
 
                 if (isCompact)
                 {
