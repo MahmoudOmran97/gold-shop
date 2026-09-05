@@ -32,5 +32,9 @@ namespace el_shabander
         public string unit { get; set; }
         public string code { get; set; }
         public string type_fact { get; set; }
+        public Nullable<int> karat { get; set; }
+        public Nullable<double> weight_g { get; set; }
+        public Nullable<double> making_charge { get; set; }
+        public string price_mode { get; set; }
     }
 }

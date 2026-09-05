@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="AppSettings">
           <Key>
             <PropertyRef Name="id" />
@@ -139,6 +139,7 @@
           <Property Name="weight" Type="nvarchar" MaxLength="50" />
           <Property Name="total_earnings" Type="float" />
           <Property Name="cut" Type="float" />
+          <Property Name="karat" Type="float" />
         </EntityType>
         <EntityType Name="tb_ordersellpop">
           <Key>
@@ -152,6 +153,7 @@
           <Property Name="sell_id" Type="int" />
           <Property Name="wight" Type="nvarchar" MaxLength="50" />
           <Property Name="sell_price_sell" Type="float" />
+          <Property Name="karat" Type="float" />
         </EntityType>
         <EntityType Name="tb_pur">
           <Key>
@@ -319,6 +321,10 @@
           <Property Name="unit" Type="nvarchar" MaxLength="50" />
           <Property Name="code" Type="nvarchar(max)" />
           <Property Name="type_fact" Type="nvarchar" MaxLength="50" />
+          <Property Name="karat" Type="int" />
+          <Property Name="weight_g" Type="float" />
+          <Property Name="making_charge" Type="float" />
+          <Property Name="price_mode" Type="nvarchar" MaxLength="20" />
         </EntityType>
         <EntityType Name="tb_supp">
           <Key>
@@ -384,8 +390,7 @@
           <EntitySet Name="tb_takestuk" EntityType="Self.tb_takestuk" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tb_user" EntityType="Self.tb_user" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -523,6 +528,7 @@
           <Property Name="weight" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="total_earnings" Type="Double" />
           <Property Name="cut" Type="Double" />
+          <Property Name="karat" Type="Double" />
         </EntityType>
         <EntityType Name="tb_ordersellpop">
           <Key>
@@ -536,6 +542,7 @@
           <Property Name="sell_id" Type="Int32" />
           <Property Name="wight" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="sell_price_sell" Type="Double" />
+          <Property Name="karat" Type="Double" />
         </EntityType>
         <EntityType Name="tb_pur">
           <Key>
@@ -703,6 +710,10 @@
           <Property Name="unit" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="code" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="type_fact" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="karat" Type="Int32" />
+          <Property Name="weight_g" Type="Double" />
+          <Property Name="making_charge" Type="Double" />
+          <Property Name="price_mode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="tb_supp">
           <Key>
@@ -909,6 +920,7 @@
           <EntitySetMapping Name="tb_ordersell">
             <EntityTypeMapping TypeName="Model.tb_ordersell">
               <MappingFragment StoreEntitySet="tb_ordersell">
+                <ScalarProperty Name="karat" ColumnName="karat" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="name_sell" ColumnName="name_sell" />
                 <ScalarProperty Name="price_sell" ColumnName="price_sell" />
@@ -924,6 +936,7 @@
           <EntitySetMapping Name="tb_ordersellpop">
             <EntityTypeMapping TypeName="Model.tb_ordersellpop">
               <MappingFragment StoreEntitySet="tb_ordersellpop">
+                <ScalarProperty Name="karat" ColumnName="karat" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="name_sell" ColumnName="name_sell" />
                 <ScalarProperty Name="price_sell" ColumnName="price_sell" />
@@ -1091,6 +1104,10 @@
           <EntitySetMapping Name="tb_stuk">
             <EntityTypeMapping TypeName="Model.tb_stuk">
               <MappingFragment StoreEntitySet="tb_stuk">
+                <ScalarProperty Name="price_mode" ColumnName="price_mode" />
+                <ScalarProperty Name="making_charge" ColumnName="making_charge" />
+                <ScalarProperty Name="weight_g" ColumnName="weight_g" />
+                <ScalarProperty Name="karat" ColumnName="karat" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="cat_id" ColumnName="cat_id" />
                 <ScalarProperty Name="supp_id" ColumnName="supp_id" />

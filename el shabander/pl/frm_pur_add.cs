@@ -9,26 +9,28 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevExpress.CodeParser;
 using DevExpress.DataAccess.Native.Excel;
+using el_shabander.bl;
 using el_shabander.epl;
 using static System.Net.WebRequestMethods;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 using System.Net.Mail;
 using System.Net;
+using System.Globalization;
 
 namespace el_shabander.pl
 {
-    public partial class frm_pur_add: Form
+    public partial class frm_pur_add : Form
     {
         gold_shopEntities db = new gold_shopEntities();
         tb_stuk tb_stuk = new tb_stuk();
         tb_pur tb_Pur = new tb_pur();
-       // bl.methods methods = new bl.methods();
+        // bl.methods methods = new bl.methods();
         tb_supp tb_Supp = new tb_supp();
         tb_safe tb_Safe = new tb_safe();
         Notfication notfication = new Notfication();
         DataTable datasells = new DataTable();
         tb_OperationLog tb_OperationLog = new tb_OperationLog();
-        double qtp, qtn, qtr, qts;
+       
         double oldamount = 0;
         int selectrowindex;
         double curnt, prives;
@@ -36,31 +38,60 @@ namespace el_shabander.pl
         private bool saveButtonClicked = false;
         //pl.frm_supp frm_Cat = new frm_supp();
         public int id;
-        public frm_pur_add ()
+        private System.Windows.Forms.Timer goldPriceTimer;
+        public frm_pur_add()
 
         {
             InitializeComponent();
         }
+
+        /// <summary>
+        /// بيجيب السعر اللحظى للذهب عيار 21 من الـ API ويحدث بيه labels:
+        /// buy21 (سعر الشراء) و sell21 (سعر البيع) و updatetime (وقت آخر تحديث).
+        /// </summary>
+        private async Task LoadLiveGoldPriceAsync()
+        {
+            try
+            {
+                var price = await GoldPriceApiService.GetGoldPriceAsync();
+
+                buy21.Text = price.Buy21.ToString("N0");
+                sell21.Text = price.Sell21.ToString("N0");
+                edt_buy.Text= price.Buy21.ToString("N0");
+                var localTime = price.UpdatedAtUtc.ToLocalTime();
+                updatetime.Text = "اخر تحديث: " + localTime.ToString("yyyy-MM-dd hh:mm tt", CultureInfo.InvariantCulture);
+            }
+            catch (Exception)
+            {
+                updatetime.Text = "تعذر تحديث السعر";
+            }
+        }
         public List<tb_ordersellpop> listorder;
-       
 
-        
 
-       
 
-       
 
-       
 
-      
 
-      
+
+
+
+
+
+
+
 
         private void frm_pur_add_Load(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Maximized;
-            comboBox1.Text = "اجل";
-           
+            comboBox1.Text = "نقدى";
+
+            // تحميل سعر الذهب اللحظى فورًا، ثم تحديثه تلقائيًا كل 10 ثواني
+            goldPriceTimer = new System.Windows.Forms.Timer { Interval = 10000 };
+            goldPriceTimer.Tick += async (s, ev) => await LoadLiveGoldPriceAsync();
+            goldPriceTimer.Start();
+            _ = LoadLiveGoldPriceAsync();
+
             if (id == 0)
             {
 
@@ -68,7 +99,7 @@ namespace el_shabander.pl
                 datasells.Columns.Add("سعر الجرام");
                 datasells.Columns.Add("الوحدة");
                 datasells.Columns.Add("الوزن");
-                datasells.Columns.Add("(21)الوزن");
+                datasells.Columns.Add("(21)وزن عيار");
                 datasells.Columns.Add("الاجمالى");
                 datasells.Columns.Add("العيار");
                 dataGridView1.DataSource = datasells;
@@ -77,7 +108,7 @@ namespace el_shabander.pl
                 dataGridView1.ReadOnly = true;
                 // تكبير المسافة بين الصفوف
                 dataGridView1.RowTemplate.Height = 30;
-              
+
                 save.DataSource = db.tb_safe.Select(x => x.safe_name).ToList();
                 var r1 = db.tb_stuk.Select(x => x.stuk_name).ToList();
                 var r2 = db.tb_supp.Select(x => x.supp_name).ToList();
@@ -97,11 +128,9 @@ namespace el_shabander.pl
                 edt_date.Text = (DateTime.Now).ToString();
                 btn_edit.Enabled = false;
                 btn_delete.Enabled = false;
-                // edt_big.ReadOnly = true;
-                // big.Checked = true;
-                // unit_small.Enabled = false;
+               
                 pro_call();
-              
+
                 saveButtonClicked = false;
             }
             else
@@ -122,7 +151,7 @@ namespace el_shabander.pl
                 listorder = db.tb_ordersellpop.Where(x => x.sell_id == id).ToList();
                 edt_supp.Enabled = false;
                 groupControl3.Visible = true;
-               
+
                 var r2 = db.tb_supp.Select(x => x.supp_name).ToList();
 
                 edt_chancus.DataSource = r2;
@@ -139,16 +168,16 @@ namespace el_shabander.pl
                     //tb_Ordersell.sell_id = tB_sell.id;
                     datasells.Rows.Add(listorder[i].name_sell,
                         listorder[i].price_sell, listorder[i].wight, listorder[i].qt_sell,
-                        listorder[i].tprice_sell, listorder[i].sell_price_sell);
+                        listorder[i].tprice_sell, listorder[i].sell_price_sell, listorder[i].karat);
 
                 }
                 dataGridView1.DataSource = datasells;
                 tb_Supp = db.tb_supp.Where(x => x.supp_name == edt_supp.Text).FirstOrDefault();
                 //edt_staybehaver.Text = (tb_Supp.total_price - Convert.ToDouble(txt_totaldata.Text) + Convert.ToDouble(edt_pay.Text)).ToString();
-               /* tb_Safe = db.tb_safe.Where(x => x.safe_name == save.Text).FirstOrDefault();
-                tb_Safe.safe_count += Convert.ToDouble(edt_pay.Text);
-                db.Entry(tb_Safe).State = System.Data.Entity.EntityState.Modified;
-                db.SaveChanges();*/
+                /* tb_Safe = db.tb_safe.Where(x => x.safe_name == save.Text).FirstOrDefault();
+                 tb_Safe.safe_count += Convert.ToDouble(edt_pay.Text);
+                 db.Entry(tb_Safe).State = System.Data.Entity.EntityState.Modified;
+                 db.SaveChanges();*/
                 var r1 = db.tb_stuk.Select(x => x.stuk_name).ToList();
                 edt_name.DataSource = r1;
                 AutoCompleteStringCollection acsc1 = new AutoCompleteStringCollection();
@@ -168,7 +197,7 @@ namespace el_shabander.pl
                 chack.Text = curnt.ToString();
                 txt_id.Text = id.ToString();
                 pro_call();
-              
+
 
                 saveButtonClicked = false;
             }
@@ -177,17 +206,17 @@ namespace el_shabander.pl
 
         private void frm_pur_add_Activated(object sender, EventArgs e)
         {
-           
-            
+
+
 
         }
 
-       
-        
 
-      
 
-       
+
+
+
+
         public List<tb_pur> list_pur;
         private void btn_add_Click_1(object sender, EventArgs e)
         {
@@ -203,28 +232,28 @@ namespace el_shabander.pl
                 return;
             }
 
-           
-                // التحقق من أن الحقول الأخرى تحتوي على قيم صالحة
-                double buyPrice = Convert.ToDouble(edt_buy.Text);
-                double quantity = Convert.ToDouble(txt_qt.Text);
-              double payment = Convert.ToDouble(edt_pay.Text);
-               double totalData = Convert.ToDouble(txt_totaldata.Text);
-                double stayAmount = Convert.ToDouble(edt_stay.Text);
+
+            // التحقق من أن الحقول الأخرى تحتوي على قيم صالحة
+            double buyPrice = Convert.ToDouble(edt_buy.Text);
+            double quantity = Convert.ToDouble(txt_qt.Text);
+            double payment = Convert.ToDouble(edt_pay.Text);
+            double totalData = Convert.ToDouble(txt_totaldata.Text);
+            double stayAmount = Convert.ToDouble(edt_stay.Text);
             list_pur = db.tb_pur.ToList();
             if (id == 0)
-                {
-                
-                 if (dataGridView1.Rows.Count - 1 != 0)
+            {
+
+                if (dataGridView1.Rows.Count - 1 != 0)
                 {
                     tb_Pur.pur_supp = edt_supp.Text;
-                tb_Supp = db.tb_supp.Where(x => x.supp_name == edt_supp.Text).FirstOrDefault();
-                if (tb_Supp == null)
-                {
-                    MessageBox.Show("لا يوجد بيانات لهذا المورد.", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return; // الخروج من العملية إذا لم يتم العثور على العميل
-                }
-                tb_Pur.pur_name = edt_name.Text;
-                   
+                    tb_Supp = db.tb_supp.Where(x => x.supp_name == edt_supp.Text).FirstOrDefault();
+                    if (tb_Supp == null)
+                    {
+                        MessageBox.Show("لا يوجد بيانات لهذا المورد.", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return; // الخروج من العملية إذا لم يتم العثور على العميل
+                    }
+                    tb_Pur.pur_name = edt_name.Text;
+
                     tb_Pur.pur_supp = edt_supp.Text;
                     tb_Pur.supp_id = tb_Supp.id;
                     tb_Pur.pur_dat = DateTime.Now;
@@ -233,10 +262,10 @@ namespace el_shabander.pl
                     tb_Pur.pur_qt = quantity;
                     tb_Pur.pay = payment;
                     tb_Pur.pur_tbuy = stayAmount;
-                    tb_Pur.supp_price= Convert.ToDouble(edt_staybehaver.Text);
+                    tb_Pur.supp_price = Convert.ToDouble(edt_staybehaver.Text);
                     tb_Pur.total_price = totalData;
                     tb_Pur.stay = (Convert.ToDouble(edt_stay.Text)) - Convert.ToDouble(edt_pay.Text);
-                   tb_Pur.invocie_id = db.tb_pur.Any() ? db.tb_pur.Max(x => x.invocie_id) + 1 : 1;
+                    tb_Pur.invocie_id = db.tb_pur.Any() ? db.tb_pur.Max(x => x.invocie_id) + 1 : 1;
                     main frm_supp_Add = (main)Application.OpenForms["main"];
                     if (frm_supp_Add != null)
                     {
@@ -247,26 +276,26 @@ namespace el_shabander.pl
                         }
                     }
                     db.tb_pur.Add(tb_Pur);
-                //db.SaveChanges();
-                   
+                    //db.SaveChanges();
+
                     tb_Supp.total_price = tb_Pur.stay;
                     db.Entry(tb_Supp).State = System.Data.Entity.EntityState.Modified;
                     db.SaveChanges();
-                if (tb_Supp.supp_max <= tb_Supp.total_price && tb_Supp.supp_max != 0)
-                {
-                    // إنشاء رسالة إشعار تتضمن اسم العميل والتحذير من تجاوز الحد الأقصى
-                    string notificationMessage = $"المورد: {tb_Supp.supp_name} تجاوز الحد الأقصى المسموح له (الحد الأقصى: {tb_Supp.supp_max})، الرجاء دفع المبلغ هذا  {tb_Supp.total_price } له.";
-                    SendEmailWithHtmlGridData(notificationMessage);
-                    // إنشاء الإشعار وتحديد التاريخ
-                    notfication.notfication1 = notificationMessage;
-                    notfication.CreatedAt = DateTime.Now;
+                    if (tb_Supp.supp_max <= tb_Supp.total_price && tb_Supp.supp_max != 0)
+                    {
+                        // إنشاء رسالة إشعار تتضمن اسم العميل والتحذير من تجاوز الحد الأقصى
+                        string notificationMessage = $"المورد: {tb_Supp.supp_name} تجاوز الحد الأقصى المسموح له (الحد الأقصى: {tb_Supp.supp_max})، الرجاء دفع المبلغ هذا  {tb_Supp.total_price } له.";
+                        SendEmailWithHtmlGridData(notificationMessage);
+                        // إنشاء الإشعار وتحديد التاريخ
+                        notfication.notfication1 = notificationMessage;
+                        notfication.CreatedAt = DateTime.Now;
 
-                    // إضافة الإشعار إلى قاعدة البيانات
-                    db.Notfications.Add(notfication);
-                    db.SaveChanges();
-                   
-                }
-                tb_Safe = db.tb_safe.Where(x => x.safe_name == save.Text).FirstOrDefault();
+                        // إضافة الإشعار إلى قاعدة البيانات
+                        db.Notfications.Add(notfication);
+                        db.SaveChanges();
+
+                    }
+                    tb_Safe = db.tb_safe.Where(x => x.safe_name == save.Text).FirstOrDefault();
                     tb_Safe.safe_count -= payment;
                     db.Entry(tb_Safe).State = System.Data.Entity.EntityState.Modified;
                     db.SaveChanges();
@@ -305,26 +334,26 @@ namespace el_shabander.pl
                     dialog.txt_capthion.Text = "لا يمكن حفظ فاتورة بدون بيانات";
                     dialog.Show();
                 }
-                 }
-                else
-                {
+            }
+            else
+            {
                 // تعديل عملية شراء موجودة
                 tb_Supp = db.tb_supp.Where(x => x.supp_name == edt_supp.Text).FirstOrDefault();
                 tb_Pur = db.tb_pur.Where(x => x.id == id).FirstOrDefault();
-                    tb_Pur.pur_supp = edt_supp.Text;
-                    tb_Pur.supp_id = tb_Supp.id;
-                    tb_Pur.pur_name = edt_name.Text;
-                    
-                    tb_Pur.pur_dat = Convert.ToDateTime(edt_date.Text);
-                    tb_Pur.pur_buy = buyPrice;
-                    tb_Pur.safe = save.Text;
-                    tb_Pur.pur_qt = quantity;
-                    tb_Pur.pay = payment;
-                    tb_Pur.pur_tbuy = stayAmount;
-                    tb_Pur.supp_price = Convert.ToDouble(edt_staybehaver.Text);
-                    tb_Pur.total_price = totalData;
-                    tb_Pur.stay = (Convert.ToDouble(edt_stay.Text)) - Convert.ToDouble(edt_pay.Text);
-                    tb_Pur.invocie_id = Convert.ToInt32(invice_id.Text);
+                tb_Pur.pur_supp = edt_supp.Text;
+                tb_Pur.supp_id = tb_Supp.id;
+                tb_Pur.pur_name = edt_name.Text;
+
+                tb_Pur.pur_dat = Convert.ToDateTime(edt_date.Text);
+                tb_Pur.pur_buy = buyPrice;
+                tb_Pur.safe = save.Text;
+                tb_Pur.pur_qt = quantity;
+                tb_Pur.pay = payment;
+                tb_Pur.pur_tbuy = stayAmount;
+                tb_Pur.supp_price = Convert.ToDouble(edt_staybehaver.Text);
+                tb_Pur.total_price = totalData;
+                tb_Pur.stay = (Convert.ToDouble(edt_stay.Text)) - Convert.ToDouble(edt_pay.Text);
+                tb_Pur.invocie_id = Convert.ToInt32(invice_id.Text);
                 main frm_supp_Add = (main)Application.OpenForms["main"];
                 if (frm_supp_Add != null)
                 {
@@ -335,14 +364,14 @@ namespace el_shabander.pl
                     }
                 }
                 db.Entry(tb_Pur).State = System.Data.Entity.EntityState.Modified;
-                    db.SaveChanges();
-                   
-                    prives = Convert.ToDouble(tb_Pur.stay);
-                    double difference = prives - curnt;
-                   
-                    tb_Supp.total_price += difference;
-                    db.Entry(tb_Supp).State = System.Data.Entity.EntityState.Modified;
-                    db.SaveChanges();
+                db.SaveChanges();
+
+                prives = Convert.ToDouble(tb_Pur.stay);
+                double difference = prives - curnt;
+
+                tb_Supp.total_price += difference;
+                db.Entry(tb_Supp).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
                 if (tb_Supp.supp_max <= tb_Supp.total_price && tb_Supp.supp_max != 0)
                 {
                     // إنشاء رسالة إشعار تتضمن اسم العميل والتحذير من تجاوز الحد الأقصى
@@ -355,12 +384,12 @@ namespace el_shabander.pl
                     // إضافة الإشعار إلى قاعدة البيانات
                     db.Notfications.Add(notfication);
                     db.SaveChanges();
-                   
+
                 }
                 tb_Safe = db.tb_safe.Where(x => x.safe_name == save.Text).FirstOrDefault();
-                    tb_Safe.safe_count -= (tb_Pur.pay - oldamount);
+                tb_Safe.safe_count -= (tb_Pur.pay - oldamount);
                 db.Entry(tb_Safe).State = System.Data.Entity.EntityState.Modified;
-                    db.SaveChanges();
+                db.SaveChanges();
 
                 main user = (main)Application.OpenForms["main"];
                 string casherName = user?.la_username.Text;
@@ -385,16 +414,16 @@ namespace el_shabander.pl
 
 
                 toast.Width = this.Width;
-                    toast.txt_caption.Text = "تم تعديل عملية الشراء";
-                    toast.Show();
-                    ss();
-                    saveButtonClicked = true;
-                    this.Close();
-                }
-            
+                toast.txt_caption.Text = "تم تعديل عملية الشراء";
+                toast.Show();
+                ss();
+                saveButtonClicked = true;
+                this.Close();
+            }
+
         }
 
-      
+
 
 
         public string GetHtmlFromTextBoxContent(string messageContent)
@@ -434,9 +463,9 @@ namespace el_shabander.pl
         }
         public void SendEmailWithHtml(string htmlContent)
         {
-           
+
             var userEmails = db.tb_user
-                 .Where(u => u.user_roll == "مدير"&& u.user_roll == "مدير حسابات") // استبدل حسب الحاجة
+                 .Where(u => u.user_roll == "مدير" && u.user_roll == "مدير حسابات") // استبدل حسب الحاجة
                  .Select(u => u.user_mail)
                  .ToList();
 
@@ -467,12 +496,13 @@ namespace el_shabander.pl
             }
             catch (Exception ex)
             {
-                
+
             }
         }
 
         private void frm_pur_add_FormClosing_1(object sender, FormClosingEventArgs e)
         {
+            goldPriceTimer?.Stop();
             list_pur = db.tb_pur.ToList();
             // toast toast = new toast();
             //  dialog dialog = new dialog();
@@ -498,13 +528,13 @@ namespace el_shabander.pl
                         tb_Pur.supp_id = tb_Supp.id;
                         tb_Pur.pur_name = edt_name.Text;
                         // tb_Pur.pur_type = edt_tybe.Text;
-                        
-                       // tb_Pur.pur_supp = edt_supp.Text;
+
+                        // tb_Pur.pur_supp = edt_supp.Text;
                         tb_Pur.pur_dat = DateTime.Now;
                         tb_Pur.pur_buy = Convert.ToDouble(edt_buy.Text);
                         tb_Pur.safe = save.Text;
                         tb_Pur.pur_qt = Convert.ToDouble(txt_qt.Text);
-                         // tb_Pur.pur_tbuy = Convert.ToDouble(edt_stay.Text);
+                        // tb_Pur.pur_tbuy = Convert.ToDouble(edt_stay.Text);
                         tb_Pur.pay = Convert.ToDouble(edt_pay.Text);
                         tb_Pur.pur_tbuy = Convert.ToDouble(edt_stay.Text);
                         tb_Pur.supp_price = Convert.ToDouble(edt_staybehaver.Text);
@@ -523,7 +553,7 @@ namespace el_shabander.pl
                         db.tb_pur.Add(tb_Pur);
                         db.SaveChanges();
 
-                        tb_Supp.total_price = tb_Pur.stay; 
+                        tb_Supp.total_price = tb_Pur.stay;
                         db.Entry(tb_Supp).State = System.Data.Entity.EntityState.Modified;
                         db.SaveChanges();
                         if (tb_Supp.supp_max <= tb_Supp.total_price && tb_Supp.supp_max != 0)
@@ -575,20 +605,20 @@ namespace el_shabander.pl
 
                     tb_Pur.pur_name = edt_name.Text;
                     // tb_Pur.pur_type = edt_tybe.Text;
-                    
-                  //  tb_Pur.pur_supp = edt_supp.Text;
+
+                    //  tb_Pur.pur_supp = edt_supp.Text;
                     tb_Pur.pur_dat = Convert.ToDateTime(edt_date.Text);
                     tb_Pur.pur_buy = Convert.ToDouble(edt_buy.Text);
                     tb_Pur.safe = save.Text;
                     tb_Pur.pur_qt = Convert.ToDouble(txt_qt.Text);
-                   // tb_Pur.pur_tbuy = Convert.ToDouble(edt_stay.Text);
+                    // tb_Pur.pur_tbuy = Convert.ToDouble(edt_stay.Text);
                     tb_Pur.pay = Convert.ToDouble(edt_pay.Text);
                     tb_Pur.pur_tbuy = Convert.ToDouble(edt_stay.Text);
                     tb_Pur.supp_price = Convert.ToDouble(edt_staybehaver.Text);
                     tb_Pur.total_price = Convert.ToDouble(txt_totaldata.Text);
                     tb_Pur.stay = (Convert.ToDouble(edt_stay.Text)) - Convert.ToDouble(edt_pay.Text);
                     tb_Pur.invocie_id = Convert.ToInt32(invice_id.Text);
-                     main frm_supp_Add = (main)Application.OpenForms["main"];
+                    main frm_supp_Add = (main)Application.OpenForms["main"];
                     if (frm_supp_Add != null)
                     {
                         // التحقق من أن la_roll يحتوي على قيمة
@@ -599,7 +629,7 @@ namespace el_shabander.pl
                     }
                     db.Entry(tb_Pur).State = System.Data.Entity.EntityState.Modified;
                     db.SaveChanges();
-                   // tb_Supp = db.tb_supp.Where(x => x.supp_name == edt_supp.Text).FirstOrDefault();
+                    // tb_Supp = db.tb_supp.Where(x => x.supp_name == edt_supp.Text).FirstOrDefault();
                     prives = Convert.ToDouble(tb_Pur.stay);
                     double difference = prives - curnt;
 
@@ -669,27 +699,13 @@ namespace el_shabander.pl
                 if (row.Cells[0].Value != null && !string.IsNullOrEmpty(row.Cells[0].Value.ToString()))
                 {
                     edt_name.Text = row.Cells[0].Value.ToString();
-                    edt_buy.Text = row.Cells[1].Value.ToString();
+                   
                     txt_qt.Text = row.Cells[3].Value.ToString();
 
-                    // التحقق من نوع الوحدة (صغرى أو كبرى)
-                 /*   if (row.Cells[2].Value.ToString() == "صغرى")
-                    {
-                        tb_stuk = db.tb_stuk.Where(x => x.stuk_name == edt_name.Text).FirstOrDefault();
-
-                        small.Checked = true;
-                        big.Checked = false;
-                    }
-                    else
-                    {
-                        tb_stuk = db.tb_stuk.Where(x => x.stuk_name == edt_name.Text).FirstOrDefault();
-
-                        small.Checked = false;
-                        big.Checked = true;
-                    }*/
+                  
 
                     qts_qt.Text = row.Cells[3].Value.ToString();
-                   // edt_sell.Text = row.Cells[5].Value.ToString();
+                    // edt_sell.Text = row.Cells[5].Value.ToString();
                     btn_edit.Enabled = true;
                     btn_delete.Enabled = true;
                     btn_add_pur.Enabled = false;
@@ -705,39 +721,25 @@ namespace el_shabander.pl
 
 
 
-      
 
-      
+
+
 
         private void edt_name_SelectedIndexChanged(object sender, EventArgs e)
         {
             tb_stuk = db.tb_stuk.Where(x => x.stuk_name == edt_name.Text).FirstOrDefault();
 
-            // تحقق مما إذا كان الكائن موجودًا
+          
             if (tb_stuk != null)
             {
-                // إذا كان الكائن موجودًا، قم بتحديث الحقول والـ CheckBoxes بناءً على القيم المخزنة في قاعدة البيانات
+              
                 qtstuck.Text = tb_stuk.stuk_qt.ToString();
-                staysafe.Text = tb_stuk.stuk_sell.ToString();
-               
-              //  edt_sell.Text = tb_stuk.stuk_sell.ToString();
-               
                
 
-                  /*  if (string.IsNullOrWhiteSpace(edt_buy.Text))
-                {
-                   
-                  edt_buy.Text = "0";
-                    edt_sell.Text = "0";
-                }*/
             }
-           
-        }
-
-        private void edt_cat_SelectedIndexChanged_1(object sender, EventArgs e)
-        {
 
         }
+
 
         private void edt_supp_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -792,25 +794,25 @@ namespace el_shabander.pl
 
             datasells.Rows.Add(row);
 
-          
 
 
 
-          
-           
+
+
+
             pro_call();
 
-                if (comboBox1.Text == "نقدى")
-                {
-                    edt_pay.Text = txt_totaldata.Text;
-                }
-           
+            if (comboBox1.Text == "نقدى")
+            {
+                edt_pay.Text = txt_totaldata.Text;
+            }
+
         }
 
         private void btn_delete_Click(object sender, EventArgs e)
         {
-           
-           
+
+
             int rowindex = dataGridView1.CurrentCell.RowIndex;
             dataGridView1.Rows.RemoveAt(rowindex);
             pro_call();
@@ -826,7 +828,7 @@ namespace el_shabander.pl
 
         private void btn_edit_Click(object sender, EventArgs e)
         {
-          
+
             // txt_qt.Text = qtr.ToString();
             if (selectrowindex < 0 || selectrowindex >= dataGridView1.Rows.Count)
             {
@@ -861,8 +863,8 @@ namespace el_shabander.pl
             // newrow.Cells[5].Value = edt_sell.Text;
             tb_stuk = db.tb_stuk.Where(x => x.stuk_name == edt_name.Text).FirstOrDefault();
 
-           
-            
+
+
 
 
             pro_call();
@@ -876,24 +878,25 @@ namespace el_shabander.pl
             }
         }
 
-      
+
 
         private void edt_buy_TextChanged(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(edt_buy.Text))
             {
                 // إذا كانت القيمة فارغة، يمكنك تعيين القيمة الافتراضية مرة أخرى
-              var  tb_stuk = db.tb_stuk.Where(x => x.stuk_name == edt_name.Text).FirstOrDefault();
-                if(tb_stuk==null)
+                var tb_stuk = db.tb_stuk.Where(x => x.stuk_name == edt_name.Text).FirstOrDefault();
+                if (tb_stuk == null)
                 {
                     edt_buy.Text = "0";
-                }else
+                }
+                else
                 {
                     edt_buy.Text = tb_stuk.stuk_buy.ToString();
                     pro_call();
                 }
                 // edt_cat.Text = tb_stuk.stuk_cat;
-               
+
             }
             else
             {
@@ -928,7 +931,16 @@ namespace el_shabander.pl
 
         private void save_SelectedIndexChanged(object sender, EventArgs e)
         {
+             var tb_safe = db.tb_safe.Where(x => x.safe_name == save.Text).FirstOrDefault();
 
+
+            if (tb_safe != null)
+            {
+
+                staysafe.Text = tb_safe.safe_count.ToString();
+
+
+            }
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -939,40 +951,7 @@ namespace el_shabander.pl
             }
         }
 
-        private void edt_code_TextChanged(object sender, EventArgs e)
-        {
-            tb_stuk = db.tb_stuk.Where(x => x.code == edt_code.Text).FirstOrDefault();
-
-            // تحقق مما إذا كان الكائن موجودًا
-            if (tb_stuk != null)
-            {
-                // إذا كان الكائن موجودًا، قم بتحديث الحقول والـ CheckBoxes بناءً على القيم المخزنة في قاعدة البيانات
-                qtstuck.Text = tb_stuk.stuk_qt.ToString();
-                staysafe.Text = tb_stuk.stuk_sell.ToString();
-                sell21.Text = tb_stuk.stuk_buy.ToString();
-                edt_buy.Text = tb_stuk.stuk_buy.ToString();
-              //  edt_sell.Text = tb_stuk.stuk_sell.ToString();
-                edt_name.Text = tb_stuk.stuk_name;
-               /* if (tb_stuk.unit == "صغرى")
-                {
-                    small.Checked = true;
-                    big.Checked = false;
-                }
-                else
-                {
-
-                    small.Checked = false;
-                    big.Checked = true;
-                }
-
-                if (string.IsNullOrWhiteSpace(edt_buy.Text))
-                {
-
-                    edt_buy.Text = "0";
-                    edt_sell.Text = "0";
-                }*/
-            }
-        }
+       
 
         private void btn_changecus_Click(object sender, EventArgs e)
         {
@@ -1112,6 +1091,21 @@ namespace el_shabander.pl
                 MessageBox.Show($"حدث خطأ: {ex.Message}");
             }
         }
+
+        private void edt_code_TextChanged(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(edt_code.Text))
+            {
+                // إذا كانت القيمة فارغة، يمكنك تعيين القيمة الافتراضية مرة أخرى
+
+                edt_code.Text = "999";
+               
+                // edt_cat.Text = tb_stuk.stuk_cat;
+
+            }
+            
+        }
+
         public void ss()
         {
             if (id == 0)
@@ -1128,8 +1122,7 @@ namespace el_shabander.pl
                     tb_Ordersell.qt_sell = Convert.ToDouble(dataGridView1.Rows[i].Cells[3].Value);
                     tb_Ordersell.tprice_sell = Convert.ToDouble(dataGridView1.Rows[i].Cells[4].Value);
                     tb_Ordersell.sell_price_sell = Convert.ToDouble(dataGridView1.Rows[i].Cells[5].Value);
-                    // db.SaveChanges();
-
+                    tb_Ordersell.karat= Convert.ToDouble(dataGridView1.Rows[i].Cells[6].Value);
                     try
                     {
                         db.tb_ordersellpop.Add(tb_Ordersell);
@@ -1161,11 +1154,11 @@ namespace el_shabander.pl
                     tb_Ordersell.sell_id = tb_Pur.id;
                     tb_Ordersell.name_sell = dataGridView1.Rows[i].Cells[0].Value.ToString();
                     tb_Ordersell.price_sell = Convert.ToDouble(dataGridView1.Rows[i].Cells[1].Value);
-                   tb_Ordersell.wight = dataGridView1.Rows[i].Cells[2].Value.ToString();
+                    tb_Ordersell.wight = dataGridView1.Rows[i].Cells[2].Value.ToString();
                     tb_Ordersell.qt_sell = Convert.ToDouble(dataGridView1.Rows[i].Cells[3].Value);
                     tb_Ordersell.tprice_sell = Convert.ToDouble(dataGridView1.Rows[i].Cells[4].Value);
                     tb_Ordersell.sell_price_sell = Convert.ToDouble(dataGridView1.Rows[i].Cells[5].Value);
-                    // db.SaveChanges();
+                    tb_Ordersell.karat = Convert.ToDouble(dataGridView1.Rows[i].Cells[6].Value);
                     try
                     {
                         db.tb_ordersellpop.Add(tb_Ordersell);

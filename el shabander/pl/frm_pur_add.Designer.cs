@@ -35,6 +35,10 @@ namespace el_shabander.pl
             this.edt_chancus = new System.Windows.Forms.ComboBox();
             this.btn_changecus = new DevExpress.XtraEditors.SimpleButton();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
+            this.updatetime = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.buy21 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.qtstuck = new System.Windows.Forms.Label();
@@ -42,27 +46,33 @@ namespace el_shabander.pl
             this.sell21 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.edt_stay = new System.Windows.Forms.Label();
-            this.btn_delete = new DevExpress.XtraEditors.SimpleButton();
-            this.btn_edit = new DevExpress.XtraEditors.SimpleButton();
-            this.btn_add_pur = new DevExpress.XtraEditors.SimpleButton();
             this.edt_staybehaver = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
+            this.btn_add = new DevExpress.XtraEditors.SimpleButton();
             this.save = new System.Windows.Forms.ComboBox();
             this.label12 = new System.Windows.Forms.Label();
             this.txt_totaldata = new System.Windows.Forms.Label();
             this.edt_pay = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label18 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.edt_cut = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.edt_code = new System.Windows.Forms.TextBox();
             this.edt_supp = new System.Windows.Forms.ComboBox();
+            this.btn_delete = new DevExpress.XtraEditors.SimpleButton();
             this.label4 = new System.Windows.Forms.Label();
+            this.btn_edit = new DevExpress.XtraEditors.SimpleButton();
             this.edt_name = new System.Windows.Forms.ComboBox();
+            this.btn_add_pur = new DevExpress.XtraEditors.SimpleButton();
             this.edt_date = new System.Windows.Forms.TextBox();
             this.التاريخ = new System.Windows.Forms.Label();
             this.lb_titelpage = new System.Windows.Forms.Label();
@@ -74,18 +84,8 @@ namespace el_shabander.pl
             this.invice_id = new System.Windows.Forms.Label();
             this.txt_id = new System.Windows.Forms.Label();
             this.chack = new System.Windows.Forms.Label();
-            this.btn_add = new DevExpress.XtraEditors.SimpleButton();
             this.qts_qt = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.label3 = new System.Windows.Forms.Label();
-            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
-            this.label7 = new System.Windows.Forms.Label();
-            this.buy21 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
-            this.edt_cut = new System.Windows.Forms.TextBox();
-            this.label18 = new System.Windows.Forms.Label();
-            this.label21 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).BeginInit();
             this.groupControl3.SuspendLayout();
@@ -187,7 +187,7 @@ namespace el_shabander.pl
             this.groupControl1.AppearanceCaption.Options.UseTextOptions = true;
             this.groupControl1.AppearanceCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.groupControl1.AppearanceCaption.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.groupControl1.Controls.Add(this.label21);
+            this.groupControl1.Controls.Add(this.updatetime);
             this.groupControl1.Controls.Add(this.label15);
             this.groupControl1.Controls.Add(this.label7);
             this.groupControl1.Controls.Add(this.buy21);
@@ -204,6 +204,62 @@ namespace el_shabander.pl
             this.groupControl1.Size = new System.Drawing.Size(292, 497);
             this.groupControl1.TabIndex = 37;
             this.groupControl1.Text = "السعر الحظى لى الشاشة ";
+            // 
+            // updatetime
+            // 
+            this.updatetime.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.updatetime.BackColor = System.Drawing.Color.Green;
+            this.updatetime.Font = new System.Drawing.Font("Cairo", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.updatetime.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.updatetime.Location = new System.Drawing.Point(9, 35);
+            this.updatetime.Name = "updatetime";
+            this.updatetime.Size = new System.Drawing.Size(274, 36);
+            this.updatetime.TabIndex = 23;
+            this.updatetime.Text = "اخر تحديث";
+            this.updatetime.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // label15
+            // 
+            this.label15.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label15.AutoSize = true;
+            this.label15.BackColor = System.Drawing.Color.Transparent;
+            this.label15.Font = new System.Drawing.Font("Cairo", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label15.Location = new System.Drawing.Point(15, 316);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(268, 39);
+            this.label15.TabIndex = 22;
+            this.label15.Text = "المبلغ المتبقى فى الخزينة";
+            // 
+            // label7
+            // 
+            this.label7.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label7.AutoSize = true;
+            this.label7.BackColor = System.Drawing.Color.Transparent;
+            this.label7.Font = new System.Drawing.Font("Cairo", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label7.Location = new System.Drawing.Point(76, 130);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(121, 39);
+            this.label7.TabIndex = 20;
+            this.label7.Text = "سعر الشراء";
+            // 
+            // buy21
+            // 
+            this.buy21.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.buy21.BackColor = System.Drawing.Color.DarkOrange;
+            this.buy21.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.buy21.Font = new System.Drawing.Font("Cairo", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buy21.ForeColor = System.Drawing.Color.White;
+            this.buy21.Location = new System.Drawing.Point(9, 177);
+            this.buy21.Name = "buy21";
+            this.buy21.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.buy21.Size = new System.Drawing.Size(274, 42);
+            this.buy21.TabIndex = 21;
+            this.buy21.Text = "0";
+            this.buy21.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.buy21.UseMnemonic = false;
+            this.buy21.UseWaitCursor = true;
             // 
             // label6
             // 
@@ -322,6 +378,18 @@ namespace el_shabander.pl
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "معلومات الشراء";
             // 
+            // simpleButton1
+            // 
+            this.simpleButton1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.simpleButton1.Appearance.Font = new System.Drawing.Font("Cairo", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.simpleButton1.Appearance.Options.UseFont = true;
+            this.simpleButton1.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton1.ImageOptions.Image")));
+            this.simpleButton1.Location = new System.Drawing.Point(26, 379);
+            this.simpleButton1.Name = "simpleButton1";
+            this.simpleButton1.Size = new System.Drawing.Size(211, 56);
+            this.simpleButton1.TabIndex = 51;
+            this.simpleButton1.Text = "طباعة";
+            // 
             // comboBox1
             // 
             this.comboBox1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
@@ -383,43 +451,6 @@ namespace el_shabander.pl
             this.edt_stay.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.edt_stay.Click += new System.EventHandler(this.edt_stay_Click);
             // 
-            // btn_delete
-            // 
-            this.btn_delete.Appearance.Font = new System.Drawing.Font("Cairo", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_delete.Appearance.Options.UseFont = true;
-            this.btn_delete.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btn_delete.ImageOptions.Image")));
-            this.btn_delete.Location = new System.Drawing.Point(24, 382);
-            this.btn_delete.Name = "btn_delete";
-            this.btn_delete.Size = new System.Drawing.Size(134, 53);
-            this.btn_delete.TabIndex = 46;
-            this.btn_delete.Text = "حذف";
-            this.btn_delete.Click += new System.EventHandler(this.btn_delete_Click);
-            // 
-            // btn_edit
-            // 
-            this.btn_edit.Appearance.Font = new System.Drawing.Font("Cairo", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_edit.Appearance.Options.UseFont = true;
-            this.btn_edit.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btn_edit.ImageOptions.Image")));
-            this.btn_edit.Location = new System.Drawing.Point(188, 382);
-            this.btn_edit.Name = "btn_edit";
-            this.btn_edit.Size = new System.Drawing.Size(134, 53);
-            this.btn_edit.TabIndex = 45;
-            this.btn_edit.Text = "تعديل";
-            this.btn_edit.Click += new System.EventHandler(this.btn_edit_Click);
-            // 
-            // btn_add_pur
-            // 
-            this.btn_add_pur.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btn_add_pur.Appearance.Font = new System.Drawing.Font("Cairo", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_add_pur.Appearance.Options.UseFont = true;
-            this.btn_add_pur.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btn_add_pur.ImageOptions.Image")));
-            this.btn_add_pur.Location = new System.Drawing.Point(352, 382);
-            this.btn_add_pur.Name = "btn_add_pur";
-            this.btn_add_pur.Size = new System.Drawing.Size(134, 53);
-            this.btn_add_pur.TabIndex = 44;
-            this.btn_add_pur.Text = "اضافة ";
-            this.btn_add_pur.Click += new System.EventHandler(this.btn_add_pur_Click);
-            // 
             // edt_staybehaver
             // 
             this.edt_staybehaver.Anchor = System.Windows.Forms.AnchorStyles.Top;
@@ -462,6 +493,19 @@ namespace el_shabander.pl
             this.label17.TabIndex = 35;
             this.label17.Text = "اجمالى الفاتورة";
             this.label17.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // btn_add
+            // 
+            this.btn_add.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btn_add.Appearance.Font = new System.Drawing.Font("Cairo", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_add.Appearance.Options.UseFont = true;
+            this.btn_add.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btn_add.ImageOptions.Image")));
+            this.btn_add.Location = new System.Drawing.Point(265, 379);
+            this.btn_add.Name = "btn_add";
+            this.btn_add.Size = new System.Drawing.Size(211, 56);
+            this.btn_add.TabIndex = 26;
+            this.btn_add.Text = "حفظ";
+            this.btn_add.Click += new System.EventHandler(this.btn_add_Click_1);
             // 
             // save
             // 
@@ -564,6 +608,58 @@ namespace el_shabander.pl
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "معلومات اساسية";
             // 
+            // label18
+            // 
+            this.label18.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label18.AutoSize = true;
+            this.label18.BackColor = System.Drawing.Color.Transparent;
+            this.label18.Font = new System.Drawing.Font("Cairo", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label18.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label18.Location = new System.Drawing.Point(0, 322);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(70, 45);
+            this.label18.TabIndex = 72;
+            this.label18.Text = "جنية";
+            // 
+            // label16
+            // 
+            this.label16.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label16.BackColor = System.Drawing.Color.DarkOrange;
+            this.label16.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label16.Font = new System.Drawing.Font("Cairo", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.ForeColor = System.Drawing.SystemColors.Control;
+            this.label16.Location = new System.Drawing.Point(328, 323);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(159, 39);
+            this.label16.TabIndex = 70;
+            this.label16.Text = "خصم التاجر";
+            this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // edt_cut
+            // 
+            this.edt_cut.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.edt_cut.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.edt_cut.Location = new System.Drawing.Point(73, 331);
+            this.edt_cut.Name = "edt_cut";
+            this.edt_cut.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.edt_cut.Size = new System.Drawing.Size(229, 29);
+            this.edt_cut.TabIndex = 71;
+            this.edt_cut.Text = "70";
+            this.edt_cut.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label3
+            // 
+            this.label3.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.Transparent;
+            this.label3.Font = new System.Drawing.Font("Cairo", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label3.Location = new System.Drawing.Point(-1, 221);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(68, 45);
+            this.label3.TabIndex = 69;
+            this.label3.Text = "جرام";
+            // 
             // label2
             // 
             this.label2.Anchor = System.Windows.Forms.AnchorStyles.Top;
@@ -584,12 +680,13 @@ namespace el_shabander.pl
             this.edt_code.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.edt_code.BackColor = System.Drawing.Color.DimGray;
             this.edt_code.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.edt_code.ForeColor = System.Drawing.Color.Red;
+            this.edt_code.ForeColor = System.Drawing.Color.White;
             this.edt_code.Location = new System.Drawing.Point(73, 179);
             this.edt_code.Name = "edt_code";
             this.edt_code.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.edt_code.Size = new System.Drawing.Size(229, 31);
             this.edt_code.TabIndex = 67;
+            this.edt_code.Text = "999";
             this.edt_code.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.edt_code.TextChanged += new System.EventHandler(this.edt_code_TextChanged);
             // 
@@ -606,6 +703,18 @@ namespace el_shabander.pl
             this.edt_supp.TabIndex = 36;
             this.edt_supp.SelectedIndexChanged += new System.EventHandler(this.edt_supp_SelectedIndexChanged);
             // 
+            // btn_delete
+            // 
+            this.btn_delete.Appearance.Font = new System.Drawing.Font("Cairo", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_delete.Appearance.Options.UseFont = true;
+            this.btn_delete.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btn_delete.ImageOptions.Image")));
+            this.btn_delete.Location = new System.Drawing.Point(24, 382);
+            this.btn_delete.Name = "btn_delete";
+            this.btn_delete.Size = new System.Drawing.Size(134, 53);
+            this.btn_delete.TabIndex = 46;
+            this.btn_delete.Text = "حذف";
+            this.btn_delete.Click += new System.EventHandler(this.btn_delete_Click);
+            // 
             // label4
             // 
             this.label4.Anchor = System.Windows.Forms.AnchorStyles.Top;
@@ -621,6 +730,18 @@ namespace el_shabander.pl
             this.label4.Text = "المورد";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // btn_edit
+            // 
+            this.btn_edit.Appearance.Font = new System.Drawing.Font("Cairo", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_edit.Appearance.Options.UseFont = true;
+            this.btn_edit.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btn_edit.ImageOptions.Image")));
+            this.btn_edit.Location = new System.Drawing.Point(188, 382);
+            this.btn_edit.Name = "btn_edit";
+            this.btn_edit.Size = new System.Drawing.Size(134, 53);
+            this.btn_edit.TabIndex = 45;
+            this.btn_edit.Text = "تعديل";
+            this.btn_edit.Click += new System.EventHandler(this.btn_edit_Click);
+            // 
             // edt_name
             // 
             this.edt_name.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
@@ -633,6 +754,19 @@ namespace el_shabander.pl
             this.edt_name.Size = new System.Drawing.Size(229, 28);
             this.edt_name.TabIndex = 34;
             this.edt_name.SelectedIndexChanged += new System.EventHandler(this.edt_name_SelectedIndexChanged);
+            // 
+            // btn_add_pur
+            // 
+            this.btn_add_pur.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btn_add_pur.Appearance.Font = new System.Drawing.Font("Cairo", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_add_pur.Appearance.Options.UseFont = true;
+            this.btn_add_pur.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btn_add_pur.ImageOptions.Image")));
+            this.btn_add_pur.Location = new System.Drawing.Point(352, 382);
+            this.btn_add_pur.Name = "btn_add_pur";
+            this.btn_add_pur.Size = new System.Drawing.Size(134, 53);
+            this.btn_add_pur.TabIndex = 44;
+            this.btn_add_pur.Text = "اضافة ";
+            this.btn_add_pur.Click += new System.EventHandler(this.btn_add_pur_Click);
             // 
             // edt_date
             // 
@@ -787,19 +921,6 @@ namespace el_shabander.pl
             this.chack.Text = "0";
             this.chack.Visible = false;
             // 
-            // btn_add
-            // 
-            this.btn_add.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btn_add.Appearance.Font = new System.Drawing.Font("Cairo", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_add.Appearance.Options.UseFont = true;
-            this.btn_add.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btn_add.ImageOptions.Image")));
-            this.btn_add.Location = new System.Drawing.Point(265, 379);
-            this.btn_add.Name = "btn_add";
-            this.btn_add.Size = new System.Drawing.Size(211, 56);
-            this.btn_add.TabIndex = 26;
-            this.btn_add.Text = "حفظ";
-            this.btn_add.Click += new System.EventHandler(this.btn_add_Click_1);
-            // 
             // qts_qt
             // 
             this.qts_qt.Anchor = System.Windows.Forms.AnchorStyles.Top;
@@ -826,127 +947,6 @@ namespace el_shabander.pl
             this.dataGridView1.Size = new System.Drawing.Size(1325, 189);
             this.dataGridView1.TabIndex = 22;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.cell);
-            // 
-            // label3
-            // 
-            this.label3.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label3.AutoSize = true;
-            this.label3.BackColor = System.Drawing.Color.Transparent;
-            this.label3.Font = new System.Drawing.Font("Cairo", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label3.Location = new System.Drawing.Point(-1, 221);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(68, 45);
-            this.label3.TabIndex = 69;
-            this.label3.Text = "جرام";
-            // 
-            // simpleButton1
-            // 
-            this.simpleButton1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.simpleButton1.Appearance.Font = new System.Drawing.Font("Cairo", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.simpleButton1.Appearance.Options.UseFont = true;
-            this.simpleButton1.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton1.ImageOptions.Image")));
-            this.simpleButton1.Location = new System.Drawing.Point(26, 379);
-            this.simpleButton1.Name = "simpleButton1";
-            this.simpleButton1.Size = new System.Drawing.Size(211, 56);
-            this.simpleButton1.TabIndex = 51;
-            this.simpleButton1.Text = "طباعة";
-            // 
-            // label7
-            // 
-            this.label7.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label7.AutoSize = true;
-            this.label7.BackColor = System.Drawing.Color.Transparent;
-            this.label7.Font = new System.Drawing.Font("Cairo", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label7.Location = new System.Drawing.Point(76, 130);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(121, 39);
-            this.label7.TabIndex = 20;
-            this.label7.Text = "سعر الشراء";
-            // 
-            // buy21
-            // 
-            this.buy21.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.buy21.BackColor = System.Drawing.Color.DarkOrange;
-            this.buy21.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.buy21.Font = new System.Drawing.Font("Cairo", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buy21.ForeColor = System.Drawing.Color.White;
-            this.buy21.Location = new System.Drawing.Point(9, 177);
-            this.buy21.Name = "buy21";
-            this.buy21.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.buy21.Size = new System.Drawing.Size(274, 42);
-            this.buy21.TabIndex = 21;
-            this.buy21.Text = "0";
-            this.buy21.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.buy21.UseMnemonic = false;
-            this.buy21.UseWaitCursor = true;
-            // 
-            // label15
-            // 
-            this.label15.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label15.AutoSize = true;
-            this.label15.BackColor = System.Drawing.Color.Transparent;
-            this.label15.Font = new System.Drawing.Font("Cairo", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label15.Location = new System.Drawing.Point(15, 316);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(268, 39);
-            this.label15.TabIndex = 22;
-            this.label15.Text = "المبلغ المتبقى فى الخزينة";
-            // 
-            // label16
-            // 
-            this.label16.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label16.BackColor = System.Drawing.Color.DarkOrange;
-            this.label16.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label16.Font = new System.Drawing.Font("Cairo", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.ForeColor = System.Drawing.SystemColors.Control;
-            this.label16.Location = new System.Drawing.Point(328, 323);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(159, 39);
-            this.label16.TabIndex = 70;
-            this.label16.Text = "خصم التاجر";
-            this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // edt_cut
-            // 
-            this.edt_cut.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.edt_cut.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.edt_cut.Location = new System.Drawing.Point(73, 331);
-            this.edt_cut.Name = "edt_cut";
-            this.edt_cut.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.edt_cut.Size = new System.Drawing.Size(229, 29);
-            this.edt_cut.TabIndex = 71;
-            this.edt_cut.Text = "70";
-            this.edt_cut.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label18
-            // 
-            this.label18.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label18.AutoSize = true;
-            this.label18.BackColor = System.Drawing.Color.Transparent;
-            this.label18.Font = new System.Drawing.Font("Cairo", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label18.Location = new System.Drawing.Point(0, 322);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(70, 45);
-            this.label18.TabIndex = 72;
-            this.label18.Text = "جنية";
-            // 
-            // label21
-            // 
-            this.label21.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label21.AutoSize = true;
-            this.label21.BackColor = System.Drawing.Color.Green;
-            this.label21.Font = new System.Drawing.Font("Cairo", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label21.Location = new System.Drawing.Point(98, 35);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(98, 36);
-            this.label21.TabIndex = 23;
-            this.label21.Text = "اخر تحديث";
-            this.label21.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // frm_pur_add
             // 
@@ -1027,6 +1027,7 @@ namespace el_shabander.pl
         public System.Windows.Forms.Label qtstuck;
         public System.Windows.Forms.Label staysafe;
         public System.Windows.Forms.Label sell21;
+        
         private System.Windows.Forms.Label label20;
         private DevExpress.XtraEditors.GroupControl groupControl3;
         public System.Windows.Forms.ComboBox edt_chancus;
@@ -1039,6 +1040,6 @@ namespace el_shabander.pl
         private System.Windows.Forms.Label label16;
         public System.Windows.Forms.TextBox edt_cut;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Label updatetime;
     }
 }

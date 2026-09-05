@@ -23,5 +23,6 @@ namespace el_shabander
         public string weight { get; set; }
         public Nullable<double> total_earnings { get; set; }
         public Nullable<double> cut { get; set; }
+        public Nullable<double> karat { get; set; }
     }
 }

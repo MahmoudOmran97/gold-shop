@@ -22,5 +22,6 @@ namespace el_shabander
         public Nullable<int> sell_id { get; set; }
         public string wight { get; set; }
         public Nullable<double> sell_price_sell { get; set; }
+        public Nullable<double> karat { get; set; }
     }
 }
