@@ -83,7 +83,7 @@ namespace el_shabander.pl
             this.buy21 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.edt_cut = new System.Windows.Forms.TextBox();
             this.label18 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
@@ -212,7 +212,7 @@ namespace el_shabander.pl
             this.label6.BackColor = System.Drawing.Color.Transparent;
             this.label6.Font = new System.Drawing.Font("Cairo", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label6.Location = new System.Drawing.Point(25, 402);
+            this.label6.Location = new System.Drawing.Point(24, 402);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(241, 39);
             this.label6.TabIndex = 14;
@@ -238,7 +238,7 @@ namespace el_shabander.pl
             this.qtstuck.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.qtstuck.Font = new System.Drawing.Font("Cairo", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.qtstuck.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.qtstuck.Location = new System.Drawing.Point(9, 441);
+            this.qtstuck.Location = new System.Drawing.Point(9, 449);
             this.qtstuck.Name = "qtstuck";
             this.qtstuck.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.qtstuck.Size = new System.Drawing.Size(274, 42);
@@ -255,7 +255,7 @@ namespace el_shabander.pl
             this.staysafe.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.staysafe.Font = new System.Drawing.Font("Cairo", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.staysafe.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.staysafe.Location = new System.Drawing.Point(9, 361);
+            this.staysafe.Location = new System.Drawing.Point(9, 355);
             this.staysafe.Name = "staysafe";
             this.staysafe.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.staysafe.Size = new System.Drawing.Size(274, 42);
@@ -537,7 +537,7 @@ namespace el_shabander.pl
             this.groupBox1.BackColor = System.Drawing.Color.PowderBlue;
             this.groupBox1.Controls.Add(this.label18);
             this.groupBox1.Controls.Add(this.label16);
-            this.groupBox1.Controls.Add(this.textBox1);
+            this.groupBox1.Controls.Add(this.edt_cut);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.edt_code);
@@ -889,7 +889,7 @@ namespace el_shabander.pl
             this.label15.BackColor = System.Drawing.Color.Transparent;
             this.label15.Font = new System.Drawing.Font("Cairo", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label15.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label15.Location = new System.Drawing.Point(15, 318);
+            this.label15.Location = new System.Drawing.Point(15, 316);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(268, 39);
             this.label15.TabIndex = 22;
@@ -909,17 +909,17 @@ namespace el_shabander.pl
             this.label16.Text = "خصم التاجر";
             this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // textBox1
+            // edt_cut
             // 
-            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(73, 331);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.textBox1.Size = new System.Drawing.Size(229, 29);
-            this.textBox1.TabIndex = 71;
-            this.textBox1.Text = "70";
-            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.edt_cut.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.edt_cut.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.edt_cut.Location = new System.Drawing.Point(73, 331);
+            this.edt_cut.Name = "edt_cut";
+            this.edt_cut.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.edt_cut.Size = new System.Drawing.Size(229, 29);
+            this.edt_cut.TabIndex = 71;
+            this.edt_cut.Text = "70";
+            this.edt_cut.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label18
             // 
@@ -1037,7 +1037,7 @@ namespace el_shabander.pl
         public DevExpress.XtraEditors.SimpleButton simpleButton1;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label label16;
-        public System.Windows.Forms.TextBox textBox1;
+        public System.Windows.Forms.TextBox edt_cut;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label21;
     }

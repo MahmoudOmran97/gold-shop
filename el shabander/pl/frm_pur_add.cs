@@ -65,11 +65,12 @@ namespace el_shabander.pl
             {
 
                 datasells.Columns.Add("اسم المادة");
-                datasells.Columns.Add("سعر الوحدة");
+                datasells.Columns.Add("سعر الجرام");
                 datasells.Columns.Add("الوحدة");
-                datasells.Columns.Add("الكمية");
-                datasells.Columns.Add("السعر الكلى");
-                datasells.Columns.Add("سعر البيع");
+                datasells.Columns.Add("الوزن");
+                datasells.Columns.Add("(21)الوزن");
+                datasells.Columns.Add("الاجمالى");
+                datasells.Columns.Add("العيار");
                 dataGridView1.DataSource = datasells;
                 dataGridView1.DefaultCellStyle.Font = new Font("cairo", 14);  // تكبير حجم الخط إلى 16
                 dataGridView1.ColumnHeadersDefaultCellStyle.Font = new Font("cairo", 16, FontStyle.Bold);  // تكبير خط رؤوس الأعمدة
@@ -106,11 +107,12 @@ namespace el_shabander.pl
             else
             {
                 datasells.Columns.Add("اسم المادة");
-                datasells.Columns.Add("سعر الوحدة");
+                datasells.Columns.Add("سعر الجرام");
                 datasells.Columns.Add("الوحدة");
-                datasells.Columns.Add("الكمية");
+                datasells.Columns.Add("الوزن");
+                datasells.Columns.Add("(21)الوزن");
                 datasells.Columns.Add("الاجمالى");
-                datasells.Columns.Add("سعر البيع");
+                datasells.Columns.Add("العيار");
                 dataGridView1.DataSource = datasells;
                 dataGridView1.DefaultCellStyle.Font = new Font("cairo", 14);  // تكبير حجم الخط إلى 16
                 dataGridView1.ColumnHeadersDefaultCellStyle.Font = new Font("cairo", 16, FontStyle.Bold);  // تكبير خط رؤوس الأعمدة
@@ -717,10 +719,9 @@ namespace el_shabander.pl
                 // إذا كان الكائن موجودًا، قم بتحديث الحقول والـ CheckBoxes بناءً على القيم المخزنة في قاعدة البيانات
                 qtstuck.Text = tb_stuk.stuk_qt.ToString();
                 staysafe.Text = tb_stuk.stuk_sell.ToString();
-                sell21.Text = tb_stuk.stuk_buy.ToString();
-                edt_buy.Text = tb_stuk.stuk_buy.ToString();
+               
               //  edt_sell.Text = tb_stuk.stuk_sell.ToString();
-                edt_code.Text = tb_stuk.code;
+               
                
 
                   /*  if (string.IsNullOrWhiteSpace(edt_buy.Text))
@@ -762,93 +763,54 @@ namespace el_shabander.pl
 
         private void btn_add_pur_Click(object sender, EventArgs e)
         {
-            qtp = Convert.ToDouble(qtstuck.Text);
-            qtn = Convert.ToDouble(txt_qt.Text);
             tb_stuk = db.tb_stuk.Where(x => x.stuk_name == edt_name.Text).FirstOrDefault();
 
-            // تحقق من وجود الصنف في المخزون
-            if (tb_stuk == null)
-            {
-                MessageBox.Show("هذا الصنف غير موجود في الأصناف، الرجاء التأكد من الاسم.");
-                return; // إيقاف العملية إذا لم يكن الصنف موجودًا
-            }
 
-           /* if (string.IsNullOrWhiteSpace(edt_sell.Text))
-            {
-                MessageBox.Show("الرجاء إدخال اسم المادة.");
-            }*/
-            else
-            {
-                tb_stuk.stuk_name = edt_name.Text;
 
-               /* if (big.Checked)
-                {
-                    tb_stuk.stuk_buy = (Convert.ToDouble(edt_buy.Text) / tb_stuk.stuk_qtfacttotal);
-                    tb_stuk.stuk_sell = Math.Round((Convert.ToDouble(edt_sell.Text) / Convert.ToDouble(tb_stuk.stuk_qtfacttotal)), 2);
-                    qtn *= Convert.ToDouble(tb_stuk.stuk_qtfacttotal);
-                }
-                else if (small.Checked)
-                {
-                    tb_stuk.stuk_buy = Convert.ToDouble(edt_buy.Text);
-                    tb_stuk.stuk_sell = Convert.ToDouble(edt_sell.Text);
-                }*/
 
-                qtr = qtp + qtn;
-                qtstuck.Text = qtr.ToString();
-                tb_stuk.stuk_qt = qtr;
-                //tb_stuk.stuk_tbuy += (Convert.ToDouble(txt_qt.Text) * Convert.ToDouble(edt_buy.Text));
 
-                db.Entry(tb_stuk).State = System.Data.Entity.EntityState.Modified;
-                db.SaveChanges();
 
-                bool isDuplicate = false;
-                foreach (DataGridViewRow row in dataGridView1.Rows)
-                {
-                    /*if (row.Cells[0].Value != null && row.Cells[0].Value.ToString() == edt_name.Text &&
-                        ((row.Cells[2].Value.ToString() == "صغرى" && small.Checked) || (row.Cells[2].Value.ToString() == "كبرى" && big.Checked)))
-                    {
-                        row.Cells[3].Value = (Convert.ToDouble(row.Cells[3].Value) + Convert.ToDouble(txt_qt.Text)).ToString();
-                        row.Cells[4].Value = (Convert.ToDouble(row.Cells[1].Value) * Convert.ToDouble(row.Cells[3].Value)).ToString();
-                        isDuplicate = true;
-                        break;
-                    }*/
-                }
+            tb_stuk.stuk_name = edt_name.Text;
 
-                if (!isDuplicate)
-                {
-                    // إضافة البيانات إلى DataTable
-                    DataRow row = datasells.NewRow();
-                    row[0] = edt_name.Text;
-                    row[1] = edt_buy.Text;
-                  //  row[2] = small.Checked ? "صغرى" : big.Checked ? "كبرى" : "";
-                    row[3] = txt_qt.Text;
-                    row[4] = (Convert.ToDouble(txt_qt.Text)) * Convert.ToDouble(edt_buy.Text);
-                  //  row[5] = edt_sell.Text;
 
-                    datasells.Rows.Add(row);
-                }
+            double price = Convert.ToDouble(edt_buy.Text) - Convert.ToDouble(edt_cut.Text);
 
-                pro_call();
+            double qt = Math.Round(
+                Convert.ToDouble(txt_qt.Text) * Convert.ToDouble(edt_code.Text) / 875.0,
+                2
+            );
+
+            DataRow row = datasells.NewRow();
+
+            row[0] = edt_name.Text;
+            row[1] = price;
+            row[2] = tb_stuk.unit;
+            row[3] = txt_qt.Text;
+            row[4] = qt;
+            row[5] = Math.Round(price * qt, 2);
+            row[6] = edt_code.Text;
+
+            datasells.Rows.Add(row);
+
+          
+
+
+
+          
+           
+            pro_call();
 
                 if (comboBox1.Text == "نقدى")
                 {
                     edt_pay.Text = txt_totaldata.Text;
                 }
-            }
+           
         }
 
         private void btn_delete_Click(object sender, EventArgs e)
         {
-            qtp = Convert.ToDouble(tb_stuk.stuk_qt);
-            qtn = Convert.ToDouble(txt_qt.Text);
            
-            qtr = qtp - qtn;
-             qtstuck.Text = qtr.ToString();
-            tb_stuk = db.tb_stuk.Where(x => x.stuk_name == edt_name.Text).FirstOrDefault();
-            tb_stuk.stuk_qt = qtr;
-            db.Entry(tb_stuk).State = System.Data.Entity.EntityState.Modified;
-            db.SaveChanges();
-            qtstuck.Text = qtr.ToString();
+           
             int rowindex = dataGridView1.CurrentCell.RowIndex;
             dataGridView1.Rows.RemoveAt(rowindex);
             pro_call();
@@ -864,10 +826,7 @@ namespace el_shabander.pl
 
         private void btn_edit_Click(object sender, EventArgs e)
         {
-            qtp = Convert.ToDouble(tb_stuk.stuk_qt);
-            qtn = Convert.ToDouble(txt_qt.Text);
-            qts = Convert.ToDouble(qts_qt.Text);
-            qtr = qtp - qts + qtn;
+          
             // txt_qt.Text = qtr.ToString();
             if (selectrowindex < 0 || selectrowindex >= dataGridView1.Rows.Count)
             {
@@ -882,54 +841,27 @@ namespace el_shabander.pl
                 MessageBox.Show("لا يمكن تعديل صف فارغ.");
                 return; // إنهاء الوظيفة إذا كانت الخلايا فارغة
             }
-
-            newrow.Cells[0].Value = edt_name.Text;
-            newrow.Cells[1].Value = edt_buy.Text;
-            //newrow.Cells[2].Value = weight;
-           /* if (small.Checked)
-            {
-                newrow.Cells[2].Value = "صغرى";
-            }
-            else if (big.Checked)
-            {
-                newrow.Cells[2].Value = "كبرى";
-            }*/
-
-
-            newrow.Cells[3].Value = txt_qt.Text;
-            newrow.Cells[4].Value = (Convert.ToDouble(txt_qt.Text)) * Convert.ToDouble(edt_buy.Text);
-           // newrow.Cells[5].Value = edt_sell.Text;
             tb_stuk = db.tb_stuk.Where(x => x.stuk_name == edt_name.Text).FirstOrDefault();
 
-            if (edt_name.Text == tb_stuk.stuk_name)
-            {
+            tb_stuk.stuk_name = edt_name.Text;
 
-               /* if (big.Checked)
-                {
-                    tb_stuk.stuk_buy = (Convert.ToDouble(edt_buy.Text) / tb_stuk.stuk_qtfacttotal);
-                    tb_stuk.stuk_sell = (Convert.ToDouble(edt_sell.Text) / tb_stuk.stuk_qtfacttotal);
-                   
-                }
-                else if (small.Checked)
-                {
-                    tb_stuk.stuk_buy = Convert.ToDouble(edt_buy.Text);
-                    tb_stuk.stuk_sell = Convert.ToDouble(edt_sell.Text);
-                }*/
+            double price = Convert.ToDouble(edt_buy.Text) - Convert.ToDouble(edt_cut.Text);
 
-                
-              
-                tb_stuk.stuk_qt = qtr;
-                qtstuck.Text = qtr.ToString();
-               // tb_stuk.stuk_tbuy += (Convert.ToDouble(txt_qt.Text) * Convert.ToDouble(edt_buy.Text));
-               
-                
-                
+            double qt = Math.Round(
+                Convert.ToDouble(txt_qt.Text) * Convert.ToDouble(edt_code.Text) / 875.0,
+                2
+            );
+            newrow.Cells[0].Value = edt_name.Text;
+            newrow.Cells[1].Value = price;
+            newrow.Cells[2].Value = tb_stuk.unit;
+            newrow.Cells[3].Value = txt_qt.Text;
+            newrow.Cells[4].Value = qt;
+            newrow.Cells[5].Value = Math.Round(price * qt, 2);
+            newrow.Cells[6].Value = edt_code.Text;
+            // newrow.Cells[5].Value = edt_sell.Text;
+            tb_stuk = db.tb_stuk.Where(x => x.stuk_name == edt_name.Text).FirstOrDefault();
 
-                db.Entry(tb_stuk).State = System.Data.Entity.EntityState.Modified;
-                db.SaveChanges();
-
-
-            }
+           
             
 
 
@@ -1140,7 +1072,7 @@ namespace el_shabander.pl
                 // حلقة للتأكد من أن القيم صالحة قبل إضافتها إلى المجموع
                 for (int i = 0; i < dataGridView1.RowCount; i++)
                 {
-                    var cellValue = dataGridView1.Rows[i].Cells[4].Value;
+                    var cellValue = dataGridView1.Rows[i].Cells[5].Value;
 
                     // التحقق من أن الخلية غير فارغة ولديها قيمة قابلة للتحويل إلى double
                     if (cellValue != null && !string.IsNullOrWhiteSpace(cellValue.ToString()))
