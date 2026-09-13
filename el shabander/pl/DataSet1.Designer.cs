@@ -637,9 +637,13 @@ namespace el_shabander.pl {
             
             private global::System.Data.DataColumn columnqt;
             
-            private global::System.Data.DataColumn columntprice;
+            private global::System.Data.DataColumn columnqt21;
             
             private global::System.Data.DataColumn columnweight;
+            
+            private global::System.Data.DataColumn columnKARAT;
+            
+            private global::System.Data.DataColumn columntprice;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
@@ -708,9 +712,9 @@ namespace el_shabander.pl {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataColumn tpriceColumn {
+            public global::System.Data.DataColumn qt21Column {
                 get {
-                    return this.columntprice;
+                    return this.columnqt21;
                 }
             }
             
@@ -719,6 +723,22 @@ namespace el_shabander.pl {
             public global::System.Data.DataColumn weightColumn {
                 get {
                     return this.columnweight;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn KARATColumn {
+                get {
+                    return this.columnKARAT;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn tpriceColumn {
+                get {
+                    return this.columntprice;
                 }
             }
             
@@ -759,15 +779,17 @@ namespace el_shabander.pl {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public tb_orderRow Addtb_orderRow(int id, string itemname, double price, double qt, double tprice, string weight) {
+            public tb_orderRow Addtb_orderRow(int id, string itemname, double price, double qt, double qt21, string weight, double KARAT, string tprice) {
                 tb_orderRow rowtb_orderRow = ((tb_orderRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         id,
                         itemname,
                         price,
                         qt,
-                        tprice,
-                        weight};
+                        qt21,
+                        weight,
+                        KARAT,
+                        tprice};
                 rowtb_orderRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowtb_orderRow);
                 return rowtb_orderRow;
@@ -794,8 +816,10 @@ namespace el_shabander.pl {
                 this.columnitemname = base.Columns["itemname"];
                 this.columnprice = base.Columns["price"];
                 this.columnqt = base.Columns["qt"];
-                this.columntprice = base.Columns["tprice"];
+                this.columnqt21 = base.Columns["qt21"];
                 this.columnweight = base.Columns["weight"];
+                this.columnKARAT = base.Columns["KARAT"];
+                this.columntprice = base.Columns["tprice"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -809,10 +833,14 @@ namespace el_shabander.pl {
                 base.Columns.Add(this.columnprice);
                 this.columnqt = new global::System.Data.DataColumn("qt", typeof(double), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnqt);
-                this.columntprice = new global::System.Data.DataColumn("tprice", typeof(double), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columntprice);
+                this.columnqt21 = new global::System.Data.DataColumn("qt21", typeof(double), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnqt21);
                 this.columnweight = new global::System.Data.DataColumn("weight", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnweight);
+                this.columnKARAT = new global::System.Data.DataColumn("KARAT", typeof(double), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnKARAT);
+                this.columntprice = new global::System.Data.DataColumn("tprice", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columntprice);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4119,17 +4147,17 @@ namespace el_shabander.pl {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public double tprice {
+            public double qt21 {
                 get {
                     try {
-                        return ((double)(this[this.tabletb_order.tpriceColumn]));
+                        return ((double)(this[this.tabletb_order.qt21Column]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'tprice\' in table \'tb_order\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'qt21\' in table \'tb_order\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tabletb_order.tpriceColumn] = value;
+                    this[this.tabletb_order.qt21Column] = value;
                 }
             }
             
@@ -4146,6 +4174,38 @@ namespace el_shabander.pl {
                 }
                 set {
                     this[this.tabletb_order.weightColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public double KARAT {
+                get {
+                    try {
+                        return ((double)(this[this.tabletb_order.KARATColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'KARAT\' in table \'tb_order\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabletb_order.KARATColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string tprice {
+                get {
+                    try {
+                        return ((string)(this[this.tabletb_order.tpriceColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'tprice\' in table \'tb_order\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabletb_order.tpriceColumn] = value;
                 }
             }
             
@@ -4199,14 +4259,14 @@ namespace el_shabander.pl {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public bool IstpriceNull() {
-                return this.IsNull(this.tabletb_order.tpriceColumn);
+            public bool Isqt21Null() {
+                return this.IsNull(this.tabletb_order.qt21Column);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void SettpriceNull() {
-                this[this.tabletb_order.tpriceColumn] = global::System.Convert.DBNull;
+            public void Setqt21Null() {
+                this[this.tabletb_order.qt21Column] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4219,6 +4279,30 @@ namespace el_shabander.pl {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public void SetweightNull() {
                 this[this.tabletb_order.weightColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsKARATNull() {
+                return this.IsNull(this.tabletb_order.KARATColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetKARATNull() {
+                this[this.tabletb_order.KARATColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IstpriceNull() {
+                return this.IsNull(this.tabletb_order.tpriceColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SettpriceNull() {
+                this[this.tabletb_order.tpriceColumn] = global::System.Convert.DBNull;
             }
         }
         

@@ -543,11 +543,11 @@ namespace el_shabander
             // la_trile
             // 
             this.la_trile.AutoSize = true;
-            this.la_trile.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.la_trile.Font = new System.Drawing.Font("Cairo", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.la_trile.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.la_trile.Location = new System.Drawing.Point(256, 15);
             this.la_trile.Name = "la_trile";
-            this.la_trile.Size = new System.Drawing.Size(50, 25);
+            this.la_trile.Size = new System.Drawing.Size(57, 30);
             this.la_trile.TabIndex = 7;
             this.la_trile.Text = "الفترة";
             // 

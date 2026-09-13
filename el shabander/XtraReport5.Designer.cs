@@ -1,7 +1,7 @@
 ﻿
 namespace el_shabander
 {
-    partial class XtraReport4
+    partial class XtraReport5
     {
         /// <summary>
         /// Required designer variable.
@@ -34,6 +34,8 @@ namespace el_shabander
             this.Detail = new DevExpress.XtraReports.UI.DetailBand();
             this.xrTable1 = new DevExpress.XtraReports.UI.XRTable();
             this.xrTableRow1 = new DevExpress.XtraReports.UI.XRTableRow();
+            this.xrTableCell16 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell14 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell12 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell1 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell2 = new DevExpress.XtraReports.UI.XRTableCell();
@@ -60,6 +62,8 @@ namespace el_shabander
             this.GroupHeader1 = new DevExpress.XtraReports.UI.GroupHeaderBand();
             this.xrTable2 = new DevExpress.XtraReports.UI.XRTable();
             this.xrTableRow2 = new DevExpress.XtraReports.UI.XRTableRow();
+            this.xrTableCell15 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell13 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell11 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell6 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell7 = new DevExpress.XtraReports.UI.XRTableCell();
@@ -67,8 +71,6 @@ namespace el_shabander
             this.xrTableCell9 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell10 = new DevExpress.XtraReports.UI.XRTableCell();
             this.ReportFooter = new DevExpress.XtraReports.UI.ReportFooterBand();
-            this.xrLine2 = new DevExpress.XtraReports.UI.XRLine();
-            this.xrLine1 = new DevExpress.XtraReports.UI.XRLine();
             this.description = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel15 = new DevExpress.XtraReports.UI.XRLabel();
             this.StayCustomer = new DevExpress.XtraReports.UI.XRLabel();
@@ -76,42 +78,38 @@ namespace el_shabander
             this.xrLabel12 = new DevExpress.XtraReports.UI.XRLabel();
             this.TotalAll = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel8 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrLabel2 = new DevExpress.XtraReports.UI.XRLabel();
-            this.Total = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel22 = new DevExpress.XtraReports.UI.XRLabel();
             this.companymob = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel20 = new DevExpress.XtraReports.UI.XRLabel();
             this.companyaddress = new DevExpress.XtraReports.UI.XRLabel();
-            this.cut = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrLabel13 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrLabel14 = new DevExpress.XtraReports.UI.XRLabel();
-            this.tax = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel16 = new DevExpress.XtraReports.UI.XRLabel();
             this.aftercut = new DevExpress.XtraReports.UI.XRLabel();
             this.Remaining = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel19 = new DevExpress.XtraReports.UI.XRLabel();
-            this.dataSet12 = new el_shabander.pl.DataSet1();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataSet12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
             // TopMargin
             // 
+            this.TopMargin.Dpi = 254F;
             this.TopMargin.HeightF = 0F;
             this.TopMargin.Name = "TopMargin";
             // 
             // BottomMargin
             // 
-            this.BottomMargin.HeightF = 0F;
+            this.BottomMargin.Dpi = 254F;
+            this.BottomMargin.HeightF = 50F;
             this.BottomMargin.Name = "BottomMargin";
             // 
             // Detail
             // 
             this.Detail.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
             this.xrTable1});
-            this.Detail.HeightF = 37.13655F;
+            this.Detail.Dpi = 254F;
+            this.Detail.HeightF = 63.5F;
+            this.Detail.HierarchyPrintOptions.Indent = 50.8F;
             this.Detail.Name = "Detail";
             // 
             // xrTable1
@@ -120,13 +118,14 @@ namespace el_shabander
             this.xrTable1.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.xrTable1.BorderWidth = 0.7F;
-            this.xrTable1.Font = new System.Drawing.Font("Cairo", 12F, System.Drawing.FontStyle.Bold);
-            this.xrTable1.LocationFloat = new DevExpress.Utils.PointFloat(5.224034F, 0F);
+            this.xrTable1.Dpi = 254F;
+            this.xrTable1.Font = new System.Drawing.Font("Cairo", 7F, System.Drawing.FontStyle.Bold);
+            this.xrTable1.LocationFloat = new DevExpress.Utils.PointFloat(13.2697F, 0F);
             this.xrTable1.Name = "xrTable1";
-            this.xrTable1.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrTable1.Padding = new DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254F);
             this.xrTable1.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
             this.xrTableRow1});
-            this.xrTable1.SizeF = new System.Drawing.SizeF(567.6107F, 37.0509F);
+            this.xrTable1.SizeF = new System.Drawing.SizeF(722.7457F, 63.5F);
             this.xrTable1.StylePriority.UseBorderDashStyle = false;
             this.xrTable1.StylePriority.UseBorders = false;
             this.xrTable1.StylePriority.UseBorderWidth = false;
@@ -137,61 +136,89 @@ namespace el_shabander
             // xrTableRow1
             // 
             this.xrTableRow1.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
+            this.xrTableCell16,
+            this.xrTableCell14,
             this.xrTableCell12,
             this.xrTableCell1,
             this.xrTableCell2,
             this.xrTableCell3,
             this.xrTableCell4,
             this.xrTableCell5});
+            this.xrTableRow1.Dpi = 254F;
             this.xrTableRow1.Name = "xrTableRow1";
             this.xrTableRow1.Weight = 1D;
             // 
+            // xrTableCell16
+            // 
+            this.xrTableCell16.Dpi = 254F;
+            this.xrTableCell16.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[tprice]")});
+            this.xrTableCell16.Multiline = true;
+            this.xrTableCell16.Name = "xrTableCell16";
+            this.xrTableCell16.Text = "xrTableCell16";
+            this.xrTableCell16.Weight = 1.571821135145262D;
+            // 
+            // xrTableCell14
+            // 
+            this.xrTableCell14.Dpi = 254F;
+            this.xrTableCell14.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[KARAT]")});
+            this.xrTableCell14.Multiline = true;
+            this.xrTableCell14.Name = "xrTableCell14";
+            this.xrTableCell14.Text = "xrTableCell14";
+            this.xrTableCell14.Weight = 0.86763422627573561D;
+            // 
             // xrTableCell12
             // 
+            this.xrTableCell12.Dpi = 254F;
             this.xrTableCell12.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
-            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[tprice]")});
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[price]")});
             this.xrTableCell12.Multiline = true;
             this.xrTableCell12.Name = "xrTableCell12";
-            this.xrTableCell12.Weight = 1.0030321990529487D;
+            this.xrTableCell12.Weight = 1.0813566039483347D;
             // 
             // xrTableCell1
             // 
+            this.xrTableCell1.Dpi = 254F;
             this.xrTableCell1.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
-            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[price]")});
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[qt21]")});
             this.xrTableCell1.Multiline = true;
             this.xrTableCell1.Name = "xrTableCell1";
             this.xrTableCell1.Text = "الاجمالى";
-            this.xrTableCell1.Weight = 0.91931843647561584D;
+            this.xrTableCell1.Weight = 1.0551653107620256D;
             // 
             // xrTableCell2
             // 
+            this.xrTableCell2.Dpi = 254F;
             this.xrTableCell2.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[weight]")});
             this.xrTableCell2.Multiline = true;
             this.xrTableCell2.Name = "xrTableCell2";
             this.xrTableCell2.Text = "السعر";
-            this.xrTableCell2.Weight = 0.82142880498144488D;
+            this.xrTableCell2.Weight = 0.930830752734332D;
             // 
             // xrTableCell3
             // 
+            this.xrTableCell3.Dpi = 254F;
             this.xrTableCell3.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[qt]")});
             this.xrTableCell3.Multiline = true;
             this.xrTableCell3.Name = "xrTableCell3";
             this.xrTableCell3.Text = "الكمية";
-            this.xrTableCell3.Weight = 0.873282743331234D;
+            this.xrTableCell3.Weight = 0.89143968658274164D;
             // 
             // xrTableCell4
             // 
-            this.xrTableCell4.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
-            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[itemname]")});
+            this.xrTableCell4.Dpi = 254F;
             this.xrTableCell4.Multiline = true;
             this.xrTableCell4.Name = "xrTableCell4";
-            this.xrTableCell4.Text = "الصنف";
-            this.xrTableCell4.Weight = 1.6027344984043479D;
+            this.xrTableCell4.Text = "G";
+            this.xrTableCell4.TextFormatString = "G";
+            this.xrTableCell4.Weight = 0.5699382144238081D;
             // 
             // xrTableCell5
             // 
+            this.xrTableCell5.Dpi = 254F;
             this.xrTableCell5.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[id]")});
             this.xrTableCell5.Multiline = true;
@@ -222,22 +249,24 @@ namespace el_shabander
             this.cutomeraddress,
             this.date,
             this.logo});
-            this.ReportHeader.HeightF = 282.9304F;
+            this.ReportHeader.Dpi = 254F;
+            this.ReportHeader.HeightF = 446.5003F;
             this.ReportHeader.Name = "ReportHeader";
             // 
             // xrLabel21
             // 
-            this.xrLabel21.BackColor = System.Drawing.Color.LightGray;
+            this.xrLabel21.BackColor = System.Drawing.Color.Transparent;
             this.xrLabel21.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.xrLabel21.BorderWidth = 0.5F;
-            this.xrLabel21.Font = new System.Drawing.Font("Cairo", 10F, System.Drawing.FontStyle.Bold);
-            this.xrLabel21.LocationFloat = new DevExpress.Utils.PointFloat(447.9636F, 97.17986F);
+            this.xrLabel21.Dpi = 254F;
+            this.xrLabel21.Font = new System.Drawing.Font("Cairo", 6F, System.Drawing.FontStyle.Bold);
+            this.xrLabel21.LocationFloat = new DevExpress.Utils.PointFloat(568.4188F, 156.2752F);
             this.xrLabel21.Multiline = true;
             this.xrLabel21.Name = "xrLabel21";
-            this.xrLabel21.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel21.SizeF = new System.Drawing.SizeF(91.47195F, 27.1209F);
+            this.xrLabel21.Padding = new DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254F);
+            this.xrLabel21.SizeF = new System.Drawing.SizeF(162.4131F, 46.2085F);
             this.xrLabel21.StylePriority.UseBackColor = false;
             this.xrLabel21.StylePriority.UseBorders = false;
             this.xrLabel21.StylePriority.UseBorderWidth = false;
@@ -252,12 +281,13 @@ namespace el_shabander
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.casher.BorderWidth = 0.5F;
-            this.casher.Font = new System.Drawing.Font("Cairo", 10F, System.Drawing.FontStyle.Bold);
-            this.casher.LocationFloat = new DevExpress.Utils.PointFloat(272.4227F, 97.17986F);
+            this.casher.Dpi = 254F;
+            this.casher.Font = new System.Drawing.Font("Cairo", 6F, System.Drawing.FontStyle.Bold);
+            this.casher.LocationFloat = new DevExpress.Utils.PointFloat(328.259F, 156.2752F);
             this.casher.Multiline = true;
             this.casher.Name = "casher";
-            this.casher.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.casher.SizeF = new System.Drawing.SizeF(168.2119F, 27.1209F);
+            this.casher.Padding = new DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254F);
+            this.casher.SizeF = new System.Drawing.SizeF(240.1598F, 46.20846F);
             this.casher.StylePriority.UseBorders = false;
             this.casher.StylePriority.UseBorderWidth = false;
             this.casher.StylePriority.UseFont = false;
@@ -272,28 +302,30 @@ namespace el_shabander
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.xrLabel1.BorderWidth = 0.5F;
-            this.xrLabel1.Font = new System.Drawing.Font("Cairo", 16F, System.Drawing.FontStyle.Bold);
-            this.xrLabel1.LocationFloat = new DevExpress.Utils.PointFloat(179.6628F, 231.3131F);
+            this.xrLabel1.Dpi = 254F;
+            this.xrLabel1.Font = new System.Drawing.Font("Cairo", 11F, System.Drawing.FontStyle.Bold);
+            this.xrLabel1.LocationFloat = new DevExpress.Utils.PointFloat(216.3286F, 358.0097F);
             this.xrLabel1.Multiline = true;
             this.xrLabel1.Name = "xrLabel1";
-            this.xrLabel1.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel1.SizeF = new System.Drawing.SizeF(190.4964F, 45.66484F);
+            this.xrLabel1.Padding = new DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254F);
+            this.xrLabel1.SizeF = new System.Drawing.SizeF(306.212F, 70.63162F);
             this.xrLabel1.StylePriority.UseBackColor = false;
             this.xrLabel1.StylePriority.UseBorders = false;
             this.xrLabel1.StylePriority.UseBorderWidth = false;
             this.xrLabel1.StylePriority.UseFont = false;
             this.xrLabel1.StylePriority.UseTextAlignment = false;
-            this.xrLabel1.Text = "فاتورة مبيعات";
+            this.xrLabel1.Text = "فاتورة مشتريات";
             this.xrLabel1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
             // 
             // namecompany
             // 
-            this.namecompany.Font = new System.Drawing.Font("Cairo", 12F, System.Drawing.FontStyle.Bold);
-            this.namecompany.LocationFloat = new DevExpress.Utils.PointFloat(228.3723F, 14.30681F);
+            this.namecompany.Dpi = 254F;
+            this.namecompany.Font = new System.Drawing.Font("Cairo", 10F, System.Drawing.FontStyle.Bold);
+            this.namecompany.LocationFloat = new DevExpress.Utils.PointFloat(315.3429F, 0F);
             this.namecompany.Multiline = true;
             this.namecompany.Name = "namecompany";
-            this.namecompany.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.namecompany.SizeF = new System.Drawing.SizeF(333.6257F, 35.8205F);
+            this.namecompany.Padding = new DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254F);
+            this.namecompany.SizeF = new System.Drawing.SizeF(420.6716F, 64.52576F);
             this.namecompany.StylePriority.UseFont = false;
             this.namecompany.StylePriority.UseTextAlignment = false;
             this.namecompany.Text = "namecompany";
@@ -305,12 +337,13 @@ namespace el_shabander
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.invo_num.BorderWidth = 0.5F;
-            this.invo_num.Font = new System.Drawing.Font("Cairo", 10F, System.Drawing.FontStyle.Bold);
-            this.invo_num.LocationFloat = new DevExpress.Utils.PointFloat(272.4227F, 59.79994F);
+            this.invo_num.Dpi = 254F;
+            this.invo_num.Font = new System.Drawing.Font("Cairo", 6F, System.Drawing.FontStyle.Bold);
+            this.invo_num.LocationFloat = new DevExpress.Utils.PointFloat(328.259F, 99.12514F);
             this.invo_num.Multiline = true;
             this.invo_num.Name = "invo_num";
-            this.invo_num.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.invo_num.SizeF = new System.Drawing.SizeF(168.2118F, 27.12089F);
+            this.invo_num.Padding = new DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254F);
+            this.invo_num.SizeF = new System.Drawing.SizeF(240.1598F, 46.20846F);
             this.invo_num.StylePriority.UseBorders = false;
             this.invo_num.StylePriority.UseBorderWidth = false;
             this.invo_num.StylePriority.UseFont = false;
@@ -320,17 +353,18 @@ namespace el_shabander
             // 
             // xrLabel3
             // 
-            this.xrLabel3.BackColor = System.Drawing.Color.LightGray;
+            this.xrLabel3.BackColor = System.Drawing.Color.Transparent;
             this.xrLabel3.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.xrLabel3.BorderWidth = 0.5F;
-            this.xrLabel3.Font = new System.Drawing.Font("Cairo", 10F, System.Drawing.FontStyle.Bold);
-            this.xrLabel3.LocationFloat = new DevExpress.Utils.PointFloat(447.9636F, 59.79993F);
+            this.xrLabel3.Dpi = 254F;
+            this.xrLabel3.Font = new System.Drawing.Font("Cairo", 6F, System.Drawing.FontStyle.Bold);
+            this.xrLabel3.LocationFloat = new DevExpress.Utils.PointFloat(568.4188F, 99.12514F);
             this.xrLabel3.Multiline = true;
             this.xrLabel3.Name = "xrLabel3";
-            this.xrLabel3.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel3.SizeF = new System.Drawing.SizeF(91.47189F, 27.1209F);
+            this.xrLabel3.Padding = new DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254F);
+            this.xrLabel3.SizeF = new System.Drawing.SizeF(162.4131F, 46.20848F);
             this.xrLabel3.StylePriority.UseBackColor = false;
             this.xrLabel3.StylePriority.UseBorders = false;
             this.xrLabel3.StylePriority.UseBorderWidth = false;
@@ -345,12 +379,13 @@ namespace el_shabander
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.customer.BorderWidth = 0.5F;
-            this.customer.Font = new System.Drawing.Font("Cairo", 10F, System.Drawing.FontStyle.Bold);
-            this.customer.LocationFloat = new DevExpress.Utils.PointFloat(309.4186F, 155.2782F);
+            this.customer.Dpi = 254F;
+            this.customer.Font = new System.Drawing.Font("Cairo", 5.5F, System.Drawing.FontStyle.Bold);
+            this.customer.LocationFloat = new DevExpress.Utils.PointFloat(407.1174F, 236.7943F);
             this.customer.Multiline = true;
             this.customer.Name = "customer";
-            this.customer.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.customer.SizeF = new System.Drawing.SizeF(163.9118F, 30.09709F);
+            this.customer.Padding = new DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254F);
+            this.customer.SizeF = new System.Drawing.SizeF(213.2949F, 46.20848F);
             this.customer.StylePriority.UseBorders = false;
             this.customer.StylePriority.UseBorderWidth = false;
             this.customer.StylePriority.UseFont = false;
@@ -360,23 +395,24 @@ namespace el_shabander
             // 
             // xrLabel4
             // 
-            this.xrLabel4.BackColor = System.Drawing.Color.LightGray;
+            this.xrLabel4.BackColor = System.Drawing.Color.Transparent;
             this.xrLabel4.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.xrLabel4.BorderWidth = 0.5F;
-            this.xrLabel4.Font = new System.Drawing.Font("Cairo", 10F, System.Drawing.FontStyle.Bold);
-            this.xrLabel4.LocationFloat = new DevExpress.Utils.PointFloat(473.3305F, 155.2782F);
+            this.xrLabel4.Dpi = 254F;
+            this.xrLabel4.Font = new System.Drawing.Font("Cairo", 5.5F, System.Drawing.FontStyle.Bold);
+            this.xrLabel4.LocationFloat = new DevExpress.Utils.PointFloat(620.4122F, 236.7943F);
             this.xrLabel4.Multiline = true;
             this.xrLabel4.Name = "xrLabel4";
-            this.xrLabel4.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel4.SizeF = new System.Drawing.SizeF(88.66757F, 30.09709F);
+            this.xrLabel4.Padding = new DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254F);
+            this.xrLabel4.SizeF = new System.Drawing.SizeF(115.6025F, 46.20848F);
             this.xrLabel4.StylePriority.UseBackColor = false;
             this.xrLabel4.StylePriority.UseBorders = false;
             this.xrLabel4.StylePriority.UseBorderWidth = false;
             this.xrLabel4.StylePriority.UseFont = false;
             this.xrLabel4.StylePriority.UseTextAlignment = false;
-            this.xrLabel4.Text = "اسم العميل";
+            this.xrLabel4.Text = "اسم المورد";
             this.xrLabel4.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
             // 
             // customernum
@@ -385,12 +421,13 @@ namespace el_shabander
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.customernum.BorderWidth = 0.5F;
-            this.customernum.Font = new System.Drawing.Font("Cairo", 10F, System.Drawing.FontStyle.Bold);
-            this.customernum.LocationFloat = new DevExpress.Utils.PointFloat(309.4186F, 191.3734F);
+            this.customernum.Dpi = 254F;
+            this.customernum.Font = new System.Drawing.Font("Cairo", 5.5F, System.Drawing.FontStyle.Bold);
+            this.customernum.LocationFloat = new DevExpress.Utils.PointFloat(407.1174F, 294.4582F);
             this.customernum.Multiline = true;
             this.customernum.Name = "customernum";
-            this.customernum.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.customernum.SizeF = new System.Drawing.SizeF(163.9118F, 30.09709F);
+            this.customernum.Padding = new DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254F);
+            this.customernum.SizeF = new System.Drawing.SizeF(213.2949F, 46.2085F);
             this.customernum.StylePriority.UseBorders = false;
             this.customernum.StylePriority.UseBorderWidth = false;
             this.customernum.StylePriority.UseFont = false;
@@ -400,17 +437,18 @@ namespace el_shabander
             // 
             // xrLabel6
             // 
-            this.xrLabel6.BackColor = System.Drawing.Color.LightGray;
+            this.xrLabel6.BackColor = System.Drawing.Color.Transparent;
             this.xrLabel6.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.xrLabel6.BorderWidth = 0.5F;
-            this.xrLabel6.Font = new System.Drawing.Font("Cairo", 10F, System.Drawing.FontStyle.Bold);
-            this.xrLabel6.LocationFloat = new DevExpress.Utils.PointFloat(473.3305F, 191.3734F);
+            this.xrLabel6.Dpi = 254F;
+            this.xrLabel6.Font = new System.Drawing.Font("Cairo", 5.5F, System.Drawing.FontStyle.Bold);
+            this.xrLabel6.LocationFloat = new DevExpress.Utils.PointFloat(620.4122F, 294.4583F);
             this.xrLabel6.Multiline = true;
             this.xrLabel6.Name = "xrLabel6";
-            this.xrLabel6.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel6.SizeF = new System.Drawing.SizeF(88.66757F, 30.09709F);
+            this.xrLabel6.Padding = new DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254F);
+            this.xrLabel6.SizeF = new System.Drawing.SizeF(115.6025F, 46.2085F);
             this.xrLabel6.StylePriority.UseBackColor = false;
             this.xrLabel6.StylePriority.UseBorders = false;
             this.xrLabel6.StylePriority.UseBorderWidth = false;
@@ -421,17 +459,18 @@ namespace el_shabander
             // 
             // xrLabel11
             // 
-            this.xrLabel11.BackColor = System.Drawing.Color.LightGray;
+            this.xrLabel11.BackColor = System.Drawing.Color.Transparent;
             this.xrLabel11.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.xrLabel11.BorderWidth = 0.5F;
-            this.xrLabel11.Font = new System.Drawing.Font("Cairo", 10F, System.Drawing.FontStyle.Bold);
-            this.xrLabel11.LocationFloat = new DevExpress.Utils.PointFloat(214.6533F, 155.2782F);
+            this.xrLabel11.Dpi = 254F;
+            this.xrLabel11.Font = new System.Drawing.Font("Cairo", 5.5F, System.Drawing.FontStyle.Bold);
+            this.xrLabel11.LocationFloat = new DevExpress.Utils.PointFloat(238.5042F, 236.7943F);
             this.xrLabel11.Multiline = true;
             this.xrLabel11.Name = "xrLabel11";
-            this.xrLabel11.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel11.SizeF = new System.Drawing.SizeF(57.03401F, 30.09711F);
+            this.xrLabel11.Padding = new DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254F);
+            this.xrLabel11.SizeF = new System.Drawing.SizeF(115.6025F, 46.20848F);
             this.xrLabel11.StylePriority.UseBackColor = false;
             this.xrLabel11.StylePriority.UseBorders = false;
             this.xrLabel11.StylePriority.UseBorderWidth = false;
@@ -442,17 +481,18 @@ namespace el_shabander
             // 
             // xrLabel10
             // 
-            this.xrLabel10.BackColor = System.Drawing.Color.LightGray;
+            this.xrLabel10.BackColor = System.Drawing.Color.Transparent;
             this.xrLabel10.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.xrLabel10.BorderWidth = 0.5F;
-            this.xrLabel10.Font = new System.Drawing.Font("Cairo", 10F, System.Drawing.FontStyle.Bold);
-            this.xrLabel10.LocationFloat = new DevExpress.Utils.PointFloat(214.6533F, 191.3734F);
+            this.xrLabel10.Dpi = 254F;
+            this.xrLabel10.Font = new System.Drawing.Font("Cairo", 5.5F, System.Drawing.FontStyle.Bold);
+            this.xrLabel10.LocationFloat = new DevExpress.Utils.PointFloat(238.5042F, 294.4582F);
             this.xrLabel10.Multiline = true;
             this.xrLabel10.Name = "xrLabel10";
-            this.xrLabel10.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel10.SizeF = new System.Drawing.SizeF(57.03401F, 30.09711F);
+            this.xrLabel10.Padding = new DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254F);
+            this.xrLabel10.SizeF = new System.Drawing.SizeF(115.6025F, 46.2085F);
             this.xrLabel10.StylePriority.UseBackColor = false;
             this.xrLabel10.StylePriority.UseBorders = false;
             this.xrLabel10.StylePriority.UseBorderWidth = false;
@@ -467,12 +507,13 @@ namespace el_shabander
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.cutomeraddress.BorderWidth = 0.5F;
-            this.cutomeraddress.Font = new System.Drawing.Font("Cairo", 10F, System.Drawing.FontStyle.Bold);
-            this.cutomeraddress.LocationFloat = new DevExpress.Utils.PointFloat(18.93721F, 191.3734F);
+            this.cutomeraddress.Dpi = 254F;
+            this.cutomeraddress.Font = new System.Drawing.Font("Cairo", 5.5F, System.Drawing.FontStyle.Bold);
+            this.cutomeraddress.LocationFloat = new DevExpress.Utils.PointFloat(32.4271F, 294.4582F);
             this.cutomeraddress.Multiline = true;
             this.cutomeraddress.Name = "cutomeraddress";
-            this.cutomeraddress.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.cutomeraddress.SizeF = new System.Drawing.SizeF(195.7161F, 30.09711F);
+            this.cutomeraddress.Padding = new DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254F);
+            this.cutomeraddress.SizeF = new System.Drawing.SizeF(206.077F, 46.2085F);
             this.cutomeraddress.StylePriority.UseBorders = false;
             this.cutomeraddress.StylePriority.UseBorderWidth = false;
             this.cutomeraddress.StylePriority.UseFont = false;
@@ -486,12 +527,13 @@ namespace el_shabander
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.date.BorderWidth = 0.5F;
-            this.date.Font = new System.Drawing.Font("Cairo", 10F, System.Drawing.FontStyle.Bold);
-            this.date.LocationFloat = new DevExpress.Utils.PointFloat(18.93721F, 155.2782F);
+            this.date.Dpi = 254F;
+            this.date.Font = new System.Drawing.Font("Cairo", 5.5F, System.Drawing.FontStyle.Bold);
+            this.date.LocationFloat = new DevExpress.Utils.PointFloat(32.4271F, 236.7943F);
             this.date.Multiline = true;
             this.date.Name = "date";
-            this.date.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.date.SizeF = new System.Drawing.SizeF(195.7161F, 30.09711F);
+            this.date.Padding = new DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254F);
+            this.date.SizeF = new System.Drawing.SizeF(206.077F, 46.20848F);
             this.date.StylePriority.UseBorders = false;
             this.date.StylePriority.UseBorderWidth = false;
             this.date.StylePriority.UseFont = false;
@@ -501,17 +543,19 @@ namespace el_shabander
             // 
             // logo
             // 
+            this.logo.Dpi = 254F;
             this.logo.ImageAlignment = DevExpress.XtraPrinting.ImageAlignment.MiddleCenter;
-            this.logo.LocationFloat = new DevExpress.Utils.PointFloat(18.93721F, 0F);
+            this.logo.LocationFloat = new DevExpress.Utils.PointFloat(31.2F, 0F);
             this.logo.Name = "logo";
-            this.logo.SizeF = new System.Drawing.SizeF(202.3699F, 149.5296F);
+            this.logo.SizeF = new System.Drawing.SizeF(278.6328F, 225.1596F);
             this.logo.Sizing = DevExpress.XtraPrinting.ImageSizeMode.ZoomImage;
             // 
             // GroupHeader1
             // 
             this.GroupHeader1.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
             this.xrTable2});
-            this.GroupHeader1.HeightF = 38.03067F;
+            this.GroupHeader1.Dpi = 254F;
+            this.GroupHeader1.HeightF = 63.5F;
             this.GroupHeader1.Name = "GroupHeader1";
             // 
             // xrTable2
@@ -522,13 +566,14 @@ namespace el_shabander
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.xrTable2.BorderWidth = 0.7F;
-            this.xrTable2.Font = new System.Drawing.Font("Cairo", 14F, System.Drawing.FontStyle.Bold);
-            this.xrTable2.LocationFloat = new DevExpress.Utils.PointFloat(5.224034F, 0F);
+            this.xrTable2.Dpi = 254F;
+            this.xrTable2.Font = new System.Drawing.Font("Cairo", 8F, System.Drawing.FontStyle.Bold);
+            this.xrTable2.LocationFloat = new DevExpress.Utils.PointFloat(13.26964F, 0F);
             this.xrTable2.Name = "xrTable2";
-            this.xrTable2.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrTable2.Padding = new DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254F);
             this.xrTable2.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
             this.xrTableRow2});
-            this.xrTable2.SizeF = new System.Drawing.SizeF(567.6107F, 38.03067F);
+            this.xrTable2.SizeF = new System.Drawing.SizeF(722.7457F, 63.5F);
             this.xrTable2.StylePriority.UseBackColor = false;
             this.xrTable2.StylePriority.UseBorderDashStyle = false;
             this.xrTable2.StylePriority.UseBorders = false;
@@ -540,52 +585,77 @@ namespace el_shabander
             // xrTableRow2
             // 
             this.xrTableRow2.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
+            this.xrTableCell15,
+            this.xrTableCell13,
             this.xrTableCell11,
             this.xrTableCell6,
             this.xrTableCell7,
             this.xrTableCell8,
             this.xrTableCell9,
             this.xrTableCell10});
+            this.xrTableRow2.Dpi = 254F;
             this.xrTableRow2.Name = "xrTableRow2";
             this.xrTableRow2.Weight = 1D;
             // 
+            // xrTableCell15
+            // 
+            this.xrTableCell15.Dpi = 254F;
+            this.xrTableCell15.Multiline = true;
+            this.xrTableCell15.Name = "xrTableCell15";
+            this.xrTableCell15.Text = "اجمالى";
+            this.xrTableCell15.Weight = 1.5718210554334813D;
+            // 
+            // xrTableCell13
+            // 
+            this.xrTableCell13.Dpi = 254F;
+            this.xrTableCell13.Multiline = true;
+            this.xrTableCell13.Name = "xrTableCell13";
+            this.xrTableCell13.Text = "العيار";
+            this.xrTableCell13.Weight = 0.86763523185789238D;
+            // 
             // xrTableCell11
             // 
+            this.xrTableCell11.Dpi = 254F;
             this.xrTableCell11.Multiline = true;
             this.xrTableCell11.Name = "xrTableCell11";
-            this.xrTableCell11.Text = "الاجمالى";
-            this.xrTableCell11.Weight = 1.0030329519133456D;
+            this.xrTableCell11.Text = "السعر";
+            this.xrTableCell11.Weight = 1.081356459307286D;
             // 
             // xrTableCell6
             // 
+            this.xrTableCell6.Dpi = 254F;
             this.xrTableCell6.Multiline = true;
             this.xrTableCell6.Name = "xrTableCell6";
-            this.xrTableCell6.Text = "السعر";
-            this.xrTableCell6.Weight = 0.91931768361521882D;
+            this.xrTableCell6.Text = "عيار21";
+            this.xrTableCell6.Weight = 1.0551653930499942D;
             // 
             // xrTableCell7
             // 
+            this.xrTableCell7.Dpi = 254F;
             this.xrTableCell7.Multiline = true;
             this.xrTableCell7.Name = "xrTableCell7";
-            this.xrTableCell7.Text = "الوحدة";
-            this.xrTableCell7.Weight = 0.82142880498144488D;
+            this.xrTableCell7.Text = "وحدة";
+            this.xrTableCell7.Weight = 0.93083143935222412D;
             // 
             // xrTableCell8
             // 
+            this.xrTableCell8.Dpi = 254F;
             this.xrTableCell8.Multiline = true;
             this.xrTableCell8.Name = "xrTableCell8";
-            this.xrTableCell8.Text = "الكمية";
-            this.xrTableCell8.Weight = 0.873282743331234D;
+            this.xrTableCell8.Text = "الوزن";
+            this.xrTableCell8.Weight = 0.89143910274296434D;
             // 
             // xrTableCell9
             // 
+            this.xrTableCell9.Dpi = 254F;
             this.xrTableCell9.Multiline = true;
             this.xrTableCell9.Name = "xrTableCell9";
-            this.xrTableCell9.Text = "الصنف";
-            this.xrTableCell9.Weight = 1.6027344984043479D;
+            this.xrTableCell9.Text = "ص";
+            this.xrTableCell9.Weight = 0.56993828677615954D;
             // 
             // xrTableCell10
             // 
+            this.xrTableCell10.Dpi = 254F;
             this.xrTableCell10.Multiline = true;
             this.xrTableCell10.Name = "xrTableCell10";
             this.xrTableCell10.Text = "#";
@@ -594,8 +664,6 @@ namespace el_shabander
             // ReportFooter
             // 
             this.ReportFooter.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
-            this.xrLine2,
-            this.xrLine1,
             this.description,
             this.xrLabel15,
             this.StayCustomer,
@@ -603,34 +671,17 @@ namespace el_shabander
             this.xrLabel12,
             this.TotalAll,
             this.xrLabel8,
-            this.xrLabel2,
-            this.Total,
             this.xrLabel22,
             this.companymob,
             this.xrLabel20,
             this.companyaddress,
-            this.cut,
-            this.xrLabel13,
-            this.xrLabel14,
-            this.tax,
             this.xrLabel16,
             this.aftercut,
             this.Remaining,
             this.xrLabel19});
-            this.ReportFooter.HeightF = 323.781F;
+            this.ReportFooter.Dpi = 254F;
+            this.ReportFooter.HeightF = 596.4669F;
             this.ReportFooter.Name = "ReportFooter";
-            // 
-            // xrLine2
-            // 
-            this.xrLine2.LocationFloat = new DevExpress.Utils.PointFloat(5.43722F, 0F);
-            this.xrLine2.Name = "xrLine2";
-            this.xrLine2.SizeF = new System.Drawing.SizeF(567.5628F, 24.52022F);
-            // 
-            // xrLine1
-            // 
-            this.xrLine1.LocationFloat = new DevExpress.Utils.PointFloat(5.884582F, 138.0629F);
-            this.xrLine1.Name = "xrLine1";
-            this.xrLine1.SizeF = new System.Drawing.SizeF(567.5628F, 21.89311F);
             // 
             // description
             // 
@@ -638,12 +689,13 @@ namespace el_shabander
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.description.BorderWidth = 0.5F;
-            this.description.Font = new System.Drawing.Font("Cairo", 10F, System.Drawing.FontStyle.Bold);
-            this.description.LocationFloat = new DevExpress.Utils.PointFloat(5.884582F, 204.9561F);
+            this.description.Dpi = 254F;
+            this.description.Font = new System.Drawing.Font("Cairo", 6F, System.Drawing.FontStyle.Bold);
+            this.description.LocationFloat = new DevExpress.Utils.PointFloat(12.25498F, 488.5859F);
             this.description.Multiline = true;
             this.description.Name = "description";
-            this.description.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.description.SizeF = new System.Drawing.SizeF(567.5628F, 60.13007F);
+            this.description.Padding = new DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254F);
+            this.description.SizeF = new System.Drawing.SizeF(722.7456F, 101.0712F);
             this.description.StylePriority.UseBorders = false;
             this.description.StylePriority.UseBorderWidth = false;
             this.description.StylePriority.UseFont = false;
@@ -653,17 +705,18 @@ namespace el_shabander
             // 
             // xrLabel15
             // 
-            this.xrLabel15.BackColor = System.Drawing.Color.LightGray;
+            this.xrLabel15.BackColor = System.Drawing.Color.Transparent;
             this.xrLabel15.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.xrLabel15.BorderWidth = 0.5F;
-            this.xrLabel15.Font = new System.Drawing.Font("Cairo", 10F, System.Drawing.FontStyle.Bold);
-            this.xrLabel15.LocationFloat = new DevExpress.Utils.PointFloat(458.0628F, 25.53201F);
+            this.xrLabel15.Dpi = 254F;
+            this.xrLabel15.Font = new System.Drawing.Font("Cairo", 7F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.xrLabel15.LocationFloat = new DevExpress.Utils.PointFloat(374.3743F, 93.91252F);
             this.xrLabel15.Multiline = true;
             this.xrLabel15.Name = "xrLabel15";
-            this.xrLabel15.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel15.SizeF = new System.Drawing.SizeF(115.3846F, 27.56733F);
+            this.xrLabel15.Padding = new DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254F);
+            this.xrLabel15.SizeF = new System.Drawing.SizeF(343.6783F, 46.20849F);
             this.xrLabel15.StylePriority.UseBackColor = false;
             this.xrLabel15.StylePriority.UseBorders = false;
             this.xrLabel15.StylePriority.UseBorderWidth = false;
@@ -678,12 +731,13 @@ namespace el_shabander
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.StayCustomer.BorderWidth = 0.5F;
-            this.StayCustomer.Font = new System.Drawing.Font("Cairo", 10F, System.Drawing.FontStyle.Bold);
-            this.StayCustomer.LocationFloat = new DevExpress.Utils.PointFloat(338.5116F, 25.77028F);
+            this.StayCustomer.Dpi = 254F;
+            this.StayCustomer.Font = new System.Drawing.Font("Cairo", 7F, System.Drawing.FontStyle.Bold);
+            this.StayCustomer.LocationFloat = new DevExpress.Utils.PointFloat(25F, 93.91261F);
             this.StayCustomer.Multiline = true;
             this.StayCustomer.Name = "StayCustomer";
-            this.StayCustomer.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.StayCustomer.SizeF = new System.Drawing.SizeF(112.2596F, 27.32906F);
+            this.StayCustomer.Padding = new DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254F);
+            this.StayCustomer.SizeF = new System.Drawing.SizeF(337.1627F, 46.20849F);
             this.StayCustomer.StylePriority.UseBorders = false;
             this.StayCustomer.StylePriority.UseBorderWidth = false;
             this.StayCustomer.StylePriority.UseFont = false;
@@ -697,12 +751,13 @@ namespace el_shabander
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.Payment.BorderWidth = 0.5F;
-            this.Payment.Font = new System.Drawing.Font("Cairo", 10F, System.Drawing.FontStyle.Bold);
-            this.Payment.LocationFloat = new DevExpress.Utils.PointFloat(338.5116F, 82.41267F);
+            this.Payment.Dpi = 254F;
+            this.Payment.Font = new System.Drawing.Font("Cairo", 7F, System.Drawing.FontStyle.Bold);
+            this.Payment.LocationFloat = new DevExpress.Utils.PointFloat(25F, 231.7376F);
             this.Payment.Multiline = true;
             this.Payment.Name = "Payment";
-            this.Payment.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.Payment.SizeF = new System.Drawing.SizeF(112.2596F, 27.32906F);
+            this.Payment.Padding = new DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254F);
+            this.Payment.SizeF = new System.Drawing.SizeF(337.1627F, 46.2085F);
             this.Payment.StylePriority.UseBorders = false;
             this.Payment.StylePriority.UseBorderWidth = false;
             this.Payment.StylePriority.UseFont = false;
@@ -712,17 +767,18 @@ namespace el_shabander
             // 
             // xrLabel12
             // 
-            this.xrLabel12.BackColor = System.Drawing.Color.LightGray;
+            this.xrLabel12.BackColor = System.Drawing.Color.Transparent;
             this.xrLabel12.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.xrLabel12.BorderWidth = 0.5F;
-            this.xrLabel12.Font = new System.Drawing.Font("Cairo", 10F, System.Drawing.FontStyle.Bold);
-            this.xrLabel12.LocationFloat = new DevExpress.Utils.PointFloat(458.0628F, 110.2574F);
+            this.xrLabel12.Dpi = 254F;
+            this.xrLabel12.Font = new System.Drawing.Font("Cairo", 7F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.xrLabel12.LocationFloat = new DevExpress.Utils.PointFloat(374.3743F, 300.6501F);
             this.xrLabel12.Multiline = true;
             this.xrLabel12.Name = "xrLabel12";
-            this.xrLabel12.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel12.SizeF = new System.Drawing.SizeF(115.3846F, 27.56731F);
+            this.xrLabel12.Padding = new DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254F);
+            this.xrLabel12.SizeF = new System.Drawing.SizeF(343.6783F, 46.2085F);
             this.xrLabel12.StylePriority.UseBackColor = false;
             this.xrLabel12.StylePriority.UseBorders = false;
             this.xrLabel12.StylePriority.UseBorderWidth = false;
@@ -737,12 +793,13 @@ namespace el_shabander
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.TotalAll.BorderWidth = 0.5F;
-            this.TotalAll.Font = new System.Drawing.Font("Cairo", 10F, System.Drawing.FontStyle.Bold);
-            this.TotalAll.LocationFloat = new DevExpress.Utils.PointFloat(338.5116F, 54.09147F);
+            this.TotalAll.Dpi = 254F;
+            this.TotalAll.Font = new System.Drawing.Font("Cairo", 7F, System.Drawing.FontStyle.Bold);
+            this.TotalAll.LocationFloat = new DevExpress.Utils.PointFloat(25F, 162.8251F);
             this.TotalAll.Multiline = true;
             this.TotalAll.Name = "TotalAll";
-            this.TotalAll.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.TotalAll.SizeF = new System.Drawing.SizeF(112.2596F, 27.32907F);
+            this.TotalAll.Padding = new DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254F);
+            this.TotalAll.SizeF = new System.Drawing.SizeF(337.1627F, 46.2085F);
             this.TotalAll.StylePriority.UseBorders = false;
             this.TotalAll.StylePriority.UseBorderWidth = false;
             this.TotalAll.StylePriority.UseFont = false;
@@ -752,17 +809,18 @@ namespace el_shabander
             // 
             // xrLabel8
             // 
-            this.xrLabel8.BackColor = System.Drawing.Color.LightGray;
+            this.xrLabel8.BackColor = System.Drawing.Color.Transparent;
             this.xrLabel8.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.xrLabel8.BorderWidth = 0.5F;
-            this.xrLabel8.Font = new System.Drawing.Font("Cairo", 10F, System.Drawing.FontStyle.Bold);
-            this.xrLabel8.LocationFloat = new DevExpress.Utils.PointFloat(458.0628F, 53.7738F);
+            this.xrLabel8.Dpi = 254F;
+            this.xrLabel8.Font = new System.Drawing.Font("Cairo", 7F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.xrLabel8.LocationFloat = new DevExpress.Utils.PointFloat(374.3743F, 162.8251F);
             this.xrLabel8.Multiline = true;
             this.xrLabel8.Name = "xrLabel8";
-            this.xrLabel8.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel8.SizeF = new System.Drawing.SizeF(115.3846F, 27.56733F);
+            this.xrLabel8.Padding = new DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254F);
+            this.xrLabel8.SizeF = new System.Drawing.SizeF(343.6783F, 46.2085F);
             this.xrLabel8.StylePriority.UseBackColor = false;
             this.xrLabel8.StylePriority.UseBorders = false;
             this.xrLabel8.StylePriority.UseBorderWidth = false;
@@ -771,59 +829,20 @@ namespace el_shabander
             this.xrLabel8.Text = "الاجمالى";
             this.xrLabel8.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
             // 
-            // xrLabel2
-            // 
-            this.xrLabel2.BackColor = System.Drawing.Color.LightGray;
-            this.xrLabel2.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
-            | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            this.xrLabel2.BorderWidth = 0.5F;
-            this.xrLabel2.Font = new System.Drawing.Font("Cairo", 10F, System.Drawing.FontStyle.Bold);
-            this.xrLabel2.LocationFloat = new DevExpress.Utils.PointFloat(130.8609F, 82.01559F);
-            this.xrLabel2.Multiline = true;
-            this.xrLabel2.Name = "xrLabel2";
-            this.xrLabel2.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel2.SizeF = new System.Drawing.SizeF(116.4263F, 27.56732F);
-            this.xrLabel2.StylePriority.UseBackColor = false;
-            this.xrLabel2.StylePriority.UseBorders = false;
-            this.xrLabel2.StylePriority.UseBorderWidth = false;
-            this.xrLabel2.StylePriority.UseFont = false;
-            this.xrLabel2.StylePriority.UseTextAlignment = false;
-            this.xrLabel2.Text = "بعد الخصم";
-            this.xrLabel2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
-            // 
-            // Total
-            // 
-            this.Total.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
-            | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            this.Total.BorderWidth = 0.5F;
-            this.Total.Font = new System.Drawing.Font("Cairo", 10F, System.Drawing.FontStyle.Bold);
-            this.Total.LocationFloat = new DevExpress.Utils.PointFloat(5.884582F, 82.25373F);
-            this.Total.Multiline = true;
-            this.Total.Name = "Total";
-            this.Total.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.Total.SizeF = new System.Drawing.SizeF(116.7096F, 27.32913F);
-            this.Total.StylePriority.UseBorders = false;
-            this.Total.StylePriority.UseBorderWidth = false;
-            this.Total.StylePriority.UseFont = false;
-            this.Total.StylePriority.UseTextAlignment = false;
-            this.Total.Text = "xrLabel2";
-            this.Total.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight;
-            // 
             // xrLabel22
             // 
-            this.xrLabel22.BackColor = System.Drawing.Color.LightGray;
+            this.xrLabel22.BackColor = System.Drawing.Color.Transparent;
             this.xrLabel22.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.xrLabel22.BorderWidth = 0.5F;
-            this.xrLabel22.Font = new System.Drawing.Font("Cairo", 10F, System.Drawing.FontStyle.Bold);
-            this.xrLabel22.LocationFloat = new DevExpress.Utils.PointFloat(169.1977F, 159.956F);
+            this.xrLabel22.Dpi = 254F;
+            this.xrLabel22.Font = new System.Drawing.Font("Cairo", 6F, System.Drawing.FontStyle.Bold);
+            this.xrLabel22.LocationFloat = new DevExpress.Utils.PointFloat(202.4802F, 375.9392F);
             this.xrLabel22.Multiline = true;
             this.xrLabel22.Name = "xrLabel22";
-            this.xrLabel22.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel22.SizeF = new System.Drawing.SizeF(85.97755F, 39.79181F);
+            this.xrLabel22.Padding = new DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254F);
+            this.xrLabel22.SizeF = new System.Drawing.SizeF(125.7788F, 101.0712F);
             this.xrLabel22.StylePriority.UseBackColor = false;
             this.xrLabel22.StylePriority.UseBorders = false;
             this.xrLabel22.StylePriority.UseBorderWidth = false;
@@ -838,12 +857,13 @@ namespace el_shabander
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.companymob.BorderWidth = 0.5F;
-            this.companymob.Font = new System.Drawing.Font("Cairo", 10F, System.Drawing.FontStyle.Bold);
-            this.companymob.LocationFloat = new DevExpress.Utils.PointFloat(5.884582F, 159.956F);
+            this.companymob.Dpi = 254F;
+            this.companymob.Font = new System.Drawing.Font("Cairo", 6F, System.Drawing.FontStyle.Bold);
+            this.companymob.LocationFloat = new DevExpress.Utils.PointFloat(13.26964F, 375.9392F);
             this.companymob.Multiline = true;
             this.companymob.Name = "companymob";
-            this.companymob.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.companymob.SizeF = new System.Drawing.SizeF(163.3132F, 39.79181F);
+            this.companymob.Padding = new DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254F);
+            this.companymob.SizeF = new System.Drawing.SizeF(189.2105F, 101.0712F);
             this.companymob.StylePriority.UseBorders = false;
             this.companymob.StylePriority.UseBorderWidth = false;
             this.companymob.StylePriority.UseFont = false;
@@ -853,17 +873,18 @@ namespace el_shabander
             // 
             // xrLabel20
             // 
-            this.xrLabel20.BackColor = System.Drawing.Color.LightGray;
+            this.xrLabel20.BackColor = System.Drawing.Color.Transparent;
             this.xrLabel20.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.xrLabel20.BorderWidth = 0.5F;
-            this.xrLabel20.Font = new System.Drawing.Font("Cairo", 10F, System.Drawing.FontStyle.Bold);
-            this.xrLabel20.LocationFloat = new DevExpress.Utils.PointFloat(501.1489F, 159.956F);
+            this.xrLabel20.Dpi = 254F;
+            this.xrLabel20.Font = new System.Drawing.Font("Cairo", 6F, System.Drawing.FontStyle.Bold);
+            this.xrLabel20.LocationFloat = new DevExpress.Utils.PointFloat(620.4129F, 375.9392F);
             this.xrLabel20.Multiline = true;
             this.xrLabel20.Name = "xrLabel20";
-            this.xrLabel20.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel20.SizeF = new System.Drawing.SizeF(72.29855F, 39.79181F);
+            this.xrLabel20.Padding = new DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254F);
+            this.xrLabel20.SizeF = new System.Drawing.SizeF(115.6025F, 101.0712F);
             this.xrLabel20.StylePriority.UseBackColor = false;
             this.xrLabel20.StylePriority.UseBorders = false;
             this.xrLabel20.StylePriority.UseBorderWidth = false;
@@ -878,12 +899,13 @@ namespace el_shabander
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.companyaddress.BorderWidth = 0.5F;
-            this.companyaddress.Font = new System.Drawing.Font("Cairo", 10F, System.Drawing.FontStyle.Bold);
-            this.companyaddress.LocationFloat = new DevExpress.Utils.PointFloat(255.1753F, 159.956F);
+            this.companyaddress.Dpi = 254F;
+            this.companyaddress.Font = new System.Drawing.Font("Cairo", 6F, System.Drawing.FontStyle.Bold);
+            this.companyaddress.LocationFloat = new DevExpress.Utils.PointFloat(328.259F, 375.9392F);
             this.companyaddress.Multiline = true;
             this.companyaddress.Name = "companyaddress";
-            this.companyaddress.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.companyaddress.SizeF = new System.Drawing.SizeF(245.9736F, 39.79181F);
+            this.companyaddress.Padding = new DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254F);
+            this.companyaddress.SizeF = new System.Drawing.SizeF(292.1539F, 101.0712F);
             this.companyaddress.StylePriority.UseBorders = false;
             this.companyaddress.StylePriority.UseBorderWidth = false;
             this.companyaddress.StylePriority.UseFont = false;
@@ -891,99 +913,20 @@ namespace el_shabander
             this.companyaddress.Text = "xrLabel2";
             this.companyaddress.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             // 
-            // cut
-            // 
-            this.cut.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
-            | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            this.cut.BorderWidth = 0.5F;
-            this.cut.Font = new System.Drawing.Font("Cairo", 10F, System.Drawing.FontStyle.Bold);
-            this.cut.LocationFloat = new DevExpress.Utils.PointFloat(5.884582F, 54.01198F);
-            this.cut.Multiline = true;
-            this.cut.Name = "cut";
-            this.cut.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.cut.SizeF = new System.Drawing.SizeF(116.7096F, 27.32909F);
-            this.cut.StylePriority.UseBorders = false;
-            this.cut.StylePriority.UseBorderWidth = false;
-            this.cut.StylePriority.UseFont = false;
-            this.cut.StylePriority.UseTextAlignment = false;
-            this.cut.Text = "xrLabel2";
-            this.cut.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight;
-            // 
-            // xrLabel13
-            // 
-            this.xrLabel13.BackColor = System.Drawing.Color.LightGray;
-            this.xrLabel13.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
-            | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            this.xrLabel13.BorderWidth = 0.5F;
-            this.xrLabel13.Font = new System.Drawing.Font("Cairo", 10F, System.Drawing.FontStyle.Bold);
-            this.xrLabel13.LocationFloat = new DevExpress.Utils.PointFloat(130.8609F, 53.77378F);
-            this.xrLabel13.Multiline = true;
-            this.xrLabel13.Name = "xrLabel13";
-            this.xrLabel13.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel13.SizeF = new System.Drawing.SizeF(116.4263F, 27.56733F);
-            this.xrLabel13.StylePriority.UseBackColor = false;
-            this.xrLabel13.StylePriority.UseBorders = false;
-            this.xrLabel13.StylePriority.UseBorderWidth = false;
-            this.xrLabel13.StylePriority.UseFont = false;
-            this.xrLabel13.StylePriority.UseTextAlignment = false;
-            this.xrLabel13.Text = "خصم";
-            this.xrLabel13.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
-            // 
-            // xrLabel14
-            // 
-            this.xrLabel14.BackColor = System.Drawing.Color.LightGray;
-            this.xrLabel14.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
-            | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            this.xrLabel14.BorderWidth = 0.5F;
-            this.xrLabel14.Font = new System.Drawing.Font("Cairo", 10F, System.Drawing.FontStyle.Bold);
-            this.xrLabel14.LocationFloat = new DevExpress.Utils.PointFloat(130.8609F, 110.2574F);
-            this.xrLabel14.Multiline = true;
-            this.xrLabel14.Name = "xrLabel14";
-            this.xrLabel14.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel14.SizeF = new System.Drawing.SizeF(116.4263F, 27.56732F);
-            this.xrLabel14.StylePriority.UseBackColor = false;
-            this.xrLabel14.StylePriority.UseBorders = false;
-            this.xrLabel14.StylePriority.UseBorderWidth = false;
-            this.xrLabel14.StylePriority.UseFont = false;
-            this.xrLabel14.StylePriority.UseTextAlignment = false;
-            this.xrLabel14.Text = "ضريبة";
-            this.xrLabel14.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
-            // 
-            // tax
-            // 
-            this.tax.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
-            | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            this.tax.BorderWidth = 0.5F;
-            this.tax.Font = new System.Drawing.Font("Cairo", 10F, System.Drawing.FontStyle.Bold);
-            this.tax.LocationFloat = new DevExpress.Utils.PointFloat(5.884582F, 110.4955F);
-            this.tax.Multiline = true;
-            this.tax.Name = "tax";
-            this.tax.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.tax.SizeF = new System.Drawing.SizeF(116.7096F, 27.32913F);
-            this.tax.StylePriority.UseBorders = false;
-            this.tax.StylePriority.UseBorderWidth = false;
-            this.tax.StylePriority.UseFont = false;
-            this.tax.StylePriority.UseTextAlignment = false;
-            this.tax.Text = "xrLabel2";
-            this.tax.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight;
-            // 
             // xrLabel16
             // 
-            this.xrLabel16.BackColor = System.Drawing.Color.LightGray;
+            this.xrLabel16.BackColor = System.Drawing.Color.Transparent;
             this.xrLabel16.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.xrLabel16.BorderWidth = 0.5F;
-            this.xrLabel16.Font = new System.Drawing.Font("Cairo", 10F, System.Drawing.FontStyle.Bold);
-            this.xrLabel16.LocationFloat = new DevExpress.Utils.PointFloat(130.8609F, 25.53197F);
+            this.xrLabel16.Dpi = 254F;
+            this.xrLabel16.Font = new System.Drawing.Font("Cairo", 7F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.xrLabel16.LocationFloat = new DevExpress.Utils.PointFloat(374.3743F, 24.99999F);
             this.xrLabel16.Multiline = true;
             this.xrLabel16.Name = "xrLabel16";
-            this.xrLabel16.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel16.SizeF = new System.Drawing.SizeF(116.4263F, 27.56732F);
+            this.xrLabel16.Padding = new DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254F);
+            this.xrLabel16.SizeF = new System.Drawing.SizeF(343.6784F, 46.20848F);
             this.xrLabel16.StylePriority.UseBackColor = false;
             this.xrLabel16.StylePriority.UseBorders = false;
             this.xrLabel16.StylePriority.UseBorderWidth = false;
@@ -998,12 +941,13 @@ namespace el_shabander
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.aftercut.BorderWidth = 0.5F;
-            this.aftercut.Font = new System.Drawing.Font("Cairo", 10F, System.Drawing.FontStyle.Bold);
-            this.aftercut.LocationFloat = new DevExpress.Utils.PointFloat(5.884582F, 25.77024F);
+            this.aftercut.Dpi = 254F;
+            this.aftercut.Font = new System.Drawing.Font("Cairo", 7F, System.Drawing.FontStyle.Bold);
+            this.aftercut.LocationFloat = new DevExpress.Utils.PointFloat(26.22119F, 25.00009F);
             this.aftercut.Multiline = true;
             this.aftercut.Name = "aftercut";
-            this.aftercut.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.aftercut.SizeF = new System.Drawing.SizeF(116.7096F, 27.32909F);
+            this.aftercut.Padding = new DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254F);
+            this.aftercut.SizeF = new System.Drawing.SizeF(334.7203F, 46.2085F);
             this.aftercut.StylePriority.UseBorders = false;
             this.aftercut.StylePriority.UseBorderWidth = false;
             this.aftercut.StylePriority.UseFont = false;
@@ -1017,12 +961,13 @@ namespace el_shabander
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.Remaining.BorderWidth = 0.5F;
-            this.Remaining.Font = new System.Drawing.Font("Cairo", 10F, System.Drawing.FontStyle.Bold);
-            this.Remaining.LocationFloat = new DevExpress.Utils.PointFloat(338.5116F, 110.7339F);
+            this.Remaining.Dpi = 254F;
+            this.Remaining.Font = new System.Drawing.Font("Cairo", 7F, System.Drawing.FontStyle.Bold);
+            this.Remaining.LocationFloat = new DevExpress.Utils.PointFloat(25F, 300.6501F);
             this.Remaining.Multiline = true;
             this.Remaining.Name = "Remaining";
-            this.Remaining.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.Remaining.SizeF = new System.Drawing.SizeF(112.2596F, 27.32906F);
+            this.Remaining.Padding = new DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254F);
+            this.Remaining.SizeF = new System.Drawing.SizeF(337.1627F, 46.2085F);
             this.Remaining.StylePriority.UseBorders = false;
             this.Remaining.StylePriority.UseBorderWidth = false;
             this.Remaining.StylePriority.UseFont = false;
@@ -1032,17 +977,18 @@ namespace el_shabander
             // 
             // xrLabel19
             // 
-            this.xrLabel19.BackColor = System.Drawing.Color.LightGray;
+            this.xrLabel19.BackColor = System.Drawing.Color.Transparent;
             this.xrLabel19.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.xrLabel19.BorderWidth = 0.5F;
-            this.xrLabel19.Font = new System.Drawing.Font("Cairo", 10F, System.Drawing.FontStyle.Bold);
-            this.xrLabel19.LocationFloat = new DevExpress.Utils.PointFloat(458.0628F, 82.0156F);
+            this.xrLabel19.Dpi = 254F;
+            this.xrLabel19.Font = new System.Drawing.Font("Cairo", 7F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.xrLabel19.LocationFloat = new DevExpress.Utils.PointFloat(374.3743F, 231.7376F);
             this.xrLabel19.Multiline = true;
             this.xrLabel19.Name = "xrLabel19";
-            this.xrLabel19.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel19.SizeF = new System.Drawing.SizeF(115.3846F, 27.56729F);
+            this.xrLabel19.Padding = new DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254F);
+            this.xrLabel19.SizeF = new System.Drawing.SizeF(343.6783F, 46.2085F);
             this.xrLabel19.StylePriority.UseBackColor = false;
             this.xrLabel19.StylePriority.UseBorders = false;
             this.xrLabel19.StylePriority.UseBorderWidth = false;
@@ -1051,12 +997,7 @@ namespace el_shabander
             this.xrLabel19.Text = "المدفوع";
             this.xrLabel19.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
             // 
-            // dataSet12
-            // 
-            this.dataSet12.DataSetName = "DataSet1";
-            this.dataSet12.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // XtraReport4
+            // XtraReport5
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
             this.TopMargin,
@@ -1066,23 +1007,24 @@ namespace el_shabander
             this.GroupHeader1,
             this.ReportFooter});
             this.ComponentStorage.AddRange(new System.ComponentModel.IComponent[] {
-            this.dataSet11,
-            this.dataSet12});
+            this.dataSet11});
             this.DataMember = "tb_order";
-            this.DataSource = this.dataSet12;
+            this.DataSource = this.dataSet11;
             this.DisplayName = "طباعة الفاتورة";
+            this.Dpi = 254F;
             this.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.Margins = new System.Drawing.Printing.Margins(0, 0, 0, 0);
-            this.PageHeight = 827;
-            this.PageWidth = 583;
-            this.PaperKind = System.Drawing.Printing.PaperKind.A5;
+            this.Margins = new System.Drawing.Printing.Margins(0, 0, 0, 50);
+            this.PageHeight = 1050;
+            this.PageWidth = 760;
+            this.PaperKind = System.Drawing.Printing.PaperKind.Custom;
+            this.ReportUnit = DevExpress.XtraReports.UI.ReportUnit.TenthsOfAMillimeter;
+            this.RollPaper = true;
             this.ShowPrintMarginsWarning = false;
-            this.SnapGridSize = 9.84252F;
+            this.SnapGridSize = 25F;
             this.Version = "19.2";
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet11)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataSet12)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
 
         }
@@ -1125,10 +1067,6 @@ namespace el_shabander
         public DevExpress.XtraReports.UI.XRLabel companymob;
         private DevExpress.XtraReports.UI.XRLabel xrLabel20;
         public DevExpress.XtraReports.UI.XRLabel companyaddress;
-        public DevExpress.XtraReports.UI.XRLabel cut;
-        private DevExpress.XtraReports.UI.XRLabel xrLabel13;
-        private DevExpress.XtraReports.UI.XRLabel xrLabel14;
-        public DevExpress.XtraReports.UI.XRLabel tax;
         private DevExpress.XtraReports.UI.XRLabel xrLabel16;
         public DevExpress.XtraReports.UI.XRLabel aftercut;
         public DevExpress.XtraReports.UI.XRLabel Remaining;
@@ -1136,8 +1074,6 @@ namespace el_shabander
         public DevExpress.XtraReports.UI.XRLabel xrLabel1;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell12;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell11;
-        private DevExpress.XtraReports.UI.XRLabel xrLabel2;
-        public DevExpress.XtraReports.UI.XRLabel Total;
         public DevExpress.XtraReports.UI.XRLabel Payment;
         private DevExpress.XtraReports.UI.XRLabel xrLabel12;
         public DevExpress.XtraReports.UI.XRLabel TotalAll;
@@ -1147,9 +1083,10 @@ namespace el_shabander
         public DevExpress.XtraReports.UI.XRLabel description;
         private DevExpress.XtraReports.UI.XRLabel xrLabel21;
         public DevExpress.XtraReports.UI.XRLabel casher;
-        private DevExpress.XtraReports.UI.XRLine xrLine2;
-        private DevExpress.XtraReports.UI.XRLine xrLine1;
-        private pl.DataSet1 dataSet12;
         public DevExpress.XtraReports.UI.XRLabel xrLabel4;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell16;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell14;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell15;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell13;
     }
 }

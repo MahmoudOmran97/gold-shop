@@ -16,6 +16,8 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 using System.Net.Mail;
 using System.Net;
 using System.Globalization;
+using System.IO;
+using DevExpress.XtraReports.UI;
 
 namespace el_shabander.pl
 {
@@ -30,7 +32,7 @@ namespace el_shabander.pl
         Notfication notfication = new Notfication();
         DataTable datasells = new DataTable();
         tb_OperationLog tb_OperationLog = new tb_OperationLog();
-       
+        string print_check;
         double oldamount = 0;
         int selectrowindex;
         double curnt, prives;
@@ -57,7 +59,7 @@ namespace el_shabander.pl
 
                 buy21.Text = price.Buy21.ToString("N0");
                 sell21.Text = price.Sell21.ToString("N0");
-                edt_buy.Text= price.Buy21.ToString("N0");
+                edt_buy.Text = price.Buy21.ToString("N0");
                 var localTime = price.UpdatedAtUtc.ToLocalTime();
                 updatetime.Text = "اخر تحديث: " + localTime.ToString("yyyy-MM-dd hh:mm tt", CultureInfo.InvariantCulture);
             }
@@ -85,7 +87,11 @@ namespace el_shabander.pl
         {
             this.WindowState = FormWindowState.Maximized;
             comboBox1.Text = "نقدى";
-
+            var setting = db.AppSettings.AsNoTracking()
+                            .Select(s => new { s.printty })
+                            .FirstOrDefault();
+            if (setting != null)
+                print_check = setting.printty;
             // تحميل سعر الذهب اللحظى فورًا، ثم تحديثه تلقائيًا كل 10 ثواني
             goldPriceTimer = new System.Windows.Forms.Timer { Interval = 10000 };
             goldPriceTimer.Tick += async (s, ev) => await LoadLiveGoldPriceAsync();
@@ -128,7 +134,7 @@ namespace el_shabander.pl
                 edt_date.Text = (DateTime.Now).ToString();
                 btn_edit.Enabled = false;
                 btn_delete.Enabled = false;
-               
+
                 pro_call();
 
                 saveButtonClicked = false;
@@ -699,10 +705,10 @@ namespace el_shabander.pl
                 if (row.Cells[0].Value != null && !string.IsNullOrEmpty(row.Cells[0].Value.ToString()))
                 {
                     edt_name.Text = row.Cells[0].Value.ToString();
-                   
+
                     txt_qt.Text = row.Cells[3].Value.ToString();
 
-                  
+
 
                     qts_qt.Text = row.Cells[3].Value.ToString();
                     // edt_sell.Text = row.Cells[5].Value.ToString();
@@ -729,12 +735,12 @@ namespace el_shabander.pl
         {
             tb_stuk = db.tb_stuk.Where(x => x.stuk_name == edt_name.Text).FirstOrDefault();
 
-          
+
             if (tb_stuk != null)
             {
-              
+
                 qtstuck.Text = tb_stuk.stuk_qt.ToString();
-               
+
 
             }
 
@@ -931,7 +937,7 @@ namespace el_shabander.pl
 
         private void save_SelectedIndexChanged(object sender, EventArgs e)
         {
-             var tb_safe = db.tb_safe.Where(x => x.safe_name == save.Text).FirstOrDefault();
+            var tb_safe = db.tb_safe.Where(x => x.safe_name == save.Text).FirstOrDefault();
 
 
             if (tb_safe != null)
@@ -951,7 +957,7 @@ namespace el_shabander.pl
             }
         }
 
-       
+
 
         private void btn_changecus_Click(object sender, EventArgs e)
         {
@@ -1099,13 +1105,370 @@ namespace el_shabander.pl
                 // إذا كانت القيمة فارغة، يمكنك تعيين القيمة الافتراضية مرة أخرى
 
                 edt_code.Text = "999";
-               
+
                 // edt_cat.Text = tb_stuk.stuk_cat;
 
             }
-            
+
         }
 
+        /// <summary>
+        /// بتحدث كمية الصنف فى جدول المخزون (tb_stuk) بمقدار qtyDelta
+        /// (موجب = إضافة للمخزون، سالب = خصم من المخزون).
+        /// البحث بيتم بمطابقة stuk_name.
+        /// </summary>
+        private void UpdateStockQuantity(string stukName, double qtyDelta)
+        {
+            if (string.IsNullOrWhiteSpace(stukName) || qtyDelta == 0)
+                return;
+
+            var stukItem = db.tb_stuk.Where(x => x.stuk_name == stukName).FirstOrDefault();
+            if (stukItem != null)
+            {
+                stukItem.stuk_qt += qtyDelta;
+                db.Entry(stukItem).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
+            }
+        }
+        public DataSet da;
+        private void simpleButton1_Click(object sender, EventArgs e)
+        {
+            toast toast = new toast();
+            dialog dialog = new dialog();
+
+            // التحقق من أن اسم المورد غير فارغ
+            if (string.IsNullOrWhiteSpace(edt_name.Text))
+            {
+                dialog.Width = this.Width;
+                dialog.txt_capthion.Text = "اسم المورد مطلوب";
+                dialog.Show();
+                return;
+            }
+
+
+            // التحقق من أن الحقول الأخرى تحتوي على قيم صالحة
+            double buyPrice = Convert.ToDouble(edt_buy.Text);
+            double quantity = Convert.ToDouble(txt_qt.Text);
+            double payment = Convert.ToDouble(edt_pay.Text);
+            double totalData = Convert.ToDouble(txt_totaldata.Text);
+            double stayAmount = Convert.ToDouble(edt_stay.Text);
+            list_pur = db.tb_pur.ToList();
+            if (id == 0)
+            {
+
+                if (dataGridView1.Rows.Count - 1 != 0)
+                {
+                    tb_Pur.pur_supp = edt_supp.Text;
+                    tb_Supp = db.tb_supp.Where(x => x.supp_name == edt_supp.Text).FirstOrDefault();
+                    if (tb_Supp == null)
+                    {
+                        MessageBox.Show("لا يوجد بيانات لهذا المورد.", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return; // الخروج من العملية إذا لم يتم العثور على العميل
+                    }
+                    tb_Pur.pur_name = edt_name.Text;
+
+                    tb_Pur.pur_supp = edt_supp.Text;
+                    tb_Pur.supp_id = tb_Supp.id;
+                    tb_Pur.pur_dat = DateTime.Now;
+                    tb_Pur.pur_buy = buyPrice;
+                    tb_Pur.safe = save.Text;
+                    tb_Pur.pur_qt = quantity;
+                    tb_Pur.pay = payment;
+                    tb_Pur.pur_tbuy = stayAmount;
+                    tb_Pur.supp_price = Convert.ToDouble(edt_staybehaver.Text);
+                    tb_Pur.total_price = totalData;
+                    tb_Pur.stay = (Convert.ToDouble(edt_stay.Text)) - Convert.ToDouble(edt_pay.Text);
+                    tb_Pur.invocie_id = db.tb_pur.Any() ? db.tb_pur.Max(x => x.invocie_id) + 1 : 1;
+                    main frm_supp_Add = (main)Application.OpenForms["main"];
+                    if (frm_supp_Add != null)
+                    {
+                        // التحقق من أن la_roll يحتوي على قيمة
+                        if (!string.IsNullOrEmpty(frm_supp_Add.la_username.Text))
+                        {
+                            tb_Pur.namecasher = frm_supp_Add.la_username.Text;
+                        }
+                    }
+                    db.tb_pur.Add(tb_Pur);
+                    //db.SaveChanges();
+
+                    tb_Supp.total_price = tb_Pur.stay;
+                    db.Entry(tb_Supp).State = System.Data.Entity.EntityState.Modified;
+                    db.SaveChanges();
+                    if (tb_Supp.supp_max <= tb_Supp.total_price && tb_Supp.supp_max != 0)
+                    {
+                        // إنشاء رسالة إشعار تتضمن اسم العميل والتحذير من تجاوز الحد الأقصى
+                        string notificationMessage = $"المورد: {tb_Supp.supp_name} تجاوز الحد الأقصى المسموح له (الحد الأقصى: {tb_Supp.supp_max})، الرجاء دفع المبلغ هذا  {tb_Supp.total_price } له.";
+                        SendEmailWithHtmlGridData(notificationMessage);
+                        // إنشاء الإشعار وتحديد التاريخ
+                        notfication.notfication1 = notificationMessage;
+                        notfication.CreatedAt = DateTime.Now;
+
+                        // إضافة الإشعار إلى قاعدة البيانات
+                        db.Notfications.Add(notfication);
+                        db.SaveChanges();
+
+                    }
+                    tb_Safe = db.tb_safe.Where(x => x.safe_name == save.Text).FirstOrDefault();
+                    tb_Safe.safe_count -= payment;
+                    db.Entry(tb_Safe).State = System.Data.Entity.EntityState.Modified;
+                    db.SaveChanges();
+
+                    main user = (main)Application.OpenForms["main"];
+                    string casherName = user?.la_username.Text;
+                    var openSession = db.Sessions.FirstOrDefault(x => x.namecasher == casherName && x.IsClosed == true);
+                    if (openSession != null)
+                    {
+                        tb_OperationLog.SessionID = openSession.SessionID;
+                        tb_OperationLog.OperationType = "اضافة";
+                        tb_OperationLog.TableName = "عملية شراء";
+                        tb_OperationLog.OldValue = openSession.ClosingAmount;
+                        tb_OperationLog.NewValue = Convert.ToDouble(openSession.ClosingAmount - tb_Pur.pay);
+                        tb_OperationLog.AmountDifference = -tb_Pur.pay;
+                        db.tb_OperationLog.Add(tb_OperationLog);
+                        db.SaveChanges();
+
+                        openSession.ClosingAmount = tb_OperationLog.NewValue;
+
+                        db.SaveChanges();
+
+                    }
+
+
+                    toast.Width = this.Width;
+                    toast.txt_caption.Text = "تم إجراء عملية الشراء";
+                    toast.Show();
+                    ss();
+                    listorder = db.tb_ordersellpop.Where(x => x.sell_id == tb_Pur.id).ToList();
+                    da = new DataSet1();
+                    da.Tables["tb_order"].Clear();
+
+                    int s = 1;
+                    // ✅ جلب بيانات الأصناف دفعة واحدة بدلاً من query لكل صنف
+                    var productNames = listorder.Select(o => o.name_sell).Distinct().ToList();
+                    var productsDict = db.tb_stuk.AsNoTracking()
+                                        .Where(x => productNames.Contains(x.stuk_name))
+                                        .ToDictionary(x => x.stuk_name);
+
+                    foreach (var order in listorder)
+                    {
+                        if (productsDict.TryGetValue(order.name_sell, out var stuk))
+                        {
+                           
+                            da.Tables["tb_order"].Rows.Add(s++, order.name_sell, order.price_sell, order.qt_sell, order.tprice_sell, stuk.stuk_type, order.karat, order.sell_price_sell);
+                        }
+                    }
+
+                    PrintInvoice(tb_Pur);
+                   
+
+                }
+                else
+                {
+                    dialog.txt_capthion.Text = "لا يمكن حفظ فاتورة بدون بيانات";
+                    dialog.Show();
+                }
+            }
+            else
+            {
+                // تعديل عملية شراء موجودة
+                tb_Supp = db.tb_supp.Where(x => x.supp_name == edt_supp.Text).FirstOrDefault();
+                tb_Pur = db.tb_pur.Where(x => x.id == id).FirstOrDefault();
+                tb_Pur.pur_supp = edt_supp.Text;
+                tb_Pur.supp_id = tb_Supp.id;
+                tb_Pur.pur_name = edt_name.Text;
+
+                tb_Pur.pur_dat = Convert.ToDateTime(edt_date.Text);
+                tb_Pur.pur_buy = buyPrice;
+                tb_Pur.safe = save.Text;
+                tb_Pur.pur_qt = quantity;
+                tb_Pur.pay = payment;
+                tb_Pur.pur_tbuy = stayAmount;
+                tb_Pur.supp_price = Convert.ToDouble(edt_staybehaver.Text);
+                tb_Pur.total_price = totalData;
+                tb_Pur.stay = (Convert.ToDouble(edt_stay.Text)) - Convert.ToDouble(edt_pay.Text);
+                tb_Pur.invocie_id = Convert.ToInt32(invice_id.Text);
+                main frm_supp_Add = (main)Application.OpenForms["main"];
+                if (frm_supp_Add != null)
+                {
+                    // التحقق من أن la_roll يحتوي على قيمة
+                    if (!string.IsNullOrEmpty(frm_supp_Add.la_username.Text))
+                    {
+                        tb_Pur.namecasher = frm_supp_Add.la_username.Text;
+                    }
+                }
+                db.Entry(tb_Pur).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
+
+                prives = Convert.ToDouble(tb_Pur.stay);
+                double difference = prives - curnt;
+
+                tb_Supp.total_price += difference;
+                db.Entry(tb_Supp).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
+                if (tb_Supp.supp_max <= tb_Supp.total_price && tb_Supp.supp_max != 0)
+                {
+                    // إنشاء رسالة إشعار تتضمن اسم العميل والتحذير من تجاوز الحد الأقصى
+                    string notificationMessage = $"المورد: {tb_Supp.supp_name} تجاوز الحد الأقصى المسموح له (الحد الأقصى: {tb_Supp.supp_max})، الرجاء دفع المبلغ هذا  {tb_Supp.total_price } له.";
+                    SendEmailWithHtmlGridData(notificationMessage);
+                    // إنشاء الإشعار وتحديد التاريخ
+                    notfication.notfication1 = notificationMessage;
+                    notfication.CreatedAt = DateTime.Now;
+
+                    // إضافة الإشعار إلى قاعدة البيانات
+                    db.Notfications.Add(notfication);
+                    db.SaveChanges();
+
+                }
+                tb_Safe = db.tb_safe.Where(x => x.safe_name == save.Text).FirstOrDefault();
+                tb_Safe.safe_count -= (tb_Pur.pay - oldamount);
+                db.Entry(tb_Safe).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
+
+                main user = (main)Application.OpenForms["main"];
+                string casherName = user?.la_username.Text;
+                var openSession = db.Sessions.FirstOrDefault(x => x.namecasher == casherName && x.IsClosed == true);
+                if (openSession != null)
+                {
+                    tb_OperationLog.SessionID = openSession.SessionID;
+                    tb_OperationLog.OperationType = "تعديل";
+                    tb_OperationLog.TableName = "عملية شراء";
+                    tb_OperationLog.OldValue = openSession.ClosingAmount;
+                    tb_OperationLog.NewValue = Convert.ToDouble(openSession.ClosingAmount - (tb_Pur.pay - oldamount));
+                    tb_OperationLog.AmountDifference = oldamount - tb_Pur.pay;
+                    db.tb_OperationLog.Add(tb_OperationLog);
+                    db.SaveChanges();
+
+                    openSession.ClosingAmount = tb_OperationLog.NewValue;
+
+                    db.SaveChanges();
+
+                }
+
+
+
+                toast.Width = this.Width;
+                toast.txt_caption.Text = "تم تعديل عملية الشراء";
+                toast.Show();
+                ss();
+                listorder = db.tb_ordersellpop.Where(x => x.sell_id == tb_Pur.id).ToList();
+                da = new DataSet1();
+                da.Tables["tb_order"].Clear();
+
+                int s = 1;
+                // ✅ جلب بيانات الأصناف دفعة واحدة بدلاً من query لكل صنف
+                var productNames = listorder.Select(o => o.name_sell).Distinct().ToList();
+                var productsDict = db.tb_stuk.AsNoTracking()
+                                    .Where(x => productNames.Contains(x.stuk_name))
+                                    .ToDictionary(x => x.stuk_name);
+
+                foreach (var order in listorder)
+                {
+                    if (productsDict.TryGetValue(order.name_sell, out var stuk))
+                    {
+
+                        da.Tables["tb_order"].Rows.Add(s++, order.name_sell, order.price_sell, order.qt_sell, order.tprice_sell, stuk.stuk_type, order.karat, order.sell_price_sell);
+                    }
+                }
+
+                PrintInvoice(tb_Pur);
+            }
+        }
+        private void PrintInvoice(tb_pur sellData)
+        {
+            var setting = db.AppSettings.FirstOrDefault(y => y.id == 1);
+            using (MemoryStream ms = new MemoryStream(setting.logocomp))
+            {
+                ReportPrintTool printTool;
+
+                if (print_check == "A5")
+                {
+                    XtraReport4 report = new XtraReport4();
+                 /*   FillReportData(report.aftercut, report.cut, report.tax, report.Remaining,
+                        report.customer, report.cutomeraddress, report.customernum, report.casher,
+                        report.date, report.Total, report.TotalAll, report.Payment, report.StayCustomer,
+                        report.namecompany, report.companyaddress, report.companymob, report.description, report.xrLabel1, report.xrLabel4,
+                        report.invo_num, report.logo, sellData, setting, ms);*/
+                    report.DataSource = da;
+                    report.DataMember = "tb_order";
+                    report.PrinterName = Properties.Settings.Default.a5print;
+                    printTool = new ReportPrintTool(report);
+                }
+                else
+                {
+                    XtraReport5 report = new XtraReport5();
+                    FillReportData(report.aftercut,  report.Remaining,
+                        report.customer, report.cutomeraddress, report.customernum, report.casher,
+                        report.date,  report.TotalAll, report.Payment, report.StayCustomer,
+                        report.namecompany, report.companyaddress, report.companymob, report.description,
+                        report.invo_num, report.logo, sellData, setting, ms);
+                    report.DataSource = da;
+                    report.DataMember = "tb_order";
+                    report.PrinterName = Properties.Settings.Default.invoceprint;
+                    printTool = new ReportPrintTool(report);
+                }
+
+                saveButtonClicked = true;
+                this.Close();
+
+                printTool.AutoShowParametersPanel = false;
+                printTool.PrintingSystem.StartPrint += (senderPreview, eventArgsPreview) =>
+                {
+                    eventArgsPreview.PrintDocument.DefaultPageSettings.Margins =
+                        new System.Drawing.Printing.Margins(25, 25, 25, 25);
+                };
+
+                if (Properties.Settings.Default.checkinprint == "FAST")
+                {
+                    printTool.PrintingSystem.ShowMarginsWarning = false;
+                    printTool.Print();
+                }
+                else
+                {
+                    printTool.PrintingSystem.ShowMarginsWarning = false;
+                    printTool.PreviewForm.Shown += (senderPreview, eventArgsPreview) =>
+                    {
+                        if (print_check != "A5")
+                            printTool.PreviewForm.PrintControl.Zoom = 1.5f;
+                        printTool.PrintDialog();
+                    };
+                    printTool.ShowPreview();
+                }
+            }
+        }
+        private void FillReportData(
+           DevExpress.XtraReports.UI.XRLabel aftercut, 
+            DevExpress.XtraReports.UI.XRLabel remaining,
+           DevExpress.XtraReports.UI.XRLabel customer_lbl, DevExpress.XtraReports.UI.XRLabel customerAddress,
+           DevExpress.XtraReports.UI.XRLabel customerNum, DevExpress.XtraReports.UI.XRLabel casher_lbl,
+           DevExpress.XtraReports.UI.XRLabel date_lbl, 
+           DevExpress.XtraReports.UI.XRLabel totalAll, DevExpress.XtraReports.UI.XRLabel payment,
+           DevExpress.XtraReports.UI.XRLabel stayCustomer, DevExpress.XtraReports.UI.XRLabel nameCompany,
+           DevExpress.XtraReports.UI.XRLabel companyAddress, DevExpress.XtraReports.UI.XRLabel companyMob,
+           DevExpress.XtraReports.UI.XRLabel description_lbl, DevExpress.XtraReports.UI.XRLabel invoNum,
+          
+           DevExpress.XtraReports.UI.XRPictureBox logo_lbl,
+           tb_pur sellData, dynamic setting, MemoryStream ms)
+        {
+           
+         
+            remaining.Text = (Convert.ToDouble(edt_stay.Text) - Convert.ToDouble(edt_pay.Text)).ToString("#,##0.##");
+            customer_lbl.Text = edt_supp.Text;
+            customerAddress.Text = tb_Supp.supp_email.ToString();
+            customerNum.Text = tb_Supp.supp_phone.ToString();
+            casher_lbl.Text = sellData.namecasher;
+            date_lbl.Text = sellData.pur_dat.Value.ToString("yyyy-MM-dd hh:mm tt");
+            aftercut.Text = Convert.ToDouble(txt_totaldata.Text).ToString("#,##0.##");
+            totalAll.Text = Convert.ToDouble(edt_stay.Text).ToString("#,##0.##");
+            payment.Text = Convert.ToDouble(edt_pay.Text).ToString("#,##0.##");
+            stayCustomer.Text = Convert.ToDouble(edt_staybehaver.Text).ToString("#,##0.##");
+           
+            nameCompany.Text = setting.namecomp;
+            companyAddress.Text = setting.address;
+            companyMob.Text = setting.phonenam;
+            description_lbl.Text = setting.description;
+            invoNum.Text = sellData.invocie_id.ToString();
+            logo_lbl.Image = Image.FromStream(ms);
+        }
         public void ss()
         {
             if (id == 0)
@@ -1122,12 +1485,15 @@ namespace el_shabander.pl
                     tb_Ordersell.qt_sell = Convert.ToDouble(dataGridView1.Rows[i].Cells[3].Value);
                     tb_Ordersell.tprice_sell = Convert.ToDouble(dataGridView1.Rows[i].Cells[4].Value);
                     tb_Ordersell.sell_price_sell = Convert.ToDouble(dataGridView1.Rows[i].Cells[5].Value);
-                    tb_Ordersell.karat= Convert.ToDouble(dataGridView1.Rows[i].Cells[6].Value);
+                    tb_Ordersell.karat = Convert.ToDouble(dataGridView1.Rows[i].Cells[6].Value);
                     try
                     {
                         db.tb_ordersellpop.Add(tb_Ordersell);
                         db.SaveChanges();
                         // tb_Sellorder.id = x += 1;
+
+                        // فاتورة جديدة: نضيف الكمية اللى دخلت للمخزون
+                        UpdateStockQuantity(tb_Ordersell.name_sell,Convert.ToDouble( tb_Ordersell.qt_sell));
                     }
                     catch
                     {
@@ -1140,7 +1506,15 @@ namespace el_shabander.pl
             else
             {
 
-
+                // الفاتورة كانت متعدلة قبل كده: قبل ما نمسح البنود القديمة
+                // لازم نرجّع (نطرح) الكميات اللى كانت اتضافت للمخزون بيها الأول
+                if (listorder != null)
+                {
+                    foreach (var oldItem in listorder)
+                    {
+                        UpdateStockQuantity(oldItem.name_sell, -Convert.ToDouble(oldItem.qt_sell));
+                    }
+                }
 
                 db.tb_ordersellpop.RemoveRange(db.tb_ordersellpop.Where(x => x.sell_id == id));
                 db.SaveChanges();
@@ -1164,6 +1538,9 @@ namespace el_shabander.pl
                         db.tb_ordersellpop.Add(tb_Ordersell);
                         db.SaveChanges();
                         // tb_Sellorder.id = x += 1;
+
+                        // بعد كده بنضيف الكمية الجديدة (بعد التعديل) للمخزون
+                        UpdateStockQuantity(tb_Ordersell.name_sell, Convert.ToDouble(tb_Ordersell.qt_sell));
                     }
                     catch
                     {

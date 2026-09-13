@@ -1169,7 +1169,6 @@ namespace el_shabander
         public DevExpress.XtraReports.UI.XRLabel invo_num;
         private DevExpress.XtraReports.UI.XRLabel xrLabel3;
         public DevExpress.XtraReports.UI.XRLabel customer;
-        private DevExpress.XtraReports.UI.XRLabel xrLabel4;
         public DevExpress.XtraReports.UI.XRLabel customernum;
         private DevExpress.XtraReports.UI.XRLabel xrLabel6;
         private DevExpress.XtraReports.UI.XRLabel xrLabel11;
@@ -1214,5 +1213,6 @@ namespace el_shabander
         public DevExpress.XtraReports.UI.XRLabel description;
         private DevExpress.XtraReports.UI.XRLabel xrLabel21;
         public DevExpress.XtraReports.UI.XRLabel casher;
+        public DevExpress.XtraReports.UI.XRLabel xrLabel4;
     }
 }

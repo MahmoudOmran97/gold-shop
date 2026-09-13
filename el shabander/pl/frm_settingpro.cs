@@ -43,33 +43,21 @@ namespace el_shabander.pl
             
 
 
-            string encryptedSerial = Encrypt(edt_serildevice.Text, "omran");
-
-            // التحقق من مطابقة القيمة المشفرة مع الترخيص المدخل
-            if (encryptedSerial == edt_serilnam.Text)
-            {
-                // عرض رسالة تفعيل البرنامج بنجاح
-                MessageBox.Show("تم تفعيل البرنامج بنجاح.");
+           
 
                 // تحديث حالة الترخيص في الواجهة الرئيسية
-                main frm = new main();
-                frm.la_trile.Text = "مفعل";
+              //  main frm = new main();
+              //  frm.la_trile.Text = "مفعل";
                 pn_prog.Visible = true;
                 // حفظ القيم في الإعدادات
-                Properties.Settings.Default.license = edt_serilnam.Text;
+           //   Properties.Settings.Default.license = edt_serilnam.Text;
                 Properties.Settings.Default.EmailInterval = (int)edt_time.Value;
                 Properties.Settings.Default.invoceprint = txt_invoce.Text;
                 Properties.Settings.Default.barcodeprint = txt_barcode.Text;
                 Properties.Settings.Default.a5print = txt_a5.Text;
                 Properties.Settings.Default.checkinprint = fast_print.Text;
                 Properties.Settings.Default.Save();
-            }
-            else
-            {
-               
-                // عرض رسالة بأن الترخيص غير صحيح
-                MessageBox.Show("الترخيص غير صحيح.");
-            }
+            
             pn_prog.Visible = false;
             this.Close();
         }
@@ -131,8 +119,8 @@ namespace el_shabander.pl
 
 
 
-            edt_serildevice.Text = Properties.Settings.Default.serail;
-            edt_serilnam.Text = Properties.Settings.Default.license;
+           // edt_serildevice.Text = Properties.Settings.Default.serail;
+          //  edt_serilnam.Text = Properties.Settings.Default.license;
             edt_time.Value = Properties.Settings.Default.EmailInterval;
             if (Properties.Settings.Default.darkmode == true)
             {

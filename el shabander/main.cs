@@ -44,6 +44,7 @@ namespace el_shabander
         tb_user tB_user = new tb_user();
 
         private System.Timers.Timer emailTimer;
+        private Timer subscriptionCheckTimer;
         gold_shopEntities db = new gold_shopEntities();
 
         public main()
@@ -66,6 +67,29 @@ namespace el_shabander
             notificationTimer.Interval = 3000; // كل 5 ثوانٍ
             notificationTimer.Tick += NotificationTimer_Tick;
             notificationTimer.Start();
+
+            // إعادة فحص حالة الاشتراك دوريًا أثناء تشغيل البرنامج (كل 30 دقيقة)
+            // حتى يتم قفل الميزات فور انتهاء الاشتراك بدون الحاجة لإعادة تشغيل البرنامج
+            subscriptionCheckTimer = new Timer();
+            subscriptionCheckTimer.Interval = 30 * 60 * 1000;
+            subscriptionCheckTimer.Tick += (s, e) => CheckTrialExpiration(trialStartDate, la_trile);
+            subscriptionCheckTimer.Start();
+
+            // اجعل ليبل حالة الاشتراك قابلاً للضغط لفتح شاشة الاشتراك المخصصة (تفعيل/تجديد)
+            la_trile.Cursor = Cursors.Hand;
+            var subscriptionTip = new ToolTip();
+            subscriptionTip.SetToolTip(la_trile, "اضغط هنا لعرض حالة الاشتراك أو تجديده");
+            la_trile.Click += La_trile_Click;
+        }
+
+        private void La_trile_Click(object sender, EventArgs e)
+        {
+            using (var frm = new pl.frm_subscription())
+            {
+                frm.ShowDialog();
+            }
+            // إعادة الفحص فورًا بعد إغلاق شاشة الاشتراك حتى تنعكس حالة التفعيل الجديدة على الواجهة
+            CheckTrialExpiration(trialStartDate, la_trile);
         }
 
         private void main_Load(object sender, EventArgs e)
@@ -665,67 +689,84 @@ namespace el_shabander
         }
         private void CheckTrialExpiration(DateTime trialStartDate, Label label)
         {
-            // هنا يمكنك تنفيذ منطق لفحص فترة التجربة باستخدام السيريال نمبر وتاريخ بدء الفترة التجريبية
-            // هذا مجرد مثال بسيط على كيفية الفحص
-            // DateTime trialStartDate = DateTime.Parse("2024-05-17");
-
-            DateTime currentDate = DateTime.Now;
-            //  trialStartDate = currentDateTime.AddMinutes(2);
-            TimeSpan trialPeriod = currentDate - trialStartDate;
-
-
-            int trialDays = 7; // 7 أيام
-            string currentSerial = Properties.Settings.Default.serail;
-
-            string licenseKey = Encrypt(currentSerial, "omran");
-
-            if (Properties.Settings.Default.license == licenseKey)
+            // 1) أولاً نتحقق من نظام الاشتراك الجديد (عدد أيام قابل للتجديد ومخزّن في قاعدة البيانات)
+            bl.SubscriptionStatus subStatus;
+            try
             {
-                label.Text = "مفعل";
+                subStatus = bl.SubscriptionManager.GetStatus();
+            }
+            catch (Exception ex)
+            {
+                // في حالة تعذر الوصول لقاعدة البيانات لا نقفل البرنامج بالخطأ، فقط نتجاهل فحص الاشتراك هذه المرة
+                Console.WriteLine("SubscriptionManager error: " + ex.Message);
+                subStatus = new bl.SubscriptionStatus { HasSubscriptionRecord = false };
+            }
+
+            if (subStatus.HasSubscriptionRecord)
+            {
+                if (subStatus.IsActive)
+                {
+                    label.Text = $"الاشتراك مفعل - متبقي {subStatus.RemainingDays} يوم";
+                    return;
+                }
+
+                if (subStatus.TamperDetected)
+                {
+                    DisableFeaturesForExpiredAccess();
+                    label.Text = "تم اكتشاف تغيير في تاريخ الجهاز - برجاء التواصل للدعم";
+                    return;
+                }
+
+                DisableFeaturesForExpiredAccess();
+                label.Text = "انتهى الاشتراك - برجاء التجديد";
+                return;
+            }
+
+            // 2) لم يتم تفعيل أي اشتراك من قبل على هذا الجهاز -> نطبّق نظام التجربة المجانية القديم (7 أيام)
+            DateTime currentDate = DateTime.Now;
+            TimeSpan trialPeriod = currentDate - trialStartDate;
+            int trialDays = 7; // 7 أيام
+
+            if (trialPeriod.TotalDays > trialDays)
+            {
+                MessageBox.Show("انتهت فترة التجربة.");
+                DisableFeaturesForExpiredAccess();
+                label.Text = "انتهت الفترة التجريبية";
             }
             else
             {
-                if (trialPeriod.TotalDays > trialDays)
-                {
-                    // يمكنك هنا تنفيذ الإجراءات اللازمة عند انتهاء فترة التجربة
-                    MessageBox.Show("انتهت فترة التجربة.");
-
-                    simpleButton13.Enabled = false;
-                    whats.Enabled = true;
-                    btn_employees.Enabled = false;
-                    btn_stor.Enabled = false;
-                    simpleButton1.Enabled = false;
-                    simpleButton12.Enabled = false;
-                    simpleButton11.Enabled = false;
-                    simpleButton10.Enabled = false;
-                    simpleButton4.Enabled = false;
-                    simpleButton9.Enabled = false;
-                    btn_supp.Enabled = false;
-                    simpleButton7.Enabled = false;
-                    btn_factory.Enabled = false;
-                    frm_home.tileItem1.Enabled = false;
-                    frm_home.tileItem4.Enabled = false;
-                    frm_home.tileItem2.Enabled = false;
-                    frm_home.tileItem7.Enabled = false;
-                    frm_home.tileItem8.Enabled = false;
-                    frm_home.tileItem9.Enabled = false;
-                    frm_home.tileItem10.Enabled = false;
-                    frm_home.tileItem6.Enabled = false;
-                    simpleButton2.Enabled = false;
-
-                    label.Text = "انتهت الفترة التجريبية";
-                }
-                else
-                {
-
-                    // حساب الأيام المتبقية
-                    int remainingDays = (int)(trialDays - trialPeriod.TotalDays);
-                    // تحديث النص في الليبل
-                    label.Text = $"الأيام المتبقية: {remainingDays} يوم";
-
-                }
-
+                int remainingDays = (int)(trialDays - trialPeriod.TotalDays);
+                label.Text = $"تجربة مجانية - الأيام المتبقية: {remainingDays} يوم";
             }
+        }
+
+        /// <summary>
+        /// تعطيل الميزات الأساسية عند انتهاء التجربة المجانية أو انتهاء الاشتراك.
+        /// </summary>
+        private void DisableFeaturesForExpiredAccess()
+        {
+            simpleButton13.Enabled = false;
+            whats.Enabled = true;
+            btn_employees.Enabled = false;
+            btn_stor.Enabled = false;
+            simpleButton1.Enabled = false;
+            simpleButton12.Enabled = false;
+            simpleButton11.Enabled = false;
+            simpleButton10.Enabled = false;
+            simpleButton4.Enabled = false;
+            simpleButton9.Enabled = false;
+            btn_supp.Enabled = false;
+            simpleButton7.Enabled = false;
+            btn_factory.Enabled = false;
+            frm_home.tileItem1.Enabled = false;
+            frm_home.tileItem4.Enabled = false;
+            frm_home.tileItem2.Enabled = false;
+            frm_home.tileItem7.Enabled = false;
+            frm_home.tileItem8.Enabled = false;
+            frm_home.tileItem9.Enabled = false;
+            frm_home.tileItem10.Enabled = false;
+            frm_home.tileItem6.Enabled = false;
+            simpleButton2.Enabled = false;
         }
         private void StoreSerialNumber()
         {

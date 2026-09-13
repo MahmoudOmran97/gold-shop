@@ -389,6 +389,7 @@ namespace el_shabander.pl
             this.simpleButton1.Size = new System.Drawing.Size(211, 56);
             this.simpleButton1.TabIndex = 51;
             this.simpleButton1.Text = "طباعة";
+            this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click);
             // 
             // comboBox1
             // 
